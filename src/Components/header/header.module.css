@@ -1,5 +1,7 @@
 .header{
-  background-color: antiquewhite;
+  /*for grid-area's elements*/
+  grid-area: header;
+  background-color: #524bb8;
 }
 .header__wrapper_img img {
   width: 120px;

@@ -1,0 +1,7 @@
+.newMessage__content {
+    padding: 10px 7px;
+    border: 1px solid #000000;
+}
+.newMessage__content:not(:first-child) {
+    border-top: 0px;
+}

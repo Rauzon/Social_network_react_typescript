@@ -1,0 +1,13 @@
+.content {
+    margin-top: 15px;
+    display: flex;
+    max-height: 100px;
+}
+
+.content__img img {
+    width: 80px;
+    height: 80px;
+}
+.content__text {
+    margin-left: 15px;
+}

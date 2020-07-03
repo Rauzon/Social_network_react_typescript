@@ -1,8 +1,10 @@
-.nav__wrap{
-    padding: 10px;
+.nav {
+    /*for grid-area's elements*/
+    grid-area: nav;
+    background-color: #ffffff;
 }
-.nav__wrap_menu a li{
-    margin-bottom: 8px;
+.nav__wrap_menu li{
+    padding: 7px 15px;
     list-style: none;
     text-align: left;
 }
