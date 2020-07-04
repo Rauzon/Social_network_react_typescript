@@ -1,0 +1,13 @@
+.nav__wrap_menu li{
+    padding: 7px 15px;
+    list-style: none;
+    text-align: left;
+}
+.nav__wrap_menu a {
+    text-decoration: none;
+    color: #000;
+}
+.nav__wrap_menu a:focus{
+    text-decoration: none;
+    color: #9831e8;
+}

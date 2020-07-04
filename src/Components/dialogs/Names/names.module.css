@@ -1,0 +1,16 @@
+.dialogs__people_name {
+    padding: 10px 7px;
+    border: 1px solid #000000;
+    border-right: 0px;
+}
+.dialogs__people_name:not(:first-child){
+    border-top: 0px;
+}
+.dialogs__people_name a{
+    text-decoration: none;
+    color: #000;
+}
+.dialogs__people_name a:focus{
+    text-decoration: none;
+    color: #9831e8;
+}

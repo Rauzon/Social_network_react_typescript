@@ -1,6 +1,6 @@
 import React from "react";
 import style from './nav.module.css';
-import {NavLink} from "react-router-dom";
+import { SidebarTitle } from "./navLink/SidebarTitle";
 
 export const Nav = (props:any) => {
     type navType = {
@@ -12,18 +12,14 @@ export const Nav = (props:any) => {
 
 
     const titles: navBarType = [
-        {id: 1, title: 'profile', path: '/profile'},
-        {id: 2, title: 'dialogs', path: '/dialogs'},
-        {id: 3, title: 'users', path: '/users'},
-        {id: 4, title: 'news', path: '/news'},
-        {id: 5, title: 'settings', path: '/settings'}
+        {id: 1, title: 'Profile', path: '/profile'},
+        {id: 2, title: 'Dialogs', path: '/dialogs'},
+        {id: 3, title: 'Users', path: '/users'},
+        {id: 4, title: 'News', path: '/news'},
+        {id: 5, title: 'Settings', path: '/settings'}
     ]
 
     return <div className={style.nav}>
-        {
-            titles.map((t) => <div className={style.nav__wrap_menu} key={t.id}>
-                <NavLink to={t.path}><li>{t.title}</li></NavLink>
-            </div>)
-        }
+        {titles.map((t) => <SidebarTitle key={t.id} title={t.title} path={t.path}/>)}
     </div>
 }

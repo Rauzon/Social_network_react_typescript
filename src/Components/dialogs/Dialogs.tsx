@@ -1,36 +1,43 @@
 import React from "react";
 import style from './dialogs.module.css'
-import { NewMessage } from "./newMessage/NewMessage";
-
+import {Messages} from "./Messages/Messages";
+import {Names} from "./Names/Names";
 
 
 export const Dialogs = () => {
+
+    //data for names
     type namesType = {
         id: number,
-        name: string
+        name: string,
+        path: string
     }
-    const arrNames: Array<namesType> = [
-        {id: 1, name: 'Marat'},
-        {id: 2, name: 'Anton'},
-        {id: 3, name: 'Arkasha'},
-        {id: 4, name: 'Tolik'}
-        ]
+    const names: Array<namesType> = [
+        {id: 1, name: 'Marat', path: '/dialogs/1'},
+        {id: 2, name: 'Anton', path: '/dialogs/2'},
+        {id: 3, name: 'Arkasha', path: '/dialogs/3'},
+        {id: 4, name: 'Tolik', path: '/dialogs/4'}
+    ]
 
-    const names = arrNames.map((item) => {
-        return (
-            <div className={style.dialogs__people_name} key={item.id}>
-                <span>{item.name}</span>
-            </div>
-        )
-    })
+    //data for messages
+    type messageType = {
+        id: number,
+        message: string
+    }
+    const messages: Array<messageType> = [
+        {id: 1, message: 'Hey man!'},
+        {id: 2, message: 'How is it going?'},
+        {id: 3, message: 'You forgot about my birthday(('},
+        {id: 4, message: 'I want to break up with you, sorry'}
+    ]
 
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs__people}>
-                {names}
+                {names.map((n) => <Names key={n.id} name={n.name} path={n.path}/>)}
             </div>
             <div className={style.dialogs__messages}>
-                <NewMessage />
+                {messages.map((m) => <Messages key={m.id} message={m.message}/>)}
             </div>
         </div>
     )
