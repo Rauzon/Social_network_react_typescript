@@ -1,5 +1,5 @@
 import React from "react";
-import style from './navLink.module.css';
+import style from './sideBar.module.css';
 import {NavLink} from "react-router-dom";
 
 type PropsType = {

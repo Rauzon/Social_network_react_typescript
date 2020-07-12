@@ -6,9 +6,12 @@ type propsType = {
 }
 
 export const Messages: React.FC<propsType> = (props) => {
-    return <>
+    return <div className={style.newMessage}>
+        <div className={style.newMessage__img}>
+            <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt=""/>
+        </div>
         <div className={style.newMessage__content}>
             <span>{props.message}</span>
         </div>
-    </>
+    </div>
 }

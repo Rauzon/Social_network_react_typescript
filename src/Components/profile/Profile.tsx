@@ -2,12 +2,17 @@ import React from 'react';
 import style from './profile.module.css'
 import {MyPosts} from "./myPosts/myPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
+import {profilePageType} from "../../redux/store";
 
-export const Profile= () => {
+type propsType = {
+    profilePage:profilePageType
+}
+
+export const Profile:React.FC<propsType>= (props) => {
     return (
         <div className={style.content}>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts posts={props.profilePage.posts}/>
         </div>
     )
 

@@ -8,18 +8,23 @@ import {Dialogs} from "./Components/dialogs/Dialogs";
 import {Users} from "./Components/users/Users";
 import {News} from "./Components/news/News";
 import { Settings } from './Components/settings/Settings';
+import {storeType} from './redux/store';
 
-function App() {
+type propsType = {
+    store:storeType
+}
+
+const App:React.FC<propsType> = (props) => {
     return (
         <div className={'app__wrapper'}>
             <Header/>
-            <Nav />
+            <Nav navPage={props.store.navPage} />
             <div className="app__wrapper_content">
-                <Route path={'/profile'} component={Profile}/>
-                <Route path={'/dialogs'} component={Dialogs}/>
-                <Route path={'/users'} component={Users}/>
-                <Route path={'/news'} component={News}/>
-                <Route path={'/settings'} component={Settings}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={props.store.profilePage}/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.store.dialogsPage} />}/>
+                <Route path={'/users'}  render={() => <Users />}/>
+                <Route path={'/news'}  render={() => <News />}/>
+                <Route path={'/settings'} render={() => <Settings />}/>
             </div>
         </div>
     );

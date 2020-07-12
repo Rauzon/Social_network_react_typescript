@@ -1,25 +1,21 @@
 import React from "react";
 import style from './nav.module.css';
-import { SidebarTitle } from "./navLink/SidebarTitle";
+import { SidebarTitle } from "./sideBar/SidebarTitle";
+import {FriendsBlock} from "./friendsBlock/FriendsBlock";
+import {navPageType} from "../../redux/store";
 
-export const Nav = (props:any) => {
-    type navType = {
-        id: number,
-        title: string,
-        path: string
-    }
-    type navBarType = Array<navType>
+type propsType = {
+    navPage: navPageType
+}
 
-
-    const titles: navBarType = [
-        {id: 1, title: 'Profile', path: '/profile'},
-        {id: 2, title: 'Dialogs', path: '/dialogs'},
-        {id: 3, title: 'Users', path: '/users'},
-        {id: 4, title: 'News', path: '/news'},
-        {id: 5, title: 'Settings', path: '/settings'}
-    ]
-
+export const Nav:React.FC<propsType> = (props) => {
     return <div className={style.nav}>
-        {titles.map((t) => <SidebarTitle key={t.id} title={t.title} path={t.path}/>)}
+        {props.navPage.navTitles.map((t) => <SidebarTitle key={t.id} title={t.title} path={t.path}/>)}
+        <div className={style.nav__friendsBlock}>
+            <div className={style.nav__friendsBlock_title}>
+                <h4>Friends:</h4>
+            </div>
+            <FriendsBlock />
+        </div>
     </div>
 }
