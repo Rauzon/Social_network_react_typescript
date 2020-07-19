@@ -12,6 +12,10 @@ import {storeType} from './redux/store';
 
 type propsType = {
     store:storeType
+    addPost: () => void
+    addMessage: () => void
+    updatePost: (newPostValue:string | number) => void
+    updateMessage: (newMessageValue:string | number) => void
 }
 
 const App:React.FC<propsType> = (props) => {
@@ -20,8 +24,12 @@ const App:React.FC<propsType> = (props) => {
             <Header/>
             <Nav navPage={props.store.navPage} />
             <div className="app__wrapper_content">
-                <Route path={'/profile'} render={() => <Profile profilePage={props.store.profilePage}/>}/>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.store.dialogsPage} />}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={props.store.profilePage}
+                                                                addPost={props.addPost}
+                                                                updatePost={props.updatePost}/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.store.dialogsPage}
+                                                                addMessage={props.addMessage}
+                                                                updateMessage={props.updateMessage}/>}/>
                 <Route path={'/users'}  render={() => <Users />}/>
                 <Route path={'/news'}  render={() => <News />}/>
                 <Route path={'/settings'} render={() => <Settings />}/>

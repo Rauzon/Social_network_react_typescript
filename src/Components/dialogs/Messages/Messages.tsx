@@ -2,7 +2,7 @@ import React from "react";
 import style from './messages.module.css'
 
 type propsType = {
-    message: string
+    message: string | number
 }
 
 export const Messages: React.FC<propsType> = (props) => {

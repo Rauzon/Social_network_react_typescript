@@ -2,7 +2,7 @@ import React from 'react';
 import style from './myPost.module.css'
 
 type propsType = {
-    message: string
+    message: string | number
 }
 
 
