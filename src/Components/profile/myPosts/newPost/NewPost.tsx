@@ -12,14 +12,14 @@ export const NewPost:React.FC<propsType> = (props) => {
     let refPost:RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addPost = () => {
-        // @ts-ignore
         props.addPost()
     }
 
     const changeTextarea = () => {
-        // @ts-ignore
-        let newPost = refPost.current.value;
-        props.updatePost(newPost)
+        if(refPost.current){
+            let newPost = refPost.current.value;
+            props.updatePost(newPost)
+        }
     }
 
     return (

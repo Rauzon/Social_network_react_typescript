@@ -20,9 +20,10 @@ export const Dialogs:React.FC<propsType> = (props) => {
     }
 
     const changeMessageValue = () => {
-        // @ts-ignore
-        let newMessage = refTextarea.current.value;
-        props.updateMessage(newMessage);
+        if(refTextarea.current){
+            let newMessage = refTextarea.current.value;
+            props.updateMessage(newMessage);
+        }
     }
 
     return (
