@@ -4,24 +4,28 @@ import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {addMessage, addPost, sibscribe, store, storeType, updateMessage, updatePost} from "./redux/store";
+import {stateType, storeType} from "./redux/store";
+import {store} from "./redux/store";
 
 
-export const renderAppTree = (store:storeType) => {
+export const renderAppTree = (state: stateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App store={store} addPost={addPost} addMessage={addMessage} updatePost={updatePost}
-                     updateMessage={updateMessage}/>
+                <App state={state}
+                     addPost={store.addPost.bind(store)}
+                     updatePost={store.updatePost.bind(store)}
+                     addMessage={store.addMessage.bind(store)}
+                     updateMessage={store.updateMessage.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-renderAppTree(store);
+renderAppTree(store.getState());
 
-sibscribe(renderAppTree)
+store.sibscribe(renderAppTree)
 
 
 

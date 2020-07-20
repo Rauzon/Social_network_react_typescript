@@ -8,26 +8,27 @@ import {Dialogs} from "./Components/dialogs/Dialogs";
 import {Users} from "./Components/users/Users";
 import {News} from "./Components/news/News";
 import { Settings } from './Components/settings/Settings';
-import {storeType} from './redux/store';
+import {stateType} from './redux/store';
 
 type propsType = {
-    store:storeType
+    state: stateType
     addPost: () => void
-    addMessage: () => void
-    updatePost: (newPostValue:string | number) => void
-    updateMessage: (newMessageValue:string | number) => void
+    updatePost:(newPostValue:string | number) => void
+    addMessage:() => void
+    updateMessage:(newMessageValue:string | number) => void
+
 }
 
 const App:React.FC<propsType> = (props) => {
     return (
         <div className={'app__wrapper'}>
             <Header/>
-            <Nav navPage={props.store.navPage} />
+            <Nav navPage={props.state.navPage} />
             <div className="app__wrapper_content">
-                <Route path={'/profile'} render={() => <Profile profilePage={props.store.profilePage}
+                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
                                                                 addPost={props.addPost}
                                                                 updatePost={props.updatePost}/>}/>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.store.dialogsPage}
+                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.state.dialogsPage}
                                                                 addMessage={props.addMessage}
                                                                 updateMessage={props.updateMessage}/>}/>
                 <Route path={'/users'}  render={() => <Users />}/>
