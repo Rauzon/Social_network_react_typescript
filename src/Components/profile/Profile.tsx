@@ -3,19 +3,18 @@ import style from './profile.module.css'
 import {MyPosts} from "./myPosts/myPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {profilePageType} from "../../redux/store";
+import {ActionCreatorsType} from "../../redux/TypesForRedux";
 
 type propsType = {
     profilePage:profilePageType
-    addPost: () => void
-    updatePost: (newPostValue:string | number) => void
+    dispatch: (action:ActionCreatorsType) => void
 }
 
 export const Profile:React.FC<propsType>= (props) => {
     return (
         <div className={style.content}>
             <ProfileInfo />
-            <MyPosts posts={props.profilePage.posts} newPost={props.profilePage.newPost} addPost={props.addPost}
-                     updatePost={props.updatePost}/>
+            <MyPosts posts={props.profilePage.posts} newPost={props.profilePage.newPost} dispatch={props.dispatch}/>
         </div>
     )
 

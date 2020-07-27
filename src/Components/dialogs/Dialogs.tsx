@@ -3,11 +3,11 @@ import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import { dialogsPageType } from "../../redux/store";
+import { ActionCreatorsType, addMessageAC, updateMessageAC } from "../../redux/TypesForRedux";
 
 type propsType = {
     dialogPage: dialogsPageType
-    addMessage: () => void
-    updateMessage: (newMessageValue:string | number) => void
+    dispatch: (action:ActionCreatorsType) => void
 }
 
 
@@ -16,13 +16,13 @@ export const Dialogs:React.FC<propsType> = (props) => {
     let refTextarea: RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addNewMessage = () => {
-        props.addMessage();
+        props.dispatch(addMessageAC());
     }
 
     const changeMessageValue = () => {
         if(refTextarea.current){
             let newMessage = refTextarea.current.value;
-            props.updateMessage(newMessage);
+            props.dispatch(updateMessageAC(newMessage));
         }
     }
 

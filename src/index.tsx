@@ -4,19 +4,19 @@ import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {stateType, storeType} from "./redux/store";
+import {stateType} from "./redux/store";
 import {store} from "./redux/store";
 
 
-export const renderAppTree = (state: stateType) => {
+export type renderAppTreeType = (state:stateType) => void
+
+
+export const renderAppTree:renderAppTreeType = (state: stateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
                 <App state={state}
-                     addPost={store.addPost.bind(store)}
-                     updatePost={store.updatePost.bind(store)}
-                     addMessage={store.addMessage.bind(store)}
-                     updateMessage={store.updateMessage.bind(store)}/>
+                     dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

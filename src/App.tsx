@@ -9,14 +9,11 @@ import {Users} from "./Components/users/Users";
 import {News} from "./Components/news/News";
 import { Settings } from './Components/settings/Settings';
 import {stateType} from './redux/store';
+import {ActionCreatorsType} from "./redux/TypesForRedux";
 
 type propsType = {
     state: stateType
-    addPost: () => void
-    updatePost:(newPostValue:string | number) => void
-    addMessage:() => void
-    updateMessage:(newMessageValue:string | number) => void
-
+    dispatch: (action:ActionCreatorsType) => void
 }
 
 const App:React.FC<propsType> = (props) => {
@@ -26,11 +23,9 @@ const App:React.FC<propsType> = (props) => {
             <Nav navPage={props.state.navPage} />
             <div className="app__wrapper_content">
                 <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
-                                                                addPost={props.addPost}
-                                                                updatePost={props.updatePost}/>}/>
+                                                                dispatch={props.dispatch}/>}/>
                 <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.state.dialogsPage}
-                                                                addMessage={props.addMessage}
-                                                                updateMessage={props.updateMessage}/>}/>
+                                                                dispatch={props.dispatch}/>}/>
                 <Route path={'/users'}  render={() => <Users />}/>
                 <Route path={'/news'}  render={() => <News />}/>
                 <Route path={'/settings'} render={() => <Settings />}/>

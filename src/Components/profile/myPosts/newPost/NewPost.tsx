@@ -1,10 +1,11 @@
 import React, { RefObject } from 'react';
 import style from './newPost.module.css'
+import {ActionCreatorsType, addPostAC, updatePostAC} from "../../../../redux/TypesForRedux";
+
 
 type propsType = {
-    addPost: () => void
-    updatePost: (newPostValue:string | number) => void
     newPost: number | string
+    dispatch: (action: ActionCreatorsType) => void
 }
 
 export const NewPost:React.FC<propsType> = (props) => {
@@ -12,13 +13,13 @@ export const NewPost:React.FC<propsType> = (props) => {
     let refPost:RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addPost = () => {
-        props.addPost()
+        props.dispatch(addPostAC())
     }
 
     const changeTextarea = () => {
         if(refPost.current){
             let newPost = refPost.current.value;
-            props.updatePost(newPost)
+            props.dispatch(updatePostAC(newPost))
         }
     }
 
