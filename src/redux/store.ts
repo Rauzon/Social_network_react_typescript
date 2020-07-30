@@ -94,36 +94,7 @@ export const store: storeType = {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
         this._renderAppTree(this._state);
-        // switch (action.type) {
-        //     case typeOfActionDispatch.ADD_MESSAGE:
-        //         let newMessageValue = this._state.dialogsPage.newMessage;
-        //
-        //         let newMessage = {id: 5, message: newMessageValue}
-        //
-        //         this._state.dialogsPage.messages.push(newMessage)
-        //         this._renderAppTree(this._state);
-        //         this._state.dialogsPage.newMessage = '';
-        //
-        //     case typeOfActionDispatch.UPDATE_MESSAGE:
-        //         if (action.type === typeOfActionDispatch.UPDATE_MESSAGE) {
-        //             this._state.dialogsPage.newMessage = action.newMessageValue;
-        //         }
-        //             this._renderAppTree(this._state);
-        //
-        //     case typeOfActionDispatch.ADD_POST:
-        //         let newPostValue = this._state.profilePage.newPost
-        //         let newPost = {id: 5, message: newPostValue}
-        //
-        //         this._state.profilePage.posts.push(newPost)
-        //         this._renderAppTree(this._state);
-        //         this._state.profilePage.newPost = '';
-        //
-        //     case typeOfActionDispatch.UPDATE_POST:
-        //         if (action.type === typeOfActionDispatch.UPDATE_POST) {
-        //             this._state.profilePage.newPost = action.newPostValue;
-        //         }
-        //             this._renderAppTree(this._state);
-        // }
+
     },
     sibscribe(observer: renderAppTreeType) {
         this._renderAppTree = observer

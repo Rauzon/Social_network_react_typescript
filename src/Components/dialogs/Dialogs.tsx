@@ -4,6 +4,7 @@ import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import { dialogsPageType } from "../../redux/store";
 import { ActionCreatorsType, addMessageAC, updateMessageAC } from "../../redux/TypesForRedux";
+import { NewMessageInput } from "./newMessageInput/NewMessageInput";
 
 type propsType = {
     dialogPage: dialogsPageType
@@ -13,18 +14,6 @@ type propsType = {
 
 export const Dialogs:React.FC<propsType> = (props) => {
 
-    let refTextarea: RefObject<HTMLTextAreaElement> = React.createRef()
-
-    const addNewMessage = () => {
-        props.dispatch(addMessageAC());
-    }
-
-    const changeMessageValue = () => {
-        if(refTextarea.current){
-            let newMessage = refTextarea.current.value;
-            props.dispatch(updateMessageAC(newMessage));
-        }
-    }
 
     return (
         <div className={style.dialogs}>
@@ -38,15 +27,7 @@ export const Dialogs:React.FC<propsType> = (props) => {
                 </div>
                 <div className={style.dialogs__messages}>
                     {props.dialogPage.messages.map((m) => <Messages key={m.id} message={m.message}/>)}
-                    <div className={style.dialogs__messages_newMesssage}>
-                        <div className={style.dialogs__messages_newMesssage_textarea}>
-                            <textarea placeholder='Enter new message...' ref={refTextarea} onChange={changeMessageValue}
-                                                                            value={props.dialogPage.newMessage}></textarea>
-                        </div>
-                        <div className={style.dialogs__messages_newMesssage_button}>
-                            <button onClick={addNewMessage}>Send</button>
-                        </div>
-                    </div>
+                    <NewMessageInput newMessageValue={props.dialogPage.newMessage} dispatch={props.dispatch}/>
                 </div>
             </div>
         </div>
