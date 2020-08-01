@@ -7,7 +7,7 @@ enum typeOfActionDispatch {
 }
 
 
-type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
+export type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
 
 export const profilePageReducer: profilePageReducerType = (state, action) => {
     switch (action.type) {

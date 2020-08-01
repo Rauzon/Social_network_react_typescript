@@ -6,7 +6,7 @@ enum typeOfActionDispatch {
     ADD_MESSAGE = "ADD_MESSAGE",
 }
 
-type dialogsPageReducerType = (state: dialogsPageType, action: ActionCreatorsType) => dialogsPageType
+export type dialogsPageReducerType = (state: dialogsPageType, action: ActionCreatorsType) => dialogsPageType
 
 export const dialogsPageReducer: dialogsPageReducerType = (state, action) => {
     switch (action.type) {
