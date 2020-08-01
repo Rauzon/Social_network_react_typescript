@@ -21,6 +21,12 @@ export type navTitlesType = {
     title: string,
     path: string
 }
+export type FriendsNavType = {
+    id:number
+    name: string
+    pathToDialog: string
+    isOnline: boolean
+}
 
 export type profilePageType = {
     posts: Array<profilePostsType>
@@ -33,6 +39,7 @@ export type dialogsPageType = {
 }
 export type navPageType = {
     navTitles: Array<navTitlesType>
+    friends: Array<FriendsNavType>
 }
 
 export type stateType = {
@@ -81,7 +88,14 @@ export const store: storeType = {
                 {id: 3, title: 'Users', path: '/users'},
                 {id: 4, title: 'News', path: '/news'},
                 {id: 5, title: 'Settings', path: '/settings'}
+            ],
+            friends: [
+                {id: 1, name: 'Marat', pathToDialog: '/dialogs/1', isOnline: true},
+                {id: 2, name: 'Anton', pathToDialog: '/dialogs/2', isOnline: false},
+                {id: 3, name: 'Arkasha', pathToDialog: '/dialogs/3', isOnline: true},
+                {id: 4, name: 'Tolik', pathToDialog: '/dialogs/4', isOnline: false}
             ]
+
         }
     },
     _renderAppTree() {

@@ -3,4 +3,7 @@
     grid-area: nav;
     background-color: #ffffff;
 }
+.nav__friendsBlock_title{
+    margin-left: 10px;
+}
 

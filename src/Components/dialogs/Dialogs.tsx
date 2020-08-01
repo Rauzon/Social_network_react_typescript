@@ -3,7 +3,7 @@ import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import { dialogsPageType } from "../../redux/store";
-import { ActionCreatorsType, addMessageAC, updateMessageAC } from "../../redux/TypesForRedux";
+import { ActionCreatorsType } from "../../redux/TypesForRedux";
 import { NewMessageInput } from "./newMessageInput/NewMessageInput";
 
 type propsType = {

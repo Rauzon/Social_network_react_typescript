@@ -15,7 +15,7 @@ export const Nav:React.FC<propsType> = (props) => {
             <div className={style.nav__friendsBlock_title}>
                 <h4>Friends:</h4>
             </div>
-            <FriendsBlock />
+            <FriendsBlock friends={props.navPage.friends}/>
         </div>
     </div>
 }

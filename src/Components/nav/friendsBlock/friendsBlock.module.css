@@ -1,0 +1,53 @@
+.nav__friendsBlock_item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+
+    border: 1px solid rgba(184, 173, 173, .5);
+    border-right: none;
+    border-left: none;
+}
+
+.nav__friendsBlock_item:not(:last-child) {
+    border-bottom: none;
+}
+
+.nav__friendsBlock_item:hover {
+    transition-delay: .1s;
+    transition-duration: .5s;
+
+    background-color: #ebebf7;
+}
+
+.nav__friendsBlock_item_img {
+    margin-right: 5px;
+}
+
+.nav__friendsBlock_item_img img {
+    width: 3vw;
+    height: 6vh;
+
+    transform: translateY(5%);
+}
+
+.nav__friendsBlock_item_name a {
+    text-decoration: none;
+
+    color: black;
+}
+
+.nav__friendsBlock_item_onlineStatus {
+    position: absolute;
+    right: 5%;
+
+    width: .5vw;
+    height: 1vh;
+
+    transform: translateY(5%);
+
+    border-radius: 50%;
+    background-color: green;
+}
