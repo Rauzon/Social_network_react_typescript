@@ -46,8 +46,8 @@
     width: .5vw;
     height: 1vh;
 
-    transform: translateY(5%);
+    transform: translateY(25%);
 
-    border-radius: 50%;
+    border-radius: 50px;
     background-color: green;
 }

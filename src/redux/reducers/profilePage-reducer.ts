@@ -9,7 +9,15 @@ enum typeOfActionDispatch {
 
 export type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
 
-export const profilePageReducer: profilePageReducerType = (state, action) => {
+const initialState:profilePageType = {
+    posts: [
+        {id: 1, message: "Hey girls"},
+        {id: 2, message: "Hey guys"}
+    ],
+    newPost: ''
+}
+
+export const profilePageReducer: profilePageReducerType = (state = initialState, action) => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_POST:
             let newPostValue = state.newPost

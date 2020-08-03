@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import {stateType} from "./redux/store";
-import {store} from "./redux/store";
+import {store} from "./redux/redux-store";
 
 
 export type renderAppTreeType = (state:stateType) => void
@@ -25,8 +25,7 @@ export const renderAppTree:renderAppTreeType = (state: stateType) => {
 
 renderAppTree(store.getState());
 
-store.sibscribe(renderAppTree)
-
+store.subscribe(() => renderAppTree(store.getState()))
 
 
 
