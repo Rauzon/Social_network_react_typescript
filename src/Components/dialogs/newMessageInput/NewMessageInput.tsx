@@ -1,24 +1,25 @@
 import React, {RefObject} from "react";
 import style from "../dialogs.module.css";
-import {ActionCreatorsType, addMessageAC, updateMessageAC} from "../../../redux/TypesForRedux";
+
 
 type NewMessageInputType = {
     newMessageValue: string | number
-    dispatch: (action:ActionCreatorsType) => void
+    updateMessageValue: (messageValue: string) => void
+    addNewMessage: () => void
 }
 
-export const NewMessageInput:React.FC<NewMessageInputType> = (props) => {
+export const NewMessageInput: React.FC<NewMessageInputType> = (props) => {
 
     let refTextarea: RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addNewMessage = () => {
-        props.dispatch(addMessageAC());
+        props.addNewMessage()
     }
 
     const changeMessageValue = () => {
-        if(refTextarea.current){
+        if (refTextarea.current) {
             let newMessage = refTextarea.current.value;
-            props.dispatch(updateMessageAC(newMessage));
+            props.updateMessageValue(newMessage)
         }
     }
 

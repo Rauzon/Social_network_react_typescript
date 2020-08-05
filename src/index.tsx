@@ -8,7 +8,7 @@ import {stateType} from "./redux/store";
 import {store} from "./redux/redux-store";
 
 
-export type renderAppTreeType = (state:stateType) => void
+export type renderAppTreeType = (state:stateType) => void 
 
 
 export const renderAppTree:renderAppTreeType = (state: stateType) => {

@@ -9,9 +9,9 @@ export default {
     component: NewMessageInput,
 };
 
-storiesOf('NewMessageInput', module)
-    .addDecorator(StoryRouter())
-    .add('NewMessageInput1',() => <NewMessageInput newMessageValue={"Enter your message..."} dispatch={x => x} /> )
+// storiesOf('NewMessageInput', module)
+//     .addDecorator(StoryRouter())
+    // .add('NewMessageInput1',() => <NewMessageInput newMessageValue={"Enter your message..."} addNewMessage={() => void}  updateMessageValue={x => x}/> )
 
 
 

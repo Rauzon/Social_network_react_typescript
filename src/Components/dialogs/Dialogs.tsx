@@ -1,10 +1,10 @@
-import React, {RefObject} from "react";
+import React from "react";
 import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import { dialogsPageType } from "../../redux/store";
 import { ActionCreatorsType } from "../../redux/TypesForRedux";
-import { NewMessageInput } from "./newMessageInput/NewMessageInput";
+import { NewMessageInputContainer } from "./newMessageInput/NewMessageInputContainer";
 
 type propsType = {
     dialogPage: dialogsPageType
@@ -13,8 +13,6 @@ type propsType = {
 
 
 export const Dialogs:React.FC<propsType> = (props) => {
-
-
     return (
         <div className={style.dialogs}>
             <div className={style.wrapper__header}>
@@ -27,7 +25,7 @@ export const Dialogs:React.FC<propsType> = (props) => {
                 </div>
                 <div className={style.dialogs__messages}>
                     {props.dialogPage.messages.map((m) => <Messages key={m.id} message={m.message}/>)}
-                    <NewMessageInput newMessageValue={props.dialogPage.newMessage} dispatch={props.dispatch}/>
+                    <NewMessageInputContainer newMessageValue={props.dialogPage.newMessage} dispatch={props.dispatch}/>
                 </div>
             </div>
         </div>
