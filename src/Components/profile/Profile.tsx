@@ -7,14 +7,13 @@ import {ActionCreatorsType} from "../../redux/TypesForRedux";
 
 type propsType = {
     profilePage:profilePageType
-    dispatch: (action:ActionCreatorsType) => void
 }
 
 export const Profile:React.FC<propsType>= (props) => {
     return (
         <div className={style.content}>
             <ProfileInfo />
-            <MyPosts posts={props.profilePage.posts} newPost={props.profilePage.newPost} dispatch={props.dispatch}/>
+            <MyPosts posts={props.profilePage.posts} newPost={props.profilePage.newPost} />
         </div>
     )
 

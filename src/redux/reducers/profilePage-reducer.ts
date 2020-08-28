@@ -23,13 +23,13 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
             let newPostValue = state.newPost
             let newPost = {id: 5, message: newPostValue}
 
-            state.posts.push(newPost)
+            state = {...state, posts: [...state.posts, newPost]}
             state.newPost = '';
             return state;
         case typeOfActionDispatch.UPDATE_POST:
             state.newPost = action.newPostValue;
-            return state
+            return {...state}
         default:
-            return state
+            return {...state}
     }
 }

@@ -4,7 +4,7 @@ import style from './newPost.module.css'
 
 type propsType = {
     newPost: number | string
-    changeValue: (newPost: string) => void
+    updatePost: (newPost: string) => void
     addPost: () => void
 }
 
@@ -19,7 +19,7 @@ export const NewPost:React.FC<propsType> = (props) => {
     const changeValue = () => {
         if(refPost.current){
             let newPost = refPost.current.value;
-            props.changeValue(newPost);
+            props.updatePost(newPost);
         }
     }
 
