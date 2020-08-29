@@ -1,22 +1,38 @@
 import React, {RefObject} from "react";
 import {ActionCreatorsType, addMessageAC, updateMessageAC} from "../../../redux/TypesForRedux";
 import {NewMessageInput} from "./NewMessageInput";
+import {connect} from "react-redux";
+import {stateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
 
-type PropsType = {
+
+type mapStateToPropsType = {
     newMessageValue: string | number
-    dispatch: (action: ActionCreatorsType) => void
 }
 
-export const NewMessageInputContainer: React.FC<PropsType> = (props) => {
-
-    let refTextarea: RefObject<HTMLTextAreaElement> = React.createRef()
-
-    const addNewMessage = () => {
-        props.dispatch(addMessageAC());
-    }
-
-    const changeMessageValue = (messageValue: string) => {
-        props.dispatch(updateMessageAC(messageValue));
-    }
-    return <NewMessageInput newMessageValue={props.newMessageValue} updateMessageValue={changeMessageValue} addNewMessage={addNewMessage}/>
+type mapDispatchToPropsType = {
+    updateMessageValue: (messageValue:string) => void
+    addNewMessage: () => void
 }
+
+
+const mapStateToProps = (state:stateType): mapStateToPropsType => {
+    return {
+        newMessageValue: state.dialogsPage.newMessage
+    }
+}
+
+const mapDispatchToProps = (dispatch:Dispatch<ActionCreatorsType>):mapDispatchToPropsType => {
+    return {
+        updateMessageValue: (messageValue:string) => {
+            dispatch(updateMessageAC(messageValue))
+        },
+        addNewMessage: () => {
+            dispatch(addMessageAC())
+        }
+    }
+}
+
+
+
+export const NewMessageInputContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessageInput)

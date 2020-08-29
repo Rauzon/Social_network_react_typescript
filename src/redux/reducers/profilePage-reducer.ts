@@ -27,9 +27,10 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
             state.newPost = '';
             return state;
         case typeOfActionDispatch.UPDATE_POST:
+            state = {...state}
             state.newPost = action.newPostValue;
-            return {...state}
+            return state
         default:
-            return {...state}
+            return state
     }
 }

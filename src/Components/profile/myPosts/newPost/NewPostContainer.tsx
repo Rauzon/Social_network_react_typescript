@@ -12,26 +12,18 @@ type MapDispatchToPropsType = {
 }
 
 type MapStateToPropsType = {
-    newPost: string
+    newPost: string | number
 }
 
-export type NewPostContainerPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-
-// const NewPostContainer: React.FC<NewPostContainerPropsType> = (props) => {
-//
-//     return <NewPost updatePost={props.updatePost} addPost={props.addPost} newPost={props.newPost}/>
-// }
-
-
-const mapStateToProps = (state: stateType) => {
+const mapStateToProps = (state: stateType):MapStateToPropsType => {
 
     return {
         newPost: state.profilePage.newPost
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
+const mapDispatchToProps = (dispatch: Dispatch<ActionCreatorsType>):MapDispatchToPropsType =>
     ({
             addPost: () => {
                 dispatch(addPostAC())

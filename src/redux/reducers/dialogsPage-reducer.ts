@@ -30,10 +30,11 @@ export const dialogsPageReducer: dialogsPageReducerType = (state = initialState,
             let newMessageValue = state.newMessage
             let newMessage = {id: 5, message:newMessageValue}
 
-            state.messages.push(newMessage)
+            state = {...state, messages: [...state.messages, newMessage]}
             state.newMessage = '';
             return state;
         case typeOfActionDispatch.UPDATE_MESSAGE:
+            state = {...state}
             state.newMessage = action.newMessageValue;
             return state
         default:

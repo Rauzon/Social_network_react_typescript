@@ -25,7 +25,7 @@ export const Dialogs:React.FC<propsType> = (props) => {
                 </div>
                 <div className={style.dialogs__messages}>
                     {props.dialogPage.messages.map((m) => <Messages key={m.id} message={m.message}/>)}
-                    <NewMessageInputContainer newMessageValue={props.dialogPage.newMessage} dispatch={props.dispatch}/>
+                    <NewMessageInputContainer />
                 </div>
             </div>
         </div>

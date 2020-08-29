@@ -34,5 +34,4 @@ export const NewPost:React.FC<propsType> = (props) => {
             </div>
         </div>
     )
-
 }
