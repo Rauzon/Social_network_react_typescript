@@ -2,7 +2,6 @@ import React from "react";
 import style from './myPosts.module.css'
 import { MyPost } from "./myPost/MyPost";
 import {profilePostsType} from "../../../redux/store";
-import {ActionCreatorsType} from "../../../redux/TypesForRedux";
 import {NewPostContainer} from "./newPost/NewPostContainer";
 
 type propsType = {

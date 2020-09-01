@@ -1,4 +1,4 @@
-import React, {RefObject} from "react";
+import React from "react";
 import {ActionCreatorsType, addMessageAC, updateMessageAC} from "../../../redux/TypesForRedux";
 import {NewMessageInput} from "./NewMessageInput";
 import {connect} from "react-redux";
@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch:Dispatch<ActionCreatorsType>):mapDispatchTo
         }
     }
 }
-
 
 
 export const NewMessageInputContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessageInput)
