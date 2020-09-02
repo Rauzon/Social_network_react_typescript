@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import App from "./App";
 import {stateType} from "./redux/store";
 import {store} from "./redux/redux-store";
@@ -15,12 +15,12 @@ export type renderAppTreeType = (state: stateType) => void
 export const renderAppTree: renderAppTreeType = (state: stateType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <BrowserRouter>
+            <HashRouter>
                 <Provider store={store}>
                     <App state={state}
                          dispatch={store.dispatch.bind(store)}/>
                 </Provider>
-            </BrowserRouter>
+            </HashRouter>
         </React.StrictMode>,
         document.getElementById('root')
     );
