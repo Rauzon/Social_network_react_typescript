@@ -10,6 +10,7 @@ import {News} from "./Components/news/News";
 import { Settings } from './Components/settings/Settings';
 import {stateType} from './redux/store';
 import {ActionCreatorsType} from "./redux/TypesForRedux";
+import { UsersContainer } from './Components/users/UsersContainer';
 
 type propsType = {
     state: stateType
@@ -25,7 +26,7 @@ const App:React.FC<propsType> = (props) => {
                 <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}/>}/>
                 <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.state.dialogsPage}
                                                                 dispatch={props.dispatch}/>}/>
-                <Route path={'/users'}  render={() => <Users />}/>
+                <Route path={'/users'}  render={() => <UsersContainer />}/>
                 <Route path={'/news'}  render={() => <News />}/>
                 <Route path={'/settings'} render={() => <Settings />}/>
             </div>
