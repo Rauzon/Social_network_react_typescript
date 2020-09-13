@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import {Users} from "./Users";
 import {Dispatch} from "redux";
 import {ActionCreatorsType, followToUserAC, unfollowToUserAC, setUsersAC} from "../../redux/TypesForRedux";
-import {stateType, userType} from "../../redux/redux-store";
+import {stateType, UserType} from "../../redux/redux-store";
 
 type mapStateToPropsType = {
-    users: Array<userType>
+    users: Array<UserType>
 }
 type mapDispatchToPropsType = {
     follow: (userId: number) => void,
     unfollow: (userId: number) => void
-    setUsers: (users: Array<userType>) => void
+    setUsers: (users: Array<UserType>) => void
 }
 
 const mapStateToProps = (state: stateType): mapStateToPropsType => {

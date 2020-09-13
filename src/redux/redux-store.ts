@@ -1,12 +1,12 @@
 import {combineReducers, createStore} from "redux";
 import {profilePageReducer} from "./reducers/profilePage-reducer";
 import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
-import { navPageReducer } from "./reducers/navPage-reducer";
+import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
 
-export type locationType = {
-    city: string,
-    country: string
+export type PhotosType = {
+    small: string | null
+    large: string | null
 }
 export type dialogsNamesType = {
     id: number,
@@ -27,18 +27,24 @@ export type navTitlesType = {
     path: string
 }
 export type FriendsNavType = {
-    id:number
+    id: number
     name: string
     pathToDialog: string
     isOnline: boolean
 }
-export type userType = {
-    id: number,
+export type UserType = {
     name: string,
-    status: string,
-    location: locationType
-    isFollowed: boolean
-    photoUrl: string
+    id: number,
+    uniqueUrlName: string | null,
+    photos: PhotosType
+    status: string | null
+    followed: boolean
+}
+
+export type CommonDataType<T> = {
+    error: string | null
+    items: T
+    totalCount: number
 }
 
 export type profilePageType = {
@@ -55,7 +61,7 @@ export type navPageType = {
     friends: Array<FriendsNavType>
 }
 export type UsersStateType = {
-    users: Array<userType>
+    users: Array<UserType>
 }
 
 export type stateType = {

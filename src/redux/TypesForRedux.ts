@@ -1,4 +1,4 @@
-import {userType} from "./redux-store";
+import {UserType} from "./redux-store";
 
 export enum typeOfActionDispatch {
     ADD_MESSAGE = "ADD_MESSAGE",
@@ -50,7 +50,7 @@ export const unfollowToUserAC = (userId: number) => {
         {type: typeOfActionDispatch.UNFOLLOW_TO_USER, userId}
     ) as const
 };
-export const setUsersAC = (users: Array<userType>) => {
+export const setUsersAC = (users: Array<UserType>) => {
     return (
         {type: typeOfActionDispatch.SET_USERS, users}
     ) as const
