@@ -4,8 +4,8 @@ import style from "../dialogs.module.css";
 
 type NewMessageInputType = {
     newMessageValue: string | number
-    updateMessageValue: (messageValue: string) => void
-    addNewMessage: () => void
+    updateMessage: (messageValue: string) => void
+    addMessage: () => void
 }
 
 export const NewMessageInput: React.FC<NewMessageInputType> = (props) => {
@@ -13,13 +13,13 @@ export const NewMessageInput: React.FC<NewMessageInputType> = (props) => {
     let refTextarea: RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addNewMessage = () => {
-        props.addNewMessage()
+        props.addMessage()
     }
 
     const changeMessageValue = () => {
         if (refTextarea.current) {
             let newMessage = refTextarea.current.value;
-            props.updateMessageValue(newMessage)
+            props.updateMessage(newMessage)
         }
     }
 

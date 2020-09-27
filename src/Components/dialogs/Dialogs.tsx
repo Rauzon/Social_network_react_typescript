@@ -6,6 +6,7 @@ import { dialogsPageType } from "../../redux/store";
 import { ActionCreatorsType } from "../../redux/TypesForRedux";
 import { NewMessageInputContainer } from "./newMessageInput/NewMessageInputContainer";
 
+
 type propsType = {
     dialogPage: dialogsPageType
     dispatch: (action:ActionCreatorsType) => void
