@@ -7,10 +7,14 @@ type usersReducerType = (state: UsersStateType, action: ActionCreatorsType) => U
 
 
 const initialUsersState: UsersStateType = {
-    users: []
+    users: [],
+    totalUsersCount: 0,
+    pageSize: 100,
+    currentPage: 1,
+    isFetching: true
 }
 
-export const usersReducer: usersReducerType = (state=initialUsersState, action): UsersStateType => {
+export const usersReducer: usersReducerType = (state = initialUsersState, action): UsersStateType => {
 
     switch (action.type) {
         case typeOfActionDispatch.FOLLOW_TO_USER:
@@ -20,7 +24,16 @@ export const usersReducer: usersReducerType = (state=initialUsersState, action):
             return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, isFollowed: false} : u)}
 
         case typeOfActionDispatch.SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...action.users]}
+
+        case typeOfActionDispatch.SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.totalUsersCount}
+
+        case typeOfActionDispatch.SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+
+        case typeOfActionDispatch.SET_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
 
         default:
             return state

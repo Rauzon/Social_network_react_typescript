@@ -33,9 +33,9 @@ export type FriendsNavType = {
     isOnline: boolean
 }
 export type UserType = {
-    name: string,
-    id: number,
-    uniqueUrlName: string | null,
+    name: string
+    id: number
+    uniqueUrlName: string | null
     photos: PhotosType
     status: string | null
     followed: boolean
@@ -62,6 +62,10 @@ export type navPageType = {
 }
 export type UsersStateType = {
     users: Array<UserType>
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    isFetching: boolean
 }
 
 export type stateType = {

@@ -8,6 +8,9 @@ export enum typeOfActionDispatch {
     FOLLOW_TO_USER = "FOLLOW_TO_USER",
     UNFOLLOW_TO_USER = "UNFOLLOW_TO_USER",
     SET_USERS = "SET_USERS",
+    SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT",
+    SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
+    SET_IS_FETCHING = "SET_IS_FETCHING",
 }
 
 export type ActionCreatorsType = ReturnType<typeof updatePostAC> |
@@ -16,7 +19,10 @@ export type ActionCreatorsType = ReturnType<typeof updatePostAC> |
     ReturnType<typeof addMessageAC> |
     ReturnType<typeof followToUserAC> |
     ReturnType<typeof unfollowToUserAC> |
-    ReturnType<typeof setUsersAC>
+    ReturnType<typeof setUsersAC> |
+    ReturnType<typeof setTotalUsersCountAC> |
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setIsFetchingAC>
 
 //actionCreators
 export const updatePostAC =(newPostValue: string) => {
@@ -53,5 +59,20 @@ export const unfollowToUserAC = (userId: number) => {
 export const setUsersAC = (users: Array<UserType>) => {
     return (
         {type: typeOfActionDispatch.SET_USERS, users}
+    ) as const
+};
+export const setTotalUsersCountAC = (totalUsersCount: number) => {
+    return (
+        {type: typeOfActionDispatch.SET_TOTAL_USERS_COUNT, totalUsersCount}
+    ) as const
+};
+export const setCurrentPageAC = (currentPage: number) => {
+    return (
+        {type: typeOfActionDispatch.SET_CURRENT_PAGE, currentPage}
+    ) as const
+};
+export const setIsFetchingAC = (isFetching: boolean) => {
+    return (
+        {type: typeOfActionDispatch.SET_IS_FETCHING, isFetching}
     ) as const
 };

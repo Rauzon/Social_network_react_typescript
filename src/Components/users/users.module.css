@@ -60,3 +60,11 @@
     display: block;
     margin-bottom: 5px;
 }
+
+.page {
+    cursor: pointer;
+}
+
+.active_page {
+    font-weight: bold;
+}
