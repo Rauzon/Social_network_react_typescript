@@ -25,21 +25,22 @@ export class UsersAPI extends React.Component<UsersPropsType> {
     componentDidMount(): void {
 
         if (this.props.users.length === 0) {
+            this.props.setIsFetching(true)
             axios.get<CommonDataType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(res => {
-                    this.props.setIsFetching(true)
+                    this.props.setIsFetching(false)
                     this.props.setUsers(res.data.items)
                     this.props.setTotalUsersCount(res.data.totalCount)
-                    this.props.setIsFetching(false)
                 })
         }
     }
 
     setCurrentPage = (p: number) => {
         this.props.setCurrentPage(p)
+        this.props.setIsFetching(true)
         axios.get<CommonDataType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(res => {
-                this.props.setIsFetching(true)
+                this.props.setIsFetching(false)
                 this.props.setUsers(res.data.items)
                 this.props.setIsFetching(false)
 
