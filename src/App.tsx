@@ -3,13 +3,13 @@ import {Route} from 'react-router-dom';
 import './App.css'
 import {Header} from './Components/header/Header';
 import {Nav} from './Components/nav/Nav';
-import {Profile} from './Components/profile/Profile';
 import {Dialogs} from "./Components/dialogs/Dialogs";
 import {News} from "./Components/news/News";
 import { Settings } from './Components/settings/Settings';
 import {stateType} from './redux/store';
 import {ActionCreatorsType} from "./redux/TypesForRedux";
-import { UsersContainer } from './Components/users/UsersContainer';
+import {UsersContainer} from './Components/users/UsersContainer';
+import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 
 type propsType = {
     state: stateType
@@ -22,7 +22,7 @@ const App:React.FC<propsType> = (props) => {
             <Header/>
             <Nav navPage={props.state.navPage} />
             <div className="app__wrapper_content">
-                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithURL />}/>
                 <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.state.dialogsPage}
                                                                 dispatch={props.dispatch}/>}/>
                 <Route path={'/users'}  render={() => <UsersContainer />}/>

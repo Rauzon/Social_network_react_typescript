@@ -1,3 +1,19 @@
 .content{
 
 }
+
+.content__avatar{
+
+}
+
+.content__description{
+    margin: 15px 0px;
+}
+
+.content__description_aboutMe,
+.content__description_contacts,
+.content__description_fullName,
+.content__description_searchJob,
+.content__description_desriptionOfJob{
+    margin: 10px 0px;
+}

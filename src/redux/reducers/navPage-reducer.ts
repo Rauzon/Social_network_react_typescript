@@ -1,5 +1,5 @@
-import {navPageType} from "../store"
 import {ActionCreatorsType} from "../TypesForRedux";
+import {navPageType} from "../redux-store";
 
 
 export type navPageReducerType = (state: navPageType, action: ActionCreatorsType) => navPageType

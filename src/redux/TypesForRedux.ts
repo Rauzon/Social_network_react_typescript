@@ -1,4 +1,4 @@
-import {UserType} from "./redux-store";
+import {CommonDataProfileType, UserType} from "./redux-store";
 
 export enum typeOfActionDispatch {
     ADD_MESSAGE = "ADD_MESSAGE",
@@ -11,6 +11,7 @@ export enum typeOfActionDispatch {
     SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT",
     SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
     SET_IS_FETCHING = "SET_IS_FETCHING",
+    SET_USER_PROFILE = "SET_USER_PROFILE",
 }
 
 export type ActionCreatorsType = ReturnType<typeof updatePost> |
@@ -22,7 +23,8 @@ export type ActionCreatorsType = ReturnType<typeof updatePost> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setIsFetching>
+    ReturnType<typeof setIsFetching> |
+    ReturnType<typeof setUserProfile>
 
 //actionCreators
 export const updatePost =(newPostValue: string) => {
@@ -74,5 +76,10 @@ export const setCurrentPage = (currentPage: number) => {
 export const setIsFetching = (isFetching: boolean) => {
     return (
         {type: typeOfActionDispatch.SET_IS_FETCHING, isFetching}
+    ) as const
+};
+export const setUserProfile = (userProfile: CommonDataProfileType) => {
+    return (
+        {type: typeOfActionDispatch.SET_USER_PROFILE, userProfile}
     ) as const
 };

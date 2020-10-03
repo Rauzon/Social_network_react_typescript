@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './users.module.css'
-import {UserType, CommonDataType} from "../../redux/redux-store";
+import {UserType, CommonDataUsersType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
 import axios from 'axios';
 import { Preloader } from '../preloader/Preloader';
@@ -20,13 +20,13 @@ type UsersPropsType = {
 }
 
 
-export class UsersAPI extends React.Component<UsersPropsType> {
+export class  UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {
 
         if (this.props.users.length === 0) {
             this.props.setIsFetching(true)
-            axios.get<CommonDataType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(res => {
                     this.props.setIsFetching(false)
                     this.props.setUsers(res.data.items)
@@ -38,7 +38,7 @@ export class UsersAPI extends React.Component<UsersPropsType> {
     setCurrentPage = (p: number) => {
         this.props.setCurrentPage(p)
         this.props.setIsFetching(true)
-        axios.get<CommonDataType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+        axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(res.data.items)

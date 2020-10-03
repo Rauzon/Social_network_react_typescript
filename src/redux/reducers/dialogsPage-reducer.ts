@@ -1,5 +1,5 @@
-import {dialogsPageType} from "../store"
 import {ActionCreatorsType} from "../TypesForRedux";
+import {dialogsPageType} from "../redux-store";
 
 enum typeOfActionDispatch {
     UPDATE_MESSAGE = "UPDATE_MESSAGE",

@@ -1,10 +1,5 @@
-import {profilePageType} from "../store"
-import {ActionCreatorsType} from "../TypesForRedux";
-
-enum typeOfActionDispatch {
-    ADD_POST = "ADD_POST",
-    UPDATE_POST = "UPDATE_POST",
-}
+import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
+import {profilePageType} from "../redux-store";
 
 
 export type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
@@ -14,7 +9,9 @@ const initialState:profilePageType = {
         {id: 1, message: "Hey girls"},
         {id: 2, message: "Hey guys"}
     ],
-    newPost: ''
+    newPost: '',
+    userProfile: null,
+    isFetching: false,
 }
 
 export const profilePageReducer: profilePageReducerType = (state = initialState, action) => {
@@ -30,6 +27,11 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
             state = {...state}
             state.newPost = action.newPostValue;
             return state
+        case typeOfActionDispatch.SET_USER_PROFILE:
+            return {...state, userProfile: action.userProfile}
+        case typeOfActionDispatch.SET_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
+
         default:
             return state
     }

@@ -41,15 +41,40 @@ export type UserType = {
     followed: boolean
 }
 
-export type CommonDataType<T> = {
+//Profile data
+type SocialContactsType = {
+    facebook: string | null
+    website: null | string
+    vk: string | null
+    twitter: string | null
+    instagram: string | null
+}
+type PhotoUserType = {
+    small: string | null
+    large: string | null
+}
+
+export type CommonDataUsersType<T> = {
     error: string | null
     items: T
     totalCount: number
 }
+export type CommonDataProfileType = {
+    aboutMe: string | null
+    contacts: SocialContactsType | null
+    fullName: string | null
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    photos: PhotoUserType | null
+    userId: number
+}
+
 
 export type profilePageType = {
     posts: Array<profilePostsType>
     newPost: string | number
+    userProfile: CommonDataProfileType | null
+    isFetching: boolean
 }
 export type dialogsPageType = {
     names: Array<dialogsNamesType>
