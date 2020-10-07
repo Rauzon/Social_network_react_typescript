@@ -3,7 +3,24 @@
   grid-area: header;
   background-color: #524bb8;
 }
+.header__wrapper{
+  position: relative;
+}
 .header__wrapper_img img {
   width: 120px;
   height: 120px;
+}
+.header__authBlock{
+  display: block;
+  position: absolute;
+  top: 25%;
+  transform: translateY(25%);
+  right: 10px;
+}
+.header__authBlock a{
+  text-decoration: none;
+  color: beige;
+}
+.header__authBlock span{
+  color: burlywood;
 }

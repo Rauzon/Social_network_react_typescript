@@ -3,6 +3,7 @@ import {profilePageReducer} from "./reducers/profilePage-reducer";
 import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
 import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
+import { authReducer } from "./reducers/auth-reducer";
 
 export type PhotosType = {
     small: string | null
@@ -69,6 +70,14 @@ export type CommonDataProfileType = {
     userId: number
 }
 
+//auth data
+export type CommonAuthStateType = {
+    resultCode: number
+    messages: [] | null
+    fieldsErrors: [] | null
+    data: AuthDataType
+}
+
 
 export type profilePageType = {
     posts: Array<profilePostsType>
@@ -92,19 +101,31 @@ export type UsersStateType = {
     currentPage: number
     isFetching: boolean
 }
+export type AuthDataType = {
+    id: number | null
+    email: string | null
+    login: string | null
+}
+
+export interface IAuthData extends AuthDataType{
+    isAuth: boolean
+}
+
 
 export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
     navPage: navPageType
     usersPage: UsersStateType
+    auth: IAuthData
 }
 
 let reducers = combineReducers({
     profilePage: profilePageReducer,
     dialogsPage: dialogsPageReducer,
     navPage: navPageReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer,
 });
 
 
