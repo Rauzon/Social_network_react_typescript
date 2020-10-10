@@ -15,14 +15,16 @@ const initialAuthState: IAuthData = {
 }
 
 export const authReducer: usersReducerType = (state = initialAuthState, action) => {
-
     switch (action.type) {
         case typeOfActionDispatch.SET_AUTH_DATA:
-            let isAuth = (!state.login) ? false : true
+            let copyState ={...state, ...action.authData}
 
-            return {...state, ...action.authData, isAuth}
+            let isAuth = (copyState.login) ? true : false
+
+            return {...copyState, isAuth}
         default:
             return state
     }
 }
+
 

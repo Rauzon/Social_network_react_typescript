@@ -11,7 +11,6 @@ type PropsType = {
 
 export const Header: React.FC<PropsType> = (props) => {
 
-    debugger
     return (
         <div className={style.header}>
             <div className={style.header__wrapper}>

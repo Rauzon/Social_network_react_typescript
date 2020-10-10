@@ -18,10 +18,10 @@ export const usersReducer: usersReducerType = (state = initialUsersState, action
 
     switch (action.type) {
         case typeOfActionDispatch.FOLLOW_TO_USER:
-            return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, isFollowed: true} : u)}
+            return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, followed: true} : u)}
 
         case typeOfActionDispatch.UNFOLLOW_TO_USER:
-            return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, isFollowed: false} : u)}
+            return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, followed: false} : u)}
 
         case typeOfActionDispatch.SET_USERS:
             return {...state, users: [...action.users]}

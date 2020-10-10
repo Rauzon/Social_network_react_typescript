@@ -3,7 +3,7 @@ import s from './users.module.css'
 import {UserType, CommonDataUsersType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
 import axios from 'axios';
-import { Preloader } from '../preloader/Preloader';
+import {Preloader} from '../preloader/Preloader';
 
 type UsersPropsType = {
     follow: (userId: number) => void,
@@ -20,13 +20,15 @@ type UsersPropsType = {
 }
 
 
-export class  UsersAPI extends React.Component<UsersPropsType> {
+export class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {
 
         if (this.props.users.length === 0) {
             this.props.setIsFetching(true)
-            axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+                withCredentials: true
+            })
                 .then(res => {
                     this.props.setIsFetching(false)
                     this.props.setUsers(res.data.items)
@@ -38,13 +40,14 @@ export class  UsersAPI extends React.Component<UsersPropsType> {
     setCurrentPage = (p: number) => {
         this.props.setCurrentPage(p)
         this.props.setIsFetching(true)
-        axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setIsFetching(false)
-                this.props.setUsers(res.data.items)
-                this.props.setIsFetching(false)
+        axios.get<CommonDataUsersType<UserType[]>>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        }).then(res => {
+            this.props.setIsFetching(false)
+            this.props.setUsers(res.data.items)
+            this.props.setIsFetching(false)
 
-            })
+        })
     }
 
 
@@ -75,8 +78,32 @@ export class  UsersAPI extends React.Component<UsersPropsType> {
                 {
                     this.props.users.map(u => {
 
-                        const unfollow = (userId: number) => this.props.unfollow(userId)
-                        const follow = (userId: number) => this.props.follow(userId)
+                        const unfollow = (userId: number) => {
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": '959808d3-8efe-42bd-88eb-3693675e6c98'
+                                }
+                            }).then(res => {
+                                if(res.data.resultCode === 0){
+                                    this.props.unfollow(userId)
+                                }
+                            })
+                        }
+
+                        const follow = (userId: number) => {
+                            debugger
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": '959808d3-8efe-42bd-88eb-3693675e6c98'
+                                }
+                            }).then(res => {
+                                if(res.data.resultCode === 0){
+                                    this.props.follow(userId)
+                                }
+                            })
+                        }
 
                         return <UserItem key={u.id}
                                          id={u.id}
