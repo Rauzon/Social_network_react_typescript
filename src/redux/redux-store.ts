@@ -78,6 +78,15 @@ export type CommonAuthStateType = {
     data: AuthDataType
 }
 
+//follow and unfollow data
+export type CommonSibscribeDataType = {
+    data: {}
+    fieldsErrors: []
+    messages: []
+    resultCode: number
+}
+
+
 
 export type profilePageType = {
     posts: Array<profilePostsType>

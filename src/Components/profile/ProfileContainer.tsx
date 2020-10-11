@@ -1,11 +1,10 @@
 import React from 'react';
-import style from './profile.module.css'
 import {Profile} from "./Profile";
-import axios from 'axios';
 import {connect} from "react-redux";
 import {stateType, CommonDataProfileType, profilePageType} from "../../redux/redux-store";
 import {setIsFetching, setUserProfile} from "../../redux/TypesForRedux";
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {profileAPI} from "../../API/API";
 
 
 
@@ -35,9 +34,9 @@ export class ProfileContainer extends React.Component<PropsType>{
         }
 
         this.props.setIsFetching(true)
-        axios.get<CommonDataProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(res => {
-                this.props.setUserProfile(res.data)
+        profileAPI.setUserProfile(userId)
+            .then(data => {
+                this.props.setUserProfile(data)
                 this.props.setIsFetching(false)
             })
     }

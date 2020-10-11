@@ -1,9 +1,9 @@
 import React from 'react';
 import {Header} from "./Header";
-import axios from 'axios';
 import { connect } from 'react-redux';
-import {AuthDataType, stateType, CommonAuthStateType} from '../../redux/redux-store';
+import {AuthDataType, stateType} from '../../redux/redux-store';
 import {setAuthData} from "../../redux/TypesForRedux";
+import {authAPI} from "../../API/API";
 
 type MstpType = {
     isAuth: boolean
@@ -20,12 +20,9 @@ class HeaderContainer extends React.Component<PropsType>  {
 
 
     componentDidMount(): void {
-        axios.get<CommonAuthStateType>('https://social-network.samuraijs.com/api/1.0/auth/me',{
-            withCredentials: true
-        })
-            .then(res => {
-                if(res.data.resultCode === 0){
-                    this.props.setAuthData(res.data.data)
+        authAPI.setAuth().then(res => {
+                if(res.resultCode === 0){
+                    this.props.setAuthData(res.data)
                 }
             })
     }
