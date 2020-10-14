@@ -1,13 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {UsersAPI} from "./UsersAPI";
-import {
-    follow,
-    unfollow,
-    setUsers,
-    setTotalUsersCount, setCurrentPage, setIsFetching
+import {setUsers,
+    setCurrentPage, setIsFetching, setFollowingInProgress
 } from "../../redux/TypesForRedux";
 import {stateType, UserType} from "../../redux/redux-store";
+import {getUsersThunk, followToUserThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
 
 type mapStateToPropsType = {
     users: Array<UserType>
@@ -15,6 +13,7 @@ type mapStateToPropsType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    isFollowingInProgress: number[]
 }
 
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
@@ -24,14 +23,16 @@ const mapStateToProps = (state: stateType): mapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        isFollowingInProgress: state.usersPage.isFollowingInProgress
     }
 }
 
 export const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
+    follow: followToUserThunk,
+    unfollow:unfollowToUserThunk,
     setUsers,
-    setTotalUsersCount,
     setCurrentPage,
     setIsFetching,
+    setFollowingInProgress,
+    getUsers: getUsersThunk,
 })(UsersAPI)

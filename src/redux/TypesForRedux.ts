@@ -13,6 +13,7 @@ export enum typeOfActionDispatch {
     SET_IS_FETCHING = "SET_IS_FETCHING",
     SET_USER_PROFILE = "SET_USER_PROFILE",
     SET_AUTH_DATA = "SET_AUTH_DATA",
+    SET_FOLLOWING_IN_PROGRESS = "SET_FOLLOWING_IN_PROGRESS",
 }
 
 export type ActionCreatorsType = ReturnType<typeof updatePost> |
@@ -26,7 +27,8 @@ export type ActionCreatorsType = ReturnType<typeof updatePost> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setIsFetching> |
     ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setAuthData>
+    ReturnType<typeof setAuthData>|
+    ReturnType<typeof setFollowingInProgress>
 
 //actionCreators
 export const updatePost =(newPostValue: string) => {
@@ -88,5 +90,10 @@ export const setUserProfile = (userProfile: CommonDataProfileType) => {
 export const setAuthData = (authData:AuthDataType) => {
     return (
         {type: typeOfActionDispatch.SET_AUTH_DATA, authData}
+    ) as const
+};
+export const setFollowingInProgress = (isFollowingProgress: boolean, userId: number) => {
+    return (
+        {type: typeOfActionDispatch.SET_FOLLOWING_IN_PROGRESS, isFollowingProgress, userId }
     ) as const
 };

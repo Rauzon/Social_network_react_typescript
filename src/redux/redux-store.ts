@@ -1,9 +1,10 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {profilePageReducer} from "./reducers/profilePage-reducer";
 import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
 import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
 import { authReducer } from "./reducers/auth-reducer";
+import thunk from 'redux-thunk';
 
 export type PhotosType = {
     small: string | null
@@ -109,6 +110,7 @@ export type UsersStateType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    isFollowingInProgress: number[]
 }
 export type AuthDataType = {
     id: number | null
@@ -138,4 +140,4 @@ let reducers = combineReducers({
 });
 
 
-export let store = createStore(reducers)
+export let store = createStore(reducers, applyMiddleware(thunk))

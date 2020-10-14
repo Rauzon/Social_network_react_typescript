@@ -11,11 +11,11 @@ const initialUsersState: UsersStateType = {
     totalUsersCount: 0,
     pageSize: 100,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    isFollowingInProgress: [],
 }
 
 export const usersReducer: usersReducerType = (state = initialUsersState, action): UsersStateType => {
-
     switch (action.type) {
         case typeOfActionDispatch.FOLLOW_TO_USER:
             return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, followed: true} : u)}
@@ -34,6 +34,13 @@ export const usersReducer: usersReducerType = (state = initialUsersState, action
 
         case typeOfActionDispatch.SET_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
+
+        case typeOfActionDispatch.SET_FOLLOWING_IN_PROGRESS:
+            return {
+                ...state, isFollowingInProgress: action.isFollowingProgress ?
+                    [...state.isFollowingInProgress, action.userId] :
+                    [...state.isFollowingInProgress.filter(id => id !== action.userId)]
+            }
 
         default:
             return state

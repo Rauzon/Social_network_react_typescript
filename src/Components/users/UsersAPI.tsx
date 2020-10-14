@@ -9,14 +9,15 @@ type UsersPropsType = {
     follow: (userId: number) => void,
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
-    setTotalUsersCount: (totalUserCount: number) => void
     setCurrentPage: (currentPage: number) => void
     setIsFetching: (isFetching: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
     users: Array<UserType>
     totalUsersCount: number,
     pageSize: number,
     currentPage: number,
     isFetching: boolean,
+    isFollowingInProgress: number[]
 }
 
 
@@ -25,12 +26,7 @@ export class UsersAPI extends React.Component<UsersPropsType> {
     componentDidMount(): void {
 
         if (this.props.users.length === 0) {
-            this.props.setIsFetching(true)
-            userAPI.setUsers(this.props.currentPage, this.props.pageSize).then(res => {
-                    this.props.setIsFetching(false)
-                    this.props.setUsers(res.items)
-                    this.props.setTotalUsersCount(res.totalCount)
-                })
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
     }
 
@@ -73,21 +69,13 @@ export class UsersAPI extends React.Component<UsersPropsType> {
                     this.props.users.map(u => {
 
                         const unfollow = (userId: number) => {
-                            userAPI.unfollow(userId)
-                                .then(res => {
-                                if(res.resultCode === 0){
-                                    this.props.unfollow(userId)
-                                }
-                            })
+
+                           this.props.unfollow(userId)
                         }
 
                         const follow = (userId: number) => {
-                           userAPI.follow(userId)
-                               .then(res => {
-                                if(res.resultCode === 0){
-                                    this.props.follow(userId)
-                                }
-                            })
+
+                            this.props.follow(userId)
                         }
 
                         return <UserItem key={u.id}
@@ -97,7 +85,9 @@ export class UsersAPI extends React.Component<UsersPropsType> {
                                          followed={u.followed}
                                          unfollow={unfollow}
                                          follow={follow}
-                                         name={u.name}/>
+                                         name={u.name}
+                                         isFollowingInProgress={this.props.isFollowingInProgress}/>
+
                     })
                 }
             </div>

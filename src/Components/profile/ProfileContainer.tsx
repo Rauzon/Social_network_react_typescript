@@ -1,10 +1,10 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {stateType, CommonDataProfileType, profilePageType} from "../../redux/redux-store";
-import {setIsFetching, setUserProfile} from "../../redux/TypesForRedux";
+import {stateType, profilePageType} from "../../redux/redux-store";
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {profileAPI} from "../../API/API";
+import {setUserProfileThunk} from "../../thunks/profileThunk";
 
 
 
@@ -13,15 +13,14 @@ type MstpType = {
 }
 
 type MdtpType = {
-    setUserProfile:(userProfile:CommonDataProfileType) => void
-    setIsFetching:(isFetching:boolean) => void
+    setUserProfile:(userId: string) => void
 }
 
 type PathParamsType = {
     userId: string
 }
 
-type PropsType = RouteComponentProps<PathParamsType> &  MstpType & MdtpType
+type PropsType = RouteComponentProps<PathParamsType> & MdtpType & MstpType
 
 export class ProfileContainer extends React.Component<PropsType>{
 
@@ -33,12 +32,7 @@ export class ProfileContainer extends React.Component<PropsType>{
             userId = '2'
         }
 
-        this.props.setIsFetching(true)
-        profileAPI.setUserProfile(userId)
-            .then(data => {
-                this.props.setUserProfile(data)
-                this.props.setIsFetching(false)
-            })
+        this.props.setUserProfile(userId)
     }
 
 
@@ -55,5 +49,5 @@ const mstp = (state: stateType): MstpType => {
     }
 }
 
-export const ProfileContainerWithURL = withRouter(connect(mstp, {setUserProfile, setIsFetching})(ProfileContainer))
+export const ProfileContainerWithURL = withRouter(connect(mstp, {setUserProfile: setUserProfileThunk})(ProfileContainer))
 

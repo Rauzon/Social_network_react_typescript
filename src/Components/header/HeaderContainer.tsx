@@ -1,9 +1,8 @@
 import React from 'react';
 import {Header} from "./Header";
 import { connect } from 'react-redux';
-import {AuthDataType, stateType} from '../../redux/redux-store';
-import {setAuthData} from "../../redux/TypesForRedux";
-import {authAPI} from "../../API/API";
+import {stateType} from '../../redux/redux-store';
+import { authProfileThunk } from '../../thunks/authThunk';
 
 type MstpType = {
     isAuth: boolean
@@ -11,7 +10,7 @@ type MstpType = {
 }
 
 type MdtpType = {
-    setAuthData: (authData: AuthDataType) => void
+    setAuthData: () => void
 }
 
 type PropsType = MstpType & MdtpType
@@ -20,11 +19,7 @@ class HeaderContainer extends React.Component<PropsType>  {
 
 
     componentDidMount(): void {
-        authAPI.setAuth().then(res => {
-                if(res.resultCode === 0){
-                    this.props.setAuthData(res.data)
-                }
-            })
+       this.props.setAuthData()
     }
 
 
@@ -43,4 +38,4 @@ const mapStateToProps = (state: stateType):MstpType => {
 }
 
 
-export default connect(mapStateToProps, {setAuthData})(HeaderContainer)
+export default connect(mapStateToProps, {setAuthData: authProfileThunk})(HeaderContainer)
