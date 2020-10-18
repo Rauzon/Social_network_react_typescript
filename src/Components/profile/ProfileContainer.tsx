@@ -2,10 +2,10 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {stateType, profilePageType} from "../../redux/redux-store";
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 import {setUserProfileThunk} from "../../thunks/profileThunk";
-import { authRedirectHOC } from '../../hoc/authRedirectHOC';
-
+import {authRedirectHOC} from '../../hoc/authRedirectHOC';
+import {compose} from 'redux';
 
 
 type MstpType = {
@@ -13,7 +13,7 @@ type MstpType = {
 }
 
 type MdtpType = {
-    setUserProfile:(userId: string) => void
+    setUserProfile: (userId: string) => void
 }
 
 type PathParamsType = {
@@ -22,13 +22,13 @@ type PathParamsType = {
 
 type PropsType = RouteComponentProps<PathParamsType> & MdtpType & MstpType
 
-export class ProfileContainer extends React.Component<PropsType>{
+export class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount(): void {
 
         let userId = this.props.match.params.userId
 
-        if(!userId){
+        if (!userId) {
             userId = '2'
         }
 
@@ -38,7 +38,7 @@ export class ProfileContainer extends React.Component<PropsType>{
 
     render(): React.ReactNode {
         return (
-                <Profile profilePage={this.props.profilePage} />
+            <Profile profilePage={this.props.profilePage}/>
         )
     }
 }
@@ -49,5 +49,8 @@ const mstp = (state: stateType): MstpType => {
     }
 }
 
-export const ProfileContainerWithURL = authRedirectHOC(withRouter(connect(mstp, {setUserProfile: setUserProfileThunk})(ProfileContainer)))
+export const ProfileContainerWithURL = compose(
+    authRedirectHOC,
+    withRouter,
+    connect(mstp, {setUserProfile: setUserProfileThunk}),)(ProfileContainer)
 

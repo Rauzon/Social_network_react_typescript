@@ -2,11 +2,12 @@ import React from "react";
 import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
-import { dialogsPageType } from "../../redux/store";
-import { NewMessageInputContainer } from "./newMessageInput/NewMessageInputContainer";
-import { connect } from "react-redux";
+import {dialogsPageType} from "../../redux/store";
+import {NewMessageInputContainer} from "./newMessageInput/NewMessageInputContainer";
+import {connect} from "react-redux";
 import {stateType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
+import {compose} from "redux";
 
 type MapStateToPropsType = {
     dialogPage: dialogsPageType
@@ -28,7 +29,7 @@ export const Dialog = (props: PropsType) => {
                 </div>
                 <div className={style.dialogs__messages}>
                     {props.dialogPage.messages.map((m) => <Messages key={m.id} message={m.message}/>)}
-                    <NewMessageInputContainer />
+                    <NewMessageInputContainer/>
                 </div>
             </div>
         </div>
@@ -36,11 +37,12 @@ export const Dialog = (props: PropsType) => {
 }
 
 
-
-const mapStateToProps = (state:stateType):MapStateToPropsType => ({
+const mapStateToProps = (state: stateType): MapStateToPropsType => ({
     dialogPage: state.dialogsPage
 })
 
 
-// @ts-ignore
-export const DialogContainer = authRedirectHOC(connect<PropsType>(mapStateToProps, null)(Dialog))
+export const DialogContainer = compose(
+    authRedirectHOC,
+    // @ts-ignore
+    (connect<PropsType>(mapStateToProps, null)))(Dialog)

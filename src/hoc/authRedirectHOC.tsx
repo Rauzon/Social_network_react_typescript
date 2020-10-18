@@ -13,9 +13,9 @@ const mapStateForRedirect = (state: stateType):MapStateForRedirectType => {
     }
 }
 
-export const authRedirectHOC = (Component: any) => {
+export const authRedirectHOC = (Component: ComponentType<any>) => {
 
-    const authRedirectComponent = (props: any) => {
+    const authRedirectComponent:React.FC<MapStateForRedirectType> = (props) => {
 
         if (!props.isAuth) {
             return <Redirect to = {'/login'} />

@@ -40,6 +40,7 @@ export const followToUserThunk: FollowToUserThunkType = (userId) => {
     }
 }
 
+
 export const unfollowToUserThunk: UnfollowToUserThunkType = (userId) => {
 
     return (dispath: Dispatch) => {
