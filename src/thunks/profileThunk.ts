@@ -12,6 +12,7 @@ export const setUserProfileThunk: SetUserProfileThunkType = (userId) => {
        dispath(setIsFetching(true))
         profileAPI.setUserProfile(userId)
             .then(data => {
+                debugger
                 dispath(setUserProfile(data))
                 dispath(setIsFetching(false))
             })

@@ -3,8 +3,8 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {stateType, profilePageType} from "../../redux/redux-store";
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {profileAPI} from "../../API/API";
 import {setUserProfileThunk} from "../../thunks/profileThunk";
+import { authRedirectHOC } from '../../hoc/authRedirectHOC';
 
 
 
@@ -49,5 +49,5 @@ const mstp = (state: stateType): MstpType => {
     }
 }
 
-export const ProfileContainerWithURL = withRouter(connect(mstp, {setUserProfile: setUserProfileThunk})(ProfileContainer))
+export const ProfileContainerWithURL = authRedirectHOC(withRouter(connect(mstp, {setUserProfile: setUserProfileThunk})(ProfileContainer)))
 

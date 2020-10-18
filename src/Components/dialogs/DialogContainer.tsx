@@ -3,17 +3,19 @@ import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import { dialogsPageType } from "../../redux/store";
-import { ActionCreatorsType } from "../../redux/TypesForRedux";
 import { NewMessageInputContainer } from "./newMessageInput/NewMessageInputContainer";
+import { connect } from "react-redux";
+import {stateType} from "../../redux/redux-store";
+import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 
-
-type propsType = {
+type MapStateToPropsType = {
     dialogPage: dialogsPageType
-    dispatch: (action:ActionCreatorsType) => void
 }
 
+type PropsType = MapStateToPropsType
 
-export const Dialogs:React.FC<propsType> = (props) => {
+export const Dialog = (props: PropsType) => {
+
     return (
         <div className={style.dialogs}>
             <div className={style.wrapper__header}>
@@ -31,5 +33,14 @@ export const Dialogs:React.FC<propsType> = (props) => {
             </div>
         </div>
     )
-
 }
+
+
+
+const mapStateToProps = (state:stateType):MapStateToPropsType => ({
+    dialogPage: state.dialogsPage
+})
+
+
+// @ts-ignore
+export const DialogContainer = authRedirectHOC(connect<PropsType>(mapStateToProps, null)(Dialog))

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {UsersAPI} from "./UsersAPI";
+import UsersAPI from "./UsersAPI";
 import {setUsers,
     setCurrentPage, setIsFetching, setFollowingInProgress
 } from "../../redux/TypesForRedux";

@@ -4,6 +4,7 @@ import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
 import {Preloader} from '../preloader/Preloader';
 import {userAPI} from "../../API/API";
+import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 
 type UsersPropsType = {
     follow: (userId: number) => void,
@@ -95,3 +96,5 @@ export class UsersAPI extends React.Component<UsersPropsType> {
     }
 
 }
+
+export default authRedirectHOC(UsersAPI)
