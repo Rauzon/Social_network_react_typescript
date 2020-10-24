@@ -12,6 +12,7 @@ const initialState:profilePageType = {
     newPost: '',
     userProfile: null,
     isFetching: false,
+    profileStatus: '',
 }
 
 export const profilePageReducer: profilePageReducerType = (state = initialState, action) => {
@@ -31,6 +32,9 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
             return {...state, userProfile: action.userProfile}
         case typeOfActionDispatch.SET_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
+
+        case typeOfActionDispatch.SET_STATUS_PROFILE:
+            return {...state, profileStatus: action.statusProfile}
 
         default:
             return state

@@ -94,6 +94,7 @@ export type profilePageType = {
     newPost: string | number
     userProfile: CommonDataProfileType | null
     isFetching: boolean
+    profileStatus: string
 }
 export type dialogsPageType = {
     names: Array<dialogsNamesType>

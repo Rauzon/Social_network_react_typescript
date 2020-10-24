@@ -15,6 +15,12 @@ const instance = axios.create({
     }
 })
 
+
+// type ProfileStatusType<D> = {
+//     data: D
+// }
+
+
 type UserAPIProps = {
     setUsers: (currentPage: number, pageSize: number) => Promise<CommonDataUsersType<UserType[]>>
     unfollow: (userId: number) => Promise<CommonSibscribeDataType>
@@ -25,6 +31,9 @@ type AuthAPIProps = {
 }
 type ProfileAPIProps = {
     setUserProfile: (userId: string) => Promise<CommonDataProfileType>
+    setStatusProfile: (userId: string) => Promise<string>
+    updateStatusProfile: (status: string) => Promise<string>
+    updatePhotoProfile: (status: string) => Promise<string>
 }
 
 export const userAPI: UserAPIProps = {
@@ -63,10 +72,30 @@ export const authAPI: AuthAPIProps = {
 export const profileAPI: ProfileAPIProps = {
 
     setUserProfile(userId){
-        return instance.get<CommonDataProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        return instance.get<CommonDataProfileType>(`profile/${userId}`)
             .then(res => {
                 return res.data
             })
-    }
+    },
+    setStatusProfile(userId){
+        return instance.get<any>(`profile/status/${userId}`)
+            .then(res => {
+                return res.data
+            })
+    },
+    updateStatusProfile(status){
+        return instance.put<any>(`profile/status`,{status})
+            .then(res => {
+                debugger
+                return res.data
+            })
+    },
+    updatePhotoProfile(status){
+        return instance.put<any>(`profile/status`,{status})
+            .then(res => {
+                debugger
+                return res.data
+            })
+    },
 
 }

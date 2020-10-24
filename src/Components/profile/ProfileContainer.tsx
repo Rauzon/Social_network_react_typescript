@@ -3,7 +3,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {stateType, profilePageType} from "../../redux/redux-store";
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {setUserProfileThunk} from "../../thunks/profileThunk";
+import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "../../thunks/profileThunk";
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
 
@@ -14,6 +14,8 @@ type MstpType = {
 
 type MdtpType = {
     setUserProfile: (userId: string) => void
+    setStatusProfile: (userId: string) => void
+    updateStatus: (title: string) => void
 }
 
 type PathParamsType = {
@@ -29,16 +31,19 @@ export class ProfileContainer extends React.Component<PropsType> {
         let userId = this.props.match.params.userId
 
         if (!userId) {
-            userId = '2'
+            userId = '7788'
         }
 
         this.props.setUserProfile(userId)
+        this.props.setStatusProfile(userId)
     }
 
 
     render(): React.ReactNode {
         return (
-            <Profile profilePage={this.props.profilePage}/>
+            <Profile profilePage={this.props.profilePage}
+                     updateStatus={this.props.updateStatus}
+                     userId = {this.props.match.params.userId}/>
         )
     }
 }
@@ -52,5 +57,10 @@ const mstp = (state: stateType): MstpType => {
 export const ProfileContainerWithURL = compose(
     authRedirectHOC,
     withRouter,
-    connect(mstp, {setUserProfile: setUserProfileThunk}),)(ProfileContainer)
+    //@ts-ignore
+    connect<any>(mstp, {
+        setUserProfile: setUserProfileThunk,
+        setStatusProfile: setUserStatusThunk,
+        updateStatus: updateUserStatusThunk
+    }))(ProfileContainer)
 

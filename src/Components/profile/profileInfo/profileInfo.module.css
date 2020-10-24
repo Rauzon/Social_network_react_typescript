@@ -2,8 +2,9 @@
 
 }
 
-.content__avatar{
-
+.content__avatar img{
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .content__description{

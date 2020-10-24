@@ -24,7 +24,7 @@ export const authRedirectHOC = (Component: ComponentType<any>) => {
         return <Component {...props} />
 
     }
-
-    return  connect(mapStateForRedirect, null)(authRedirectComponent)
+                    // @ts-ignore
+    return  connect<any>(mapStateForRedirect, null)(authRedirectComponent)
 
 }
