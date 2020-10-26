@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {profilePageReducer} from "./reducers/profilePage-reducer";
+import {profilePageReducer, profilePageType} from "./reducers/profilePage-reducer";
 import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
 import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
@@ -44,13 +44,22 @@ export type UserType = {
 }
 
 //Profile data
-type SocialContactsType = {
-    facebook: string | null
-    website: null | string
-    vk: string | null
-    twitter: string | null
-    instagram: string | null
+export type SocialContactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    github: string
+    youtube: string
+    mainLink: string
+
 }
+
+
+
+
+
 type PhotoUserType = {
     small: string | null
     large: string | null
@@ -63,7 +72,7 @@ export type CommonDataUsersType<T> = {
 }
 export type CommonDataProfileType = {
     aboutMe: string | null
-    contacts: SocialContactsType | null
+    contacts: SocialContactsType
     fullName: string | null
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
@@ -88,14 +97,15 @@ export type CommonSibscribeDataType = {
 }
 
 
+//
+// export type profilePageType = {
+//     posts: Array<profilePostsType>
+//     newPost: string | number
+//     userProfile: CommonDataProfileType | null
+//     isFetching: boolean
+//     profileStatus: string
+// }
 
-export type profilePageType = {
-    posts: Array<profilePostsType>
-    newPost: string | number
-    userProfile: CommonDataProfileType | null
-    isFetching: boolean
-    profileStatus: string
-}
 export type dialogsPageType = {
     names: Array<dialogsNamesType>
     messages: Array<dialogsMessagesType>

@@ -15,6 +15,7 @@ export enum typeOfActionDispatch {
     SET_AUTH_DATA = "SET_AUTH_DATA",
     SET_FOLLOWING_IN_PROGRESS = "SET_FOLLOWING_IN_PROGRESS",
     SET_STATUS_PROFILE = "SET_STATUS_PROFILE",
+    // UPDATE_PHOTO_PROFILE = "UPDATE_PHOTO_PROFILE",
 }
 
 export type ActionCreatorsType = ReturnType<typeof updatePost> |
@@ -104,3 +105,8 @@ export const setStatusProfile = (statusProfile: string) => {
         {type: typeOfActionDispatch.SET_STATUS_PROFILE, statusProfile }
     ) as const
 };
+// export const updatePhotoProfile = (photoURL: File) => {
+//     return (
+//         {type: typeOfActionDispatch.UPDATE_PHOTO_PROFILE, photoURL }
+//     ) as const
+// };

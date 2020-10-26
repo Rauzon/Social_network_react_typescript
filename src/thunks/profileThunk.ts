@@ -1,10 +1,11 @@
 import {profileAPI} from "../API/API";
-import {setIsFetching, setUserProfile, setStatusProfile} from "../redux/TypesForRedux";
+import {setIsFetching, setStatusProfile, setUserProfile} from "../redux/TypesForRedux";
 import {Dispatch} from "redux";
 
 type SetUserProfileThunkType = (userId: string) => void
 type SetUserStatusThunkType = (userId: string) => void
 type UpdateUserStatusThunkType = (userId: string) => void
+type UpdateProfilePhotoThunk = (photoURL: File) => void
 
 
 export const setUserProfileThunk: SetUserProfileThunkType = (userId) => {
@@ -14,6 +15,7 @@ export const setUserProfileThunk: SetUserProfileThunkType = (userId) => {
         dispatch(setIsFetching(true))
         profileAPI.setUserProfile(userId)
             .then(data => {
+                debugger
                 dispatch(setUserProfile(data))
                 dispatch(setIsFetching(false))
             })
@@ -39,3 +41,13 @@ export const updateUserStatusThunk: UpdateUserStatusThunkType = (title) => {
             })
     }
 };
+// export const updateProfilePhotoThunk: UpdateProfilePhotoThunk = (photoURL) => {
+//
+//     return (dispatch: Dispatch) => {
+//         profileAPI.updatePhotoProfile(photoURL)
+//             .then(data => {
+//                 debugger
+//                     dispatch(updatePhotoProfile(photoURL))
+//             })
+//     }
+// };

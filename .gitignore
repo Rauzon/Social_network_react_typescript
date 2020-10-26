@@ -5,6 +5,7 @@
 /.idea
 /.pnp
 .pnp.js
+/src/images/avatar.png
 
 # testing
 /coverage

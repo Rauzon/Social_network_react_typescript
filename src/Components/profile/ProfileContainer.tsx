@@ -1,12 +1,13 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {stateType, profilePageType} from "../../redux/redux-store";
-import {withRouter, RouteComponentProps} from 'react-router-dom';
+import {stateType} from "../../redux/redux-store";
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "../../thunks/profileThunk";
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
-
+import {profilePageType} from '../../redux/reducers/profilePage-reducer';
+// import * as avatar from '../../images/avatar.png';
 
 type MstpType = {
     profilePage: profilePageType
@@ -16,6 +17,7 @@ type MdtpType = {
     setUserProfile: (userId: string) => void
     setStatusProfile: (userId: string) => void
     updateStatus: (title: string) => void
+    updatePhoto: (photoURL: File) => void
 }
 
 type PathParamsType = {
@@ -30,8 +32,13 @@ export class ProfileContainer extends React.Component<PropsType> {
 
         let userId = this.props.match.params.userId
 
+
+        // // @ts-ignore
+        // const photoURL:File = avatar;
+
         if (!userId) {
-            userId = '7788'
+            userId = '7788';
+            // this.props.updatePhoto(photoURL)
         }
 
         this.props.setUserProfile(userId)
@@ -43,7 +50,7 @@ export class ProfileContainer extends React.Component<PropsType> {
         return (
             <Profile profilePage={this.props.profilePage}
                      updateStatus={this.props.updateStatus}
-                     userId = {this.props.match.params.userId}/>
+                     userId={this.props.match.params.userId}/>
         )
     }
 }
@@ -61,6 +68,7 @@ export const ProfileContainerWithURL = compose(
     connect<any>(mstp, {
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
-        updateStatus: updateUserStatusThunk
+        updateStatus: updateUserStatusThunk,
+        // updatePhoto: updateProfilePhotoThunk
     }))(ProfileContainer)
 

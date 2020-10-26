@@ -1,19 +1,22 @@
 import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
-import {profilePageType} from "../redux-store";
+import {CommonDataProfileType, profilePostsType} from "../redux-store";
 
+
+export type profilePageType = typeof initialState
 
 export type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
 
-const initialState:profilePageType = {
+const initialState = {
     posts: [
         {id: 1, message: "Hey girls"},
         {id: 2, message: "Hey guys"}
-    ],
-    newPost: '',
-    userProfile: null,
+    ] as Array<profilePostsType>,
+    newPost: '' as string,
+    userProfile: {} as CommonDataProfileType,
     isFetching: false,
     profileStatus: '',
 }
+
 
 export const profilePageReducer: profilePageReducerType = (state = initialState, action) => {
     switch (action.type) {
@@ -35,6 +38,12 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
 
         case typeOfActionDispatch.SET_STATUS_PROFILE:
             return {...state, profileStatus: action.statusProfile}
+
+        // case typeOfActionDispatch.UPDATE_PHOTO_PROFILE:
+        //
+        //     let copyState = {...state, userProfile: {...state.userProfile, photos: {...state.userProfile.photos, large: action.photoURL}}}
+        //
+        //     return copyState
 
         default:
             return state

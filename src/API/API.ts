@@ -7,6 +7,7 @@ import {
     UserType
 } from "../redux/redux-store";
 
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -14,12 +15,6 @@ const instance = axios.create({
         "API-KEY": '959808d3-8efe-42bd-88eb-3693675e6c98'
     }
 })
-
-
-// type ProfileStatusType<D> = {
-//     data: D
-// }
-
 
 type UserAPIProps = {
     setUsers: (currentPage: number, pageSize: number) => Promise<CommonDataUsersType<UserType[]>>
@@ -33,7 +28,7 @@ type ProfileAPIProps = {
     setUserProfile: (userId: string) => Promise<CommonDataProfileType>
     setStatusProfile: (userId: string) => Promise<string>
     updateStatusProfile: (status: string) => Promise<string>
-    updatePhotoProfile: (status: string) => Promise<string>
+    updatePhotoProfile: (photoURL: File) => Promise<any>
 }
 
 export const userAPI: UserAPIProps = {
@@ -69,6 +64,8 @@ export const authAPI: AuthAPIProps = {
 
 }
 
+
+
 export const profileAPI: ProfileAPIProps = {
 
     setUserProfile(userId){
@@ -90,8 +87,8 @@ export const profileAPI: ProfileAPIProps = {
                 return res.data
             })
     },
-    updatePhotoProfile(status){
-        return instance.put<any>(`profile/status`,{status})
+    updatePhotoProfile(photoURL){
+        return instance.put<any>(`/profile/photo`,{photoURL})
             .then(res => {
                 debugger
                 return res.data

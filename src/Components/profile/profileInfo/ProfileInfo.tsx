@@ -1,11 +1,11 @@
 import React from "react";
 import s from './profileInfo.module.css';
-import {CommonDataProfileType} from "../../../redux/redux-store";
+import {CommonDataProfileType, SocialContactsType} from "../../../redux/redux-store";
 import {Preloader} from "../../preloader/Preloader";
 import {EditableStatus} from "./EditableStatus";
 
 type PropsType = {
-    userProfile: CommonDataProfileType | null
+    userProfile: CommonDataProfileType
     isFetching: boolean
     status: string
     updateStatus: (title: string) => void
@@ -13,6 +13,19 @@ type PropsType = {
 }
 
 export const ProfileInfo: React.FC<PropsType> = (props) => {
+
+    let contacts: any
+    if (props.userProfile && props.userProfile.contacts) {
+        let keys = Object.keys(props.userProfile.contacts)
+        contacts = keys.map((key) => {
+
+            return (
+                <div>
+                    <p>{key}</p> : {props.userProfile.contacts[key as keyof SocialContactsType]}
+                </div>
+            )
+        })
+    }
 
     return <>
         {props.isFetching && <Preloader/>}
@@ -30,17 +43,9 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
             </div>
             <div className={s.content__description_contacts}>
                 <b>Contacts</b>:
-
-                {/*{*/}
-                {/*    // @ts-ignore*/}
-                {/*    Object.keys(props.userProfile?.contacts).map(contact => (*/}
-                {/*        <span className="card-panel">*/}
-                {/*            {*/}
-                {/*                // @ts-ignore*/}
-                {/*                props.userProfile?.contacts[contact]*/}
-                {/*            }*/}
-                {/*        </span>*/}
-                {/*    ))}*/}
+                {
+                    contacts
+                }
             </div>
             <div className={s.content__description_searchJob}>
                 <b>Search a job:</b> {(props.userProfile?.lookingForAJob) ? "Yes" : "No"}
@@ -52,4 +57,5 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
             </div>
         </div>
     </>
+
 }
