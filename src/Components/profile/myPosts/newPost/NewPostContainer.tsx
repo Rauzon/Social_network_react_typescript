@@ -1,18 +1,7 @@
 import React from 'react';
-import {addPost, updatePost} from "../../../../redux/TypesForRedux";
-import {NewPost} from "./NewPost";
+import {addPost} from "../../../../redux/TypesForRedux";
 import {connect} from "react-redux";
-import {stateType} from "../../../../redux/redux-store";
+import {NewPost} from "./NewPost";
 
-type MapStateToPropsType = {
-    newPost: string | number
-}
 
-const mapStateToProps = (state: stateType):MapStateToPropsType => {
-
-    return {
-        newPost: state.profilePage.newPost
-    }
-}
-
-export const NewPostContainer = connect(mapStateToProps, {addPost, updatePost})(NewPost);
+export const NewPostContainer = connect(null, {addPost})(NewPost);

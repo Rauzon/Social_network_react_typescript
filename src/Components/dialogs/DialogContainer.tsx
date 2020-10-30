@@ -2,10 +2,9 @@ import React from "react";
 import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
-import {dialogsPageType} from "../../redux/store";
 import {NewMessageInputContainer} from "./newMessageInput/NewMessageInputContainer";
 import {connect} from "react-redux";
-import {stateType} from "../../redux/redux-store";
+import {stateType, dialogsPageType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {compose} from "redux";
 

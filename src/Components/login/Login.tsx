@@ -1,13 +1,27 @@
 import React from "react";
-
+import {LoginReduxForm} from "./LoginForm";
+import s from './login.module.css';
 
 type LoginPropsType = {
-
+    login?: (email: string, password: string, rememberMe: boolean) => void
 }
 
-export const Login:React.FC<LoginPropsType> = (props) => {
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 
-    return <div>
-        <h1>What are you doing here, man? Just go away</h1>
+export const Login: React.FC<LoginPropsType> = (props) => {
+
+    const onSubmit = (formData: FormDataType) => {
+        debugger
+        console.log(formData)
+    }
+
+
+    return <div className={s.login_content}>
+        <h1>Login</h1>
+        <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }

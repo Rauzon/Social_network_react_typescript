@@ -5,6 +5,7 @@ import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
 import { authReducer } from "./reducers/auth-reducer";
 import thunk from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 export type PhotosType = {
     small: string | null
@@ -109,7 +110,6 @@ export type CommonSibscribeDataType = {
 export type dialogsPageType = {
     names: Array<dialogsNamesType>
     messages: Array<dialogsMessagesType>
-    newMessage: number | string
 }
 export type navPageType = {
     navTitles: Array<navTitlesType>
@@ -148,7 +148,11 @@ let reducers = combineReducers({
     navPage: navPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    form: formReducer,
 });
 
 
 export let store = createStore(reducers, applyMiddleware(thunk))
+
+//@ts-ignore
+window.store = store

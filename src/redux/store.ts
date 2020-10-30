@@ -35,7 +35,6 @@ export type profilePageType = {
 export type dialogsPageType = {
     names: Array<dialogsNamesType>
     messages: Array<dialogsMessagesType>
-    newMessage: number | string
 }
 export type navPageType = {
     navTitles: Array<navTitlesType>
@@ -78,8 +77,7 @@ export const store: storeType = {
                 {id: 2, message: 'How is it going?'},
                 {id: 3, message: 'You forgot about my birthday(('},
                 {id: 4, message: 'I want to break up with you, sorry'}
-            ],
-            newMessage: ''
+            ]
         },
         navPage: {
             navTitles: [

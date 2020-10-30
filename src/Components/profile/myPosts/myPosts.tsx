@@ -2,11 +2,10 @@ import React from "react";
 import style from './myPosts.module.css'
 import { MyPost } from "./myPost/MyPost";
 import {profilePostsType} from "../../../redux/store";
-import {NewPostContainer} from "./newPost/NewPostContainer";
+import { NewPostContainer } from "./newPost/NewPostContainer";
 
 type propsType = {
     posts:Array<profilePostsType>
-    newPost:string | number
 }
 
 export const MyPosts:React.FC<propsType> = (props) => {

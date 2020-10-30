@@ -1,10 +1,6 @@
-import {ActionCreatorsType} from "../TypesForRedux";
+import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
 import {dialogsPageType} from "../redux-store";
 
-enum typeOfActionDispatch {
-    UPDATE_MESSAGE = "UPDATE_MESSAGE",
-    ADD_MESSAGE = "ADD_MESSAGE",
-}
 
 export type dialogsPageReducerType = (state: dialogsPageType, action: ActionCreatorsType) => dialogsPageType
 
@@ -20,23 +16,17 @@ const initialState:dialogsPageType = {
         {id: 2, message: 'How is it going?'},
         {id: 3, message: 'You forgot about my birthday(('},
         {id: 4, message: 'I want to break up with you, sorry'}
-    ],
-    newMessage: ''
+    ]
 }
 
 export const dialogsPageReducer: dialogsPageReducerType = (state = initialState, action) => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_MESSAGE:
-            let newMessageValue = state.newMessage
+            let newMessageValue = action.message
             let newMessage = {id: 5, message:newMessageValue}
 
             state = {...state, messages: [...state.messages, newMessage]}
-            state.newMessage = '';
             return state;
-        case typeOfActionDispatch.UPDATE_MESSAGE:
-            state = {...state}
-            state.newMessage = action.newMessageValue;
-            return state
         default:
             return state
     }

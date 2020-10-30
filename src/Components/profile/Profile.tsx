@@ -19,7 +19,7 @@ export const Profile: React.FC<propsType> = (props) => {
                          status={props.profilePage.profileStatus}
                          updateStatus={props.updateStatus}
                          userId={props.userId}/>
-            <MyPosts posts={props.profilePage.posts} newPost={props.profilePage.newPost}/>
+            <MyPosts posts={props.profilePage.posts} />
         </div>
     )
 
