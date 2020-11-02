@@ -1,50 +1,36 @@
-import React from "react";
-import {Button, Checkbox, TextField} from "@material-ui/core";
-import {reduxForm, InjectedFormProps} from "redux-form";
-import {Field} from "redux-form";
+import React, {useCallback} from "react";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "./Login";
-
-// type ButtonComponentType = {
-//     value:string
-// }
-// type CheckComponentType = {}
-//
-// type InputLoginComponentType = {
-//     label: string
-// }
-
-// const InputLoginComponent = (props:InputLoginComponentType) => {
-//     return <TextField id="outlined-basic" label={'login'} variant="outlined"/>
-// }
-// const ButtonComponent: React.FC<ButtonComponentType> = (props) => {
-//     return <Button variant="contained" color="primary">{props.value}</Button>
-// }
-// const CheckComponent:React.FC<CheckComponentType> = (props) => {
-//     return <Checkbox defaultChecked color="primary" inputProps={{'aria-label': 'secondary checkbox'}}/>
-// }
+import {maxLength, required} from "../validators/validators";
+import {renderCheckbox, renderTextField} from "../validators/CommonFormComponents";
+import { Button } from "@material-ui/core";
 
 
-interface IFormData {}
+interface IFormData {
+}
 
 export const LoginForm: React.FC<InjectedFormProps<IFormData & FormDataType>> = (props) => {
 
-    // const emailInput = inputLoginComponent('email')
-    // const passwordInput = inputLoginComponent('password')
+
+    const maxLength30 = useCallback(maxLength(30), [])
 
 
     return <>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'email'} name={'login'} component={'input'} />
+                <Field  name={'login'} component={renderTextField} label={'email'} raw={1}
+                    validate={[required,maxLength30]}/>
             </div>
             <div>
-                <Field placeholder={'password'} type={'password'} name={'password'} component={'input'} />
+                <Field type={'password'} name={'password'} component={renderTextField}
+                       label={'password'}
+                       validate={[required, maxLength30]}/>
             </div>
             <div>
-                <Field name={'rememberMe'} type={'checkbox'}  component={'checkbox'} />
+                <Field name={'rememberMe'} type={'checkbox'} component={renderCheckbox} label={'remember me'}/>
             </div>
             <div>
-                <button>eke</button>
+                <Button variant="contained">LOG IN</Button>
             </div>
         </form>
     </>

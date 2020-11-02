@@ -3,6 +3,7 @@ import style from './profile.module.css'
 import {MyPosts} from "./myPosts/myPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {profilePageType} from "../../redux/reducers/profilePage-reducer";
+import {Preloader} from "../preloader/Preloader";
 
 
 type propsType = {
@@ -12,14 +13,19 @@ type propsType = {
 }
 
 export const Profile: React.FC<propsType> = (props) => {
+
+
     return (
         <div className={style.content}>
-            <ProfileInfo userProfile={props.profilePage.userProfile}
-                         isFetching={props.profilePage.isFetching}
-                         status={props.profilePage.profileStatus}
-                         updateStatus={props.updateStatus}
-                         userId={props.userId}/>
-            <MyPosts posts={props.profilePage.posts} />
+            {props.profilePage.isFetching ?
+                <Preloader/> : <>
+                    <ProfileInfo userProfile={props.profilePage.userProfile}
+                                 status={props.profilePage.profileStatus}
+                                 updateStatus={props.updateStatus}
+                                 userId={props.userId}/>
+                    <MyPosts posts={props.profilePage.posts}/>
+                </>
+            }
         </div>
     )
 
