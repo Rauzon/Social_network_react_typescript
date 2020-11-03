@@ -23,6 +23,8 @@ type UserAPIProps = {
 }
 type AuthAPIProps = {
     setAuth: () => Promise<CommonAuthStateType>
+    logIn: (email: string, password: string, rememberMe: boolean) => Promise<CommonAuthStateType>
+    logout: () => Promise<any>
 }
 type ProfileAPIProps = {
     setUserProfile: (userId: string) => Promise<CommonDataProfileType>
@@ -60,7 +62,20 @@ export const authAPI: AuthAPIProps = {
             .then(res => {
                 return res.data
             })
-    }
+    },
+    logIn(email, password, rememberMe){
+        return instance.post<CommonAuthStateType>('auth/login', {email, password, rememberMe})
+            .then(res => {
+                debugger
+                return res.data
+            })
+    },
+    logout(){
+        return instance.delete<CommonAuthStateType>('auth/login')
+            .then(res => {
+                return res.data
+            })
+    },
 
 }
 

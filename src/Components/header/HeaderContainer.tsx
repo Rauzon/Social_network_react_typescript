@@ -1,8 +1,8 @@
 import React from 'react';
 import {Header} from "./Header";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {stateType} from '../../redux/redux-store';
-import { authProfileThunk } from '../../thunks/authThunk';
+import {logOutProfileThunk} from '../../thunks/authThunk';
 
 type MstpType = {
     isAuth: boolean
@@ -10,32 +10,27 @@ type MstpType = {
 }
 
 type MdtpType = {
-    setAuthData: () => void
+    logOutProfile: () => void
 }
 
 type PropsType = MstpType & MdtpType
 
-class HeaderContainer extends React.Component<PropsType>  {
-
-
-    componentDidMount(): void {
-       this.props.setAuthData()
-    }
-
-
+class HeaderContainer extends React.Component<PropsType> {
 
     render(): React.ReactNode {
-        return <Header isAuth={this.props.isAuth} login={this.props.login} />
+        return <Header isAuth={this.props.isAuth}
+                       login={this.props.login}
+                       logOutProfile={this.props.logOutProfile}/>
     }
 }
 
 
-const mapStateToProps = (state: stateType):MstpType => {
+const mapStateToProps = (state: stateType): MstpType => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login
+        login: state.auth.login,
     }
 }
 
-
-export default connect(mapStateToProps, {setAuthData: authProfileThunk})(HeaderContainer)
+//@ts-ignore
+export default connect<PropsType, any>(mapStateToProps, {logOutProfile: logOutProfileThunk})(HeaderContainer)

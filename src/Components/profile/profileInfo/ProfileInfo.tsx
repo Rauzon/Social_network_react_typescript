@@ -1,7 +1,6 @@
 import React from "react";
 import s from './profileInfo.module.css';
 import {CommonDataProfileType, SocialContactsType} from "../../../redux/redux-store";
-import {Preloader} from "../../preloader/Preloader";
 import {EditableStatus} from "./EditableStatus";
 
 type PropsType = {

@@ -2,16 +2,17 @@ import {TextField, FormControlLabel, Checkbox} from "@material-ui/core";
 import React from "react";
 
 
-export const renderTextField = ({label, input, meta: {touched, invalid, error}, ...props}: any) => {
+export const renderTextField = ({type, row, label, input, meta: {touched, invalid, error}, ...props}: any) => {
     return <TextField
         label={label}
         placeholder={label}
+        type={type}
         error={touched && invalid}
         helperText={touched && error}
         {...input}
         {...props}
         multiline
-        rows={props.row}
+        rows={row}
     />
 }
 

@@ -2,8 +2,7 @@ import React, {useCallback} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "./Login";
 import {maxLength, required} from "../validators/validators";
-import {renderCheckbox, renderTextField} from "../validators/CommonFormComponents";
-import { Button } from "@material-ui/core";
+import {renderCheckbox} from "../validators/CommonFormComponents";
 
 
 interface IFormData {
@@ -18,19 +17,20 @@ export const LoginForm: React.FC<InjectedFormProps<IFormData & FormDataType>> = 
     return <>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field  name={'login'} component={renderTextField} label={'email'} raw={1}
-                    validate={[required,maxLength30]}/>
+                <Field name={'email'} component={'input'} label={'email'} raw={1}
+                       validate={[required, maxLength30]}/>
             </div>
             <div>
-                <Field type={'password'} name={'password'} component={renderTextField}
+                <Field name={'password'} component={'input'}
                        label={'password'}
+                       type="password"
                        validate={[required, maxLength30]}/>
             </div>
             <div>
                 <Field name={'rememberMe'} type={'checkbox'} component={renderCheckbox} label={'remember me'}/>
             </div>
             <div>
-                <Button variant="contained">LOG IN</Button>
+                <button>LOG IN</button>
             </div>
         </form>
     </>

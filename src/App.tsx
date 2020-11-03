@@ -4,13 +4,13 @@ import './App.css'
 import {Nav} from './Components/nav/Nav';
 import {DialogContainer} from "./Components/dialogs/DialogContainer";
 import {News} from "./Components/news/News";
-import { Settings } from './Components/settings/Settings';
+import {Settings} from './Components/settings/Settings';
 import {stateType} from './redux/store';
 import {ActionCreatorsType} from "./redux/TypesForRedux";
 import {UsersContainer} from './Components/users/UsersContainer';
 import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
-import {Login} from "./Components/login/Login";
+import LoginContainer from "./Components/login/Login";
 
 type propsType = {
     state: stateType
@@ -29,7 +29,7 @@ const App:React.FC<propsType> = (props) => {
                 <Route path={'/users'}  render={() => <UsersContainer />}/>
                 <Route path={'/news'}  render={() => <News />}/>
                 <Route path={'/settings'} render={() => <Settings />}/>
-                <Route path={'/login'} render={() => <Login />}/>
+                <Route path={'/login'} render={() => <LoginContainer />}/>
             </div>
         </div>
     );

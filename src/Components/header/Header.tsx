@@ -6,10 +6,15 @@ import { NavLink } from 'react-router-dom';
 type PropsType = {
     login: string | null
     isAuth: boolean
+    logOutProfile:() => void
 }
 
 
 export const Header: React.FC<PropsType> = (props) => {
+
+    const logOut = () => {
+        props.logOutProfile()
+    }
 
     return (
         <div className={style.header}>
@@ -18,7 +23,11 @@ export const Header: React.FC<PropsType> = (props) => {
                     <img src={logo} alt="logo"/>
                 </div>
                 <div className={style.header__authBlock}>
-                    {props.isAuth ? <span>{props.login}</span> :
+                    {props.isAuth ?
+                        <div className={style.header__authBlock_login}>
+                            <span>{props.login}</span>
+                            <button onClick={logOut}>LOG OUT</button>
+                        </div> :
                         <NavLink to={'/login'}>Login</NavLink>}
                 </div>
             </div>
