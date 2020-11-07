@@ -1,3 +1,16 @@
 .login_content {
     padding: 15px;
+
+}
+.login_content__inner{
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(25%);
+    padding: 15px 5px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgba(66, 39, 236, .1);
+    border: 1px solid gainsboro;
+    border-radius: 10px;
 }

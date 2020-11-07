@@ -17,22 +17,26 @@ export type FormDataType = {
     rememberMe: boolean
 }
 
+
 export const Login: React.FC<LoginPropsType> = (props) => {
+
 
     const login = ({email, password, rememberMe, ...formData}: FormDataType) => {
         props.login(email, password, rememberMe)
     }
 
 
-    return <div className={s.login_content}>
-        {(props.isAuth) ? <Redirect to={'/profile'}/> :
-            <>
-                <h1>Login</h1>
-                <LoginReduxForm onSubmit={login}/>
-            </>
+    return (
+        <div className={s.login_content}>
+            {(props.isAuth) ? <Redirect to={'/profile'}/> :
+                <div className={s.login_content__inner}>
+                    <h1>Login</h1>
+                    <LoginReduxForm onSubmit={login}/>
+                </div>
 
-        }
-    </div>
+            }
+        </div>
+    )
 }
 
 

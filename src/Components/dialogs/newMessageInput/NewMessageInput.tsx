@@ -1,9 +1,8 @@
 import React, {useCallback} from "react";
 import style from "../dialogs.module.css";
-import {reduxForm, Field, InjectedFormProps} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLength, required} from "../../validators/validators";
-import {TextField} from "@material-ui/core";
-import {renderTextField} from "../../validators/CommonFormComponents";
+import {FormGroup, Button, FormControl} from "@material-ui/core";
 
 type DialogFormDataType = {
     DialogMessageTextarea: string
@@ -36,20 +35,22 @@ const DialogMessageForm: React.FC<InjectedFormProps<IDialogMessageForm & DialogF
 
     return <>
         <form onSubmit={props.handleSubmit}>
-            <div className={style.dialogs__messages_newMesssage_textarea}>
-                <Field placeholder={'enter your message...'} name={'DialogMessageTextarea'} component={renderTextField}
-                       validate={[required, maxLength300]} label={'message field'} row={3}/>
-            </div>
-            <div className={style.dialogs__messages_newMesssage_button}>
-                <button>Send</button>
-            </div>
+            <FormControl>
+                <FormGroup>
+                    <div className={style.dialogs__messages_newMesssage_textarea}>
+                        <Field placeholder={'enter your message...'} name={'DialogMessageTextarea'}
+                               component={"textarea"}
+                               validate={[required, maxLength300]} label={'message field'} row={3}/>
+                    </div>
+                    <div className={style.dialogs__messages_newMesssage_button}>
+                        <Button color={'default'} type={'submit'}>Send</Button>
+                    </div>
+                </FormGroup>
+            </FormControl>
         </form>
     </>
 
 }
-
-
-
 
 
 const DialogMessageReduxForm = reduxForm<IDialogMessageForm & DialogFormDataType>({form: 'DialogMessageForm'})(DialogMessageForm)
