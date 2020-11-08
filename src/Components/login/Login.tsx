@@ -1,5 +1,5 @@
 import React from "react";
-import {LoginReduxForm} from "./LoginForm";
+import {LoginForm} from "./LoginForm";
 import s from './login.module.css';
 import {connect} from "react-redux";
 import {logInProfileThunk} from "../../thunks/authThunk";
@@ -11,19 +11,8 @@ type LoginPropsType = {
     isAuth: boolean
 }
 
-export type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
-
 
 export const Login: React.FC<LoginPropsType> = (props) => {
-
-
-    const login = ({email, password, rememberMe, ...formData}: FormDataType) => {
-        props.login(email, password, rememberMe)
-    }
 
 
     return (
@@ -31,7 +20,7 @@ export const Login: React.FC<LoginPropsType> = (props) => {
             {(props.isAuth) ? <Redirect to={'/profile'}/> :
                 <div className={s.login_content__inner}>
                     <h1>Login</h1>
-                    <LoginReduxForm onSubmit={login}/>
+                    <LoginForm login={props.login} />
                 </div>
 
             }
@@ -44,13 +33,15 @@ type MapDispatchToPropsType = {
     postLoginData: (email: string, password: string, rememberMe: boolean) => void
 }
 
+
+
 type MapStateToPropsType = {
     isAuth: boolean
 }
-
 type LoginContainerPropsType = {}
-
 type CommonLoginContainerType = MapStateToPropsType & MapDispatchToPropsType & LoginContainerPropsType
+
+
 
 const LoginContainer: React.FC<CommonLoginContainerType> = (props) => {
 

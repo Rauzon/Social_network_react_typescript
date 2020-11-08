@@ -1,12 +1,8 @@
-import React, {useCallback} from "react";
+import React from "react";
 import style from "../dialogs.module.css";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLength, required} from "../../validators/validators";
-import {FormGroup, Button, FormControl} from "@material-ui/core";
+import {Button, FormControl, FormGroup, TextField} from "@material-ui/core";
+import {useFormik} from "formik";
 
-type DialogFormDataType = {
-    DialogMessageTextarea: string
-}
 
 type NewMessageInputType = {
     addMessage: (newMessage: string) => void
@@ -14,33 +10,37 @@ type NewMessageInputType = {
 
 export const NewMessageInput: React.FC<NewMessageInputType> = (props) => {
 
-    const addNewMessage = (formData: DialogFormDataType) => {
-        if (formData) {
-            props.addMessage(formData.DialogMessageTextarea)
-        }
-    }
-
     return <div className={style.dialogs__messages_newMesssage}>
-        <DialogMessageReduxForm onSubmit={addNewMessage}/>
+        <DialogMessageForm addMessage={props.addMessage}/>
     </div>
 }
 
 
-type IDialogMessageForm = {}
+type IDialogMessageForm = {
+    addMessage: (newMessage: string) => void
+}
 
 
-const DialogMessageForm: React.FC<InjectedFormProps<IDialogMessageForm & DialogFormDataType>> = (props) => {
+const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
 
-    const maxLength300 = useCallback(maxLength(300), [])
+    const formik = useFormik({
+            initialValues: {
+                DialogMessageTextarea: "",
+            },
+            onSubmit: values => {
+                props.addMessage(values.DialogMessageTextarea)
+            },
+        })
+    ;
 
     return <>
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
             <FormControl>
                 <FormGroup>
                     <div className={style.dialogs__messages_newMesssage_textarea}>
-                        <Field placeholder={'enter your message...'} name={'DialogMessageTextarea'}
-                               component={"textarea"}
-                               validate={[required, maxLength300]} label={'message field'} row={3}/>
+                        <TextField placeholder={'enter your message...'}
+                                   name={'DialogMessageTextarea'}
+                                   label={'message field'} />
                     </div>
                     <div className={style.dialogs__messages_newMesssage_button}>
                         <Button color={'default'} type={'submit'}>Send</Button>
@@ -51,6 +51,3 @@ const DialogMessageForm: React.FC<InjectedFormProps<IDialogMessageForm & DialogF
     </>
 
 }
-
-
-const DialogMessageReduxForm = reduxForm<IDialogMessageForm & DialogFormDataType>({form: 'DialogMessageForm'})(DialogMessageForm)

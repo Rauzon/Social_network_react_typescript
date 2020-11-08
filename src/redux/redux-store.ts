@@ -148,7 +148,6 @@ let reducers = combineReducers({
     navPage: navPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer,
 });
 
 
