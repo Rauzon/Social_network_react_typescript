@@ -23,14 +23,14 @@ type UserAPIProps = {
 }
 type AuthAPIProps = {
     setAuth: () => Promise<CommonAuthStateType>
-    logIn: (email: string, password: string, rememberMe: boolean) => Promise<CommonAuthStateType>
+    logIn: (email: string, password: string, rememberMe: boolean, captcha?: string) => Promise<CommonAuthStateType>
     logout: () => Promise<any>
+    getCaptcha: () => Promise<{url: string}>
 }
 type ProfileAPIProps = {
     setUserProfile: (userId: string) => Promise<CommonDataProfileType>
     setStatusProfile: (userId: string) => Promise<string>
     updateStatusProfile: (status: string) => Promise<string>
-    updatePhotoProfile: (photoURL: File) => Promise<any>
 }
 
 export const userAPI: UserAPIProps = {
@@ -41,13 +41,13 @@ export const userAPI: UserAPIProps = {
                 return res.data
             })
     },
-    unfollow(userId){
+    unfollow(userId) {
         return instance.delete<CommonSibscribeDataType>(`follow/${userId}`)
             .then(res => {
                 return res.data
             })
     },
-    follow(userId){
+    follow(userId) {
         return instance.post<CommonSibscribeDataType>(`follow/${userId}`)
             .then(res => {
                 return res.data
@@ -57,21 +57,27 @@ export const userAPI: UserAPIProps = {
 
 export const authAPI: AuthAPIProps = {
 
-    setAuth(){
+    setAuth() {
         return instance.get<CommonAuthStateType>('auth/me')
             .then(res => {
                 return res.data
             })
     },
-    logIn(email, password, rememberMe){
-        return instance.post<CommonAuthStateType>('auth/login', {email, password, rememberMe})
+    logIn(email, password, rememberMe, captcha) {
+        return instance.post<CommonAuthStateType>('auth/login', {email, password, rememberMe, captcha})
             .then(res => {
                 debugger
                 return res.data
             })
     },
-    logout(){
+    logout() {
         return instance.delete<CommonAuthStateType>('auth/login')
+            .then(res => {
+                return res.data
+            })
+    },
+    getCaptcha(){
+        return instance.get<{url: string}>(`/security/get-captcha-url`)
             .then(res => {
                 return res.data
             })
@@ -80,34 +86,25 @@ export const authAPI: AuthAPIProps = {
 }
 
 
-
 export const profileAPI: ProfileAPIProps = {
 
-    setUserProfile(userId){
+    setUserProfile(userId) {
         return instance.get<CommonDataProfileType>(`profile/${userId}`)
             .then(res => {
                 return res.data
             })
     },
-    setStatusProfile(userId){
+    setStatusProfile(userId) {
         return instance.get<any>(`profile/status/${userId}`)
             .then(res => {
                 return res.data
             })
     },
-    updateStatusProfile(status){
-        return instance.put<any>(`profile/status`,{status})
+    updateStatusProfile(status) {
+        return instance.put<any>(`profile/status`, {status})
             .then(res => {
                 debugger
                 return res.data
             })
     },
-    updatePhotoProfile(photoURL){
-        return instance.put<any>(`/profile/photo`,{photoURL})
-            .then(res => {
-                debugger
-                return res.data
-            })
-    },
-
 }

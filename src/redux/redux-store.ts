@@ -84,7 +84,7 @@ export type CommonDataProfileType = {
 //auth data
 export type CommonAuthStateType = {
     resultCode: number
-    messages: [] | null
+    messages: string[]
     fieldsErrors: [] | null
     data: AuthDataType
 }
@@ -93,7 +93,7 @@ export type CommonAuthStateType = {
 export type CommonSibscribeDataType = {
     data: {}
     fieldsErrors: []
-    messages: []
+    messages: string[] | null
     resultCode: number
 }
 
@@ -127,10 +127,12 @@ export type AuthDataType = {
     id: number | null
     email: string | null
     login: string | null
+    captcha?: string
 }
 
 export interface IAuthData extends AuthDataType{
     isAuth: boolean
+    error: string | null
 }
 
 

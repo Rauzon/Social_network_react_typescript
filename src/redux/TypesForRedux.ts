@@ -14,7 +14,8 @@ export enum typeOfActionDispatch {
     SET_AUTH_DATA = "SET_AUTH_DATA",
     SET_FOLLOWING_IN_PROGRESS = "SET_FOLLOWING_IN_PROGRESS",
     SET_STATUS_PROFILE = "SET_STATUS_PROFILE",
-    // UPDATE_PHOTO_PROFILE = "UPDATE_PHOTO_PROFILE",
+    SET_AUTH_ERROR = "SET_AUTH_ERROR",
+    SET_CAPTCHA_VALUE = "SET_CAPTCHA_VALUE",
 }
 
 export type ActionCreatorsType = ReturnType<typeof addPost> |
@@ -28,7 +29,9 @@ export type ActionCreatorsType = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> |
     ReturnType<typeof setAuthData> |
     ReturnType<typeof setFollowingInProgress> |
-    ReturnType<typeof setStatusProfile>
+    ReturnType<typeof setStatusProfile> |
+    ReturnType<typeof setAuthError> |
+    ReturnType<typeof setCaptchaValue>
 
 //actionCreators
 export const updatePost = (newPostValue: string) => {
@@ -97,9 +100,14 @@ export const setStatusProfile = (statusProfile: string) => {
     return (
         {type: typeOfActionDispatch.SET_STATUS_PROFILE, statusProfile}
     ) as const
+}
+export const setAuthError = (error: string | null) => {
+    return (
+        {type: typeOfActionDispatch.SET_AUTH_ERROR, error}
+    ) as const
 };
-// export const updatePhotoProfile = (photoURL: File) => {
-//     return (
-//         {type: typeOfActionDispatch.UPDATE_PHOTO_PROFILE, photoURL }
-//     ) as const
-// };
+export const setCaptchaValue = (captcha: string) => {
+    return (
+        {type: typeOfActionDispatch.SET_CAPTCHA_VALUE, captcha}
+    ) as const
+};

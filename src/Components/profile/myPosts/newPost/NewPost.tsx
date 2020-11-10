@@ -1,9 +1,8 @@
 import React from 'react';
 import style from './newPost.module.css'
-import {Field, InjectedFormProps, reduxForm, reset, ResetAction} from 'redux-form';
-import {useDispatch} from "react-redux";
 import {useFormik} from "formik";
-import {TextField} from "@material-ui/core";
+import {FormControl, FormGroup, Grid, TextField, Button} from "@material-ui/core";
+import * as Yup from "yup";
 
 type FormDataType = {
     textareaPost: string
@@ -17,7 +16,7 @@ export const NewPost: React.FC<propsType> = (props) => {
 
     return (
         <div className={style.content}>
-            <ProfilePostForm  addPost={props.addPost} />
+            <ProfilePostForm addPost={props.addPost}/>
         </div>
     )
 }
@@ -26,27 +25,57 @@ interface IProfilePostForm {
     addPost: (newPostValue: string) => void
 }
 
+const validationSchema = Yup.object({
+    textareaPost: Yup.string()
+        .required('post is required')
+        .max(300,'post should consists 300 char or less')
+});
+
+
 const ProfilePostForm: React.FC<IProfilePostForm> = (props) => {
 
     const formik = useFormik({
         initialValues: {
             textareaPost: '',
         },
+        validationSchema,
         onSubmit: values => {
-            if (values.textareaPost){
+            if (values.textareaPost) {
                 props.addPost(values.textareaPost)
             }
         },
     });
 
+    const errorStype = {
+        color: "red",
+    }
+
     return <>
-        <form onSubmit={formik.handleSubmit}>
-            <div className={style.content__textArea}>
-                <TextField placeholder={'enter some text...'} name={'textareaPost'} />
-            </div>
-            <div className={style.content__button}>
-                <button>Send</button>
-            </div>
-        </form>
+        <FormControl>
+            <FormGroup>
+                <form onSubmit={formik.handleSubmit}>
+                    <Grid container direction={"column"} spacing={3}>
+                        <Grid item>
+                            <div className={style.content__textArea}>
+                                <TextField placeholder={'enter some text...'}
+                                           name={'textareaPost'}
+                                           variant="outlined"
+                                           multiline
+                                           rows={2}
+                                           rowsMax={4}
+                                           {...formik.getFieldProps('textareaPost')}/>
+                            </div>
+                            {formik.errors.textareaPost && formik.touched.textareaPost ?
+                                <div style={errorStype}>{formik.errors.textareaPost}</div> : null}
+                        </Grid>
+                        <Grid item>
+                            <div className={style.content__button}>
+                                <Button type={'submit'} variant='contained'>Send</Button>
+                            </div>
+                        </Grid>
+                    </Grid>
+                </form>
+            </FormGroup>
+        </FormControl>
     </>
 }

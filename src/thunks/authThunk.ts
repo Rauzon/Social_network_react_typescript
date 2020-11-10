@@ -1,36 +1,55 @@
 import {authAPI} from "../API/API";
 import {Dispatch} from "redux";
-import {setAuthData} from "../redux/TypesForRedux";
+import {setAuthData, setAuthError, setCaptchaValue} from "../redux/TypesForRedux";
 
 type AuthProfileThunkType = () => any
-type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean) => void
+type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean, captcha?: string) => void
+type GetCaptchaThunkType = () => any
 
-
-export const authProfileThunk: AuthProfileThunkType = () => {
+export const getCaptchaThunk: GetCaptchaThunkType = () => {
 
     return (dispath: Dispatch) => {
-
-        authAPI.setAuth()
+        authAPI.getCaptcha()
             .then(res => {
-            if (res.resultCode === 0) {
-                dispath(setAuthData(res.data))
-            }
-        })
+                    debugger
+                    dispath(setCaptchaValue(res.url))
+                }
+            )
 
     }
 };
 
-export const logInProfileThunk: AuthPostProfileDataThunkType = (email, password, rememberMe) => {
+export const authProfileThunk: AuthProfileThunkType = () => {
 
     return (dispath: Dispatch) => {
-
-        authAPI.logIn(email, password, rememberMe)
+        authAPI.setAuth()
             .then(res => {
-                debugger
                 if (res.resultCode === 0) {
-                    dispath(authProfileThunk())
+                    dispath(setAuthData(res.data))
                 }
             })
+
+    }
+};
+
+export const logInProfileThunk: AuthPostProfileDataThunkType = (email, password, rememberMe, captcha) => {
+
+    return (dispath: Dispatch) => {
+        dispath(setAuthError(null))
+        authAPI.logIn(email, password, rememberMe, captcha)
+            .then(res => {
+                    if (res.resultCode === 0) {
+                        debugger
+                        dispath(authProfileThunk())
+                    } else if (res.resultCode === 10) {
+                        dispath(getCaptchaThunk())
+                    } else {
+                        if (res.messages.length) {
+                            dispath(setAuthError(res.messages[0]))
+                        }
+                    }
+                }
+            )
 
     }
 };

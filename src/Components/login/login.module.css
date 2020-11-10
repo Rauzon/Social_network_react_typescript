@@ -4,14 +4,15 @@
 }
 .login_content__inner{
     max-width: 40%;
+    transition: all .5s;
     display: flex;
     flex-direction: column;
     transform: translateY(25%);
     padding: 15px 5px;
     margin: 0 auto;
     text-align: center;
-    background-color: rgba(66, 39, 236, .1);
+    background-color: rgba(255, 253, 253, .5);
     border: 1px solid gainsboro;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0,0,0, .5);
+    box-shadow: 7px 7px 10px rgba(0,0,0, .5);
 }
