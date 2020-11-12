@@ -7,7 +7,6 @@ import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "..
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
 import {profilePageType} from '../../redux/reducers/profilePage-reducer';
-// import * as avatar from '../../images/avatar.png';
 
 type MstpType = {
     profilePage: profilePageType
@@ -30,19 +29,14 @@ export class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount(): void {
 
-        let userId = this.props.match.params.userId
-
-
-        // // @ts-ignore
-        // const photoURL:File = avatar;
+        let userId = this.props.match.params.userId;
 
         if (!userId) {
             userId = '7788';
-            // this.props.updatePhoto(photoURL)
         }
 
         this.props.setUserProfile(userId)
-        this.props.setStatusProfile(userId)
+         this.props.setStatusProfile(userId)
     }
 
 
@@ -69,6 +63,5 @@ export const ProfileContainerWithURL = compose(
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,
-        // updatePhoto: updateProfilePhotoThunk
     }))(ProfileContainer)
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import style from './profile.module.css'
-import {MyPosts} from "./myPosts/myPosts";
+import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {profilePageType} from "../../redux/reducers/profilePage-reducer";
-import {Preloader} from "../preloader/Preloader";
+import {CircularProgress} from "@material-ui/core";
 
 
 type propsType = {
@@ -14,11 +14,21 @@ type propsType = {
 
 export const Profile: React.FC<propsType> = (props) => {
 
+    const circleProgressStyle: CSSProperties = {
+        display: 'block',
+        position: "absolute",
+        top: '0',
+        left: '0',
+        bottom: '0',
+        right: '0',
+        margin: 'auto',
+
+    }
 
     return (
         <div className={style.content}>
             {props.profilePage.isFetching ?
-                <Preloader/> : <>
+                <CircularProgress style={circleProgressStyle}/> : <>
                     <ProfileInfo userProfile={props.profilePage.userProfile}
                                  status={props.profilePage.profileStatus}
                                  updateStatus={props.updateStatus}

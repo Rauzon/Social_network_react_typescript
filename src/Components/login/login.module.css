@@ -1,13 +1,10 @@
 .login_content {
     padding: 15px;
-
 }
 .login_content__inner{
+    display: block;
     max-width: 40%;
-    transition: all .5s;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(25%);
+    transform: translateY(35%);
     padding: 15px 5px;
     margin: 0 auto;
     text-align: center;

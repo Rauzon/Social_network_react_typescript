@@ -3,9 +3,9 @@ import {profilePageReducer, profilePageType} from "./reducers/profilePage-reduce
 import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
 import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
-import { authReducer } from "./reducers/auth-reducer";
+import {authReducer} from "./reducers/auth-reducer";
 import thunk from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form'
+import { appReducer, InitialAppStateType } from "./reducers/app-reducer";
 
 export type PhotosType = {
     small: string | null
@@ -142,6 +142,7 @@ export type stateType = {
     navPage: navPageType
     usersPage: UsersStateType
     auth: IAuthData
+    app: InitialAppStateType
 }
 
 let reducers = combineReducers({
@@ -150,6 +151,7 @@ let reducers = combineReducers({
     navPage: navPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
 });
 
 

@@ -21,5 +21,5 @@ const initialState:navPageType = {
 }
 
 export const navPageReducer: navPageReducerType = (state = initialState, action) => {
-    return state
+    return {...state}
 }

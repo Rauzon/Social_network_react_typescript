@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import s from "./loginForm.module.css";
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField} from "@material-ui/core";
 import * as Yup from 'yup';
@@ -55,9 +55,9 @@ export const LoginForm: React.FC<IFormData> = (props) => {
         color: "red",
     }
 
-    const getCaptcha = () => {
+    const getCaptcha = useCallback(() => {
         props.getCaptcha()
-    }
+    }, [])
 
     return <>
         <FormControl>
@@ -99,7 +99,9 @@ export const LoginForm: React.FC<IFormData> = (props) => {
                             captcha && <Grid item>
                                 <div className={s.captcha__content}>
                                     <img src={captcha} alt=""/>
-                                    <RefreshIcon style={{fontSize: 30}} onClick={getCaptcha} />
+                                    <div className={s.captcha__content_img}>
+                                        <RefreshIcon style={{fontSize: 30}} onClick={getCaptcha}/>
+                                    </div>
                                 </div>
                                 <TextField name={'captcha'}
                                            label={'captcha'}

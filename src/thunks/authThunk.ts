@@ -11,7 +11,6 @@ export const getCaptchaThunk: GetCaptchaThunkType = () => {
     return (dispath: Dispatch) => {
         authAPI.getCaptcha()
             .then(res => {
-                    debugger
                     dispath(setCaptchaValue(res.url))
                 }
             )
@@ -22,7 +21,7 @@ export const getCaptchaThunk: GetCaptchaThunkType = () => {
 export const authProfileThunk: AuthProfileThunkType = () => {
 
     return (dispath: Dispatch) => {
-        authAPI.setAuth()
+        return authAPI.setAuth()
             .then(res => {
                 if (res.resultCode === 0) {
                     dispath(setAuthData(res.data))
@@ -39,7 +38,6 @@ export const logInProfileThunk: AuthPostProfileDataThunkType = (email, password,
         authAPI.logIn(email, password, rememberMe, captcha)
             .then(res => {
                     if (res.resultCode === 0) {
-                        debugger
                         dispath(authProfileThunk())
                     } else if (res.resultCode === 10) {
                         dispath(getCaptchaThunk())

@@ -4,8 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import {HashRouter} from "react-router-dom";
 import App from "./App";
-import {stateType} from "./redux/store";
-import {store} from "./redux/redux-store";
+import {store, stateType} from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 

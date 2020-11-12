@@ -1,7 +1,7 @@
 import React from "react";
 import style from './friendsBlock.module.css';
-import {FriendsNavType} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
+import {FriendsNavType} from "../../../redux/redux-store";
 
 type PropsType = {
     friends: FriendsNavType[]

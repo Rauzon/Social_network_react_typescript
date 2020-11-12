@@ -36,7 +36,7 @@ export const Login: React.FC<LoginPropsType> = (props) => {
     }
 
     return (
-        <div className={s.login_content}>
+        <div className={`${s.login_content}`}>
             {(props.isAuth) ? <Redirect to={'/profile'}/> :
                 <div className={s.login_content__inner}>
                     <h1>Login</h1>

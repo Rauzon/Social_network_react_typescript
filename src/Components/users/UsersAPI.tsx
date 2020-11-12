@@ -5,6 +5,7 @@ import {UserItem} from "./UserItem";
 import {Preloader} from '../preloader/Preloader';
 import {userAPI} from "../../API/API";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
+import {CircularProgress} from "@material-ui/core";
 
 type UsersPropsType = {
     follow: (userId: number) => void,
@@ -54,9 +55,15 @@ export class UsersAPI extends React.Component<UsersPropsType> {
         }
         // ---- pagination ----
 
+        const circleProgressStyle = {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }
+
         return (
             <div className={s.content__wrapper}>
-                {this.props.isFetching && <Preloader/>}
+                {this.props.isFetching && <CircularProgress />}
                 {/*pagination*/}
                 {
                     arrPageCount.map(p => {

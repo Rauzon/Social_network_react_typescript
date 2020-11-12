@@ -16,6 +16,7 @@ export enum typeOfActionDispatch {
     SET_STATUS_PROFILE = "SET_STATUS_PROFILE",
     SET_AUTH_ERROR = "SET_AUTH_ERROR",
     SET_CAPTCHA_VALUE = "SET_CAPTCHA_VALUE",
+    INITIALIZED_APP = "INITIALIZED_APP",
 }
 
 export type ActionCreatorsType = ReturnType<typeof addPost> |
@@ -31,7 +32,8 @@ export type ActionCreatorsType = ReturnType<typeof addPost> |
     ReturnType<typeof setFollowingInProgress> |
     ReturnType<typeof setStatusProfile> |
     ReturnType<typeof setAuthError> |
-    ReturnType<typeof setCaptchaValue>
+    ReturnType<typeof setCaptchaValue>|
+    ReturnType<typeof initializedApp>
 
 //actionCreators
 export const updatePost = (newPostValue: string) => {
@@ -109,5 +111,10 @@ export const setAuthError = (error: string | null) => {
 export const setCaptchaValue = (captcha: string) => {
     return (
         {type: typeOfActionDispatch.SET_CAPTCHA_VALUE, captcha}
+    ) as const
+};
+export const initializedApp = () => {
+    return (
+        {type: typeOfActionDispatch.INITIALIZED_APP}
     ) as const
 };
