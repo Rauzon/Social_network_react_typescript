@@ -46,7 +46,6 @@ export const LoginForm: React.FC<IFormData> = (props) => {
 
         validationSchema,
         onSubmit: (values: InitialValuesType) => {
-            debugger
             login(values.email, values.password, values.rememberMe, values.captcha)
         },
     });

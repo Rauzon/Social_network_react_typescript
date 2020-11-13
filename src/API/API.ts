@@ -66,7 +66,6 @@ export const authAPI: AuthAPIProps = {
     logIn(email, password, rememberMe, captcha) {
         return instance.post<CommonAuthStateType>('auth/login', {email, password, rememberMe, captcha})
             .then(res => {
-                debugger
                 return res.data
             })
     },

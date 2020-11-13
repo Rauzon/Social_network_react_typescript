@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {CSSProperties, useEffect} from 'react';
 import {Route} from 'react-router-dom';
-import './App.css'
+import s from  './app.module.css'
 import {Nav} from './Components/nav/Nav';
 import {DialogContainer} from "./Components/dialogs/DialogContainer";
 import {News} from "./Components/news/News";
@@ -11,8 +11,9 @@ import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
 import LoginContainer from "./Components/login/Login";
 import { initializedAppThunk } from './thunks/appThunk';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {stateType} from "./redux/redux-store";
+import {CircularProgress} from "@material-ui/core";
 
 type propsType = {
     state: stateType
@@ -22,17 +23,33 @@ type propsType = {
 const App:React.FC<propsType> = (props) => {
 
     const isInitialized = useSelector<stateType, boolean>(state => state.app.isInitialized)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        initializedAppThunk()
-    })
+        dispatch(initializedAppThunk())
+    }, [])
+
+    const circleProgressStyle: CSSProperties = {
+        display: 'block',
+        position: "absolute",
+        top: '0',
+        left: '0',
+        bottom: '0',
+        right: '0',
+        margin: 'auto',
+
+    }
+
+    if(!isInitialized){
+        return <CircularProgress style={circleProgressStyle} />
+    }
 
 
     return (
-        <div className={'app__wrapper'}>
+        <div className={s.app__wrapper}>
             <HeaderContainer />
             <Nav navPage={props.state.navPage} />
-            <div className="app__wrapper_content">
+            <div className={s.app__wrapper_content}>
                 <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithURL />}/>
                 <Route path={'/dialogs'} render={() => <DialogContainer />}/>
                 <Route path={'/users'}  render={() => <UsersContainer />}/>

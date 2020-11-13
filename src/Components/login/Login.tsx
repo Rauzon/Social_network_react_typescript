@@ -36,9 +36,9 @@ export const Login: React.FC<LoginPropsType> = (props) => {
     }
 
     return (
-        <div className={`${s.login_content}`}>
+        <div className={`${s.login__content}`}>
             {(props.isAuth) ? <Redirect to={'/profile'}/> :
-                <div className={s.login_content__inner}>
+                <div className={s.login__content_inner}>
                     <h1>Login</h1>
                     <LoginForm login={props.login}
                                error={props.error}
@@ -56,14 +56,11 @@ const LoginContainer: React.FC<CommonLoginContainerType> = (props) => {
     const postLogin = (email: string, password: string, rememberMe: boolean, captcha: string) => {
         props.postLoginData(email, password, rememberMe, captcha)
     }
-    debugger
-    return <div className={s.login_content_wrapper}>
-        <Login login={postLogin}
+    return <Login login={postLogin}
                isAuth={props.isAuth}
                error={props.error}
                captcha={props.captcha}
                getCaptcha={props.getCaptcha}/>
-    </div>
 }
 
 

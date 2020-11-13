@@ -12,7 +12,12 @@ export const initializedAppThunk: GetCaptchaThunkType = () => {
 
         const promise = dispath(authProfileThunk())
 
-        promise.finally(() => {
+        promise
+            .then(() => {
+                return
+            })
+            .finally(() => {
+                debugger
             dispath(initializedApp())
         })
     }

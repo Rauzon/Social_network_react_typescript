@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import s from './users.module.css'
 import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
-import {Preloader} from '../preloader/Preloader';
 import {userAPI} from "../../API/API";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
@@ -55,15 +54,20 @@ export class UsersAPI extends React.Component<UsersPropsType> {
         }
         // ---- pagination ----
 
-        const circleProgressStyle = {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+        const circleProgressStyle: CSSProperties = {
+            display: 'block',
+            position: "absolute",
+            top: '0',
+            left: '0',
+            bottom: '0',
+            right: '0',
+            margin: 'auto',
+
         }
 
         return (
             <div className={s.content__wrapper}>
-                {this.props.isFetching && <CircularProgress />}
+                {this.props.isFetching && <CircularProgress style={circleProgressStyle} />}
                 {/*pagination*/}
                 {
                     arrPageCount.map(p => {

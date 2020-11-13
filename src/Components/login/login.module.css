@@ -1,12 +1,14 @@
-.login_content {
+.login__content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px;
+
 }
-.login_content__inner{
-    display: block;
-    max-width: 40%;
-    transform: translateY(35%);
+.login__content_inner{
+    width: 50vh;
     padding: 15px 5px;
-    margin: 0 auto;
     text-align: center;
     background-color: rgba(255, 253, 253, .5);
     border: 1px solid gainsboro;

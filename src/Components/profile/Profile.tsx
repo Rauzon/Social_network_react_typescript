@@ -1,10 +1,9 @@
-import React, { CSSProperties } from 'react';
+import React, {CSSProperties} from 'react';
 import style from './profile.module.css'
 import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {profilePageType} from "../../redux/reducers/profilePage-reducer";
 import {CircularProgress} from "@material-ui/core";
-
 
 type propsType = {
     profilePage: profilePageType
@@ -24,6 +23,7 @@ export const Profile: React.FC<propsType> = (props) => {
         margin: 'auto',
 
     }
+
 
     return (
         <div className={style.content}>

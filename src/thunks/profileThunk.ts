@@ -15,7 +15,6 @@ export const setUserProfileThunk: SetUserProfileThunkType = (userId) => {
         dispatch(setIsFetching(true))
         profileAPI.setUserProfile(userId)
             .then(data => {
-                debugger
                 dispatch(setUserProfile(data))
                 dispatch(setIsFetching(false))
             })
@@ -41,13 +40,3 @@ export const updateUserStatusThunk: UpdateUserStatusThunkType = (title) => {
             })
     }
 };
-// export const updateProfilePhotoThunk: UpdateProfilePhotoThunk = (photoURL) => {
-//
-//     return (dispatch: Dispatch) => {
-//         profileAPI.updatePhotoProfile(photoURL)
-//             .then(data => {
-//                 debugger
-//                     dispatch(updatePhotoProfile(photoURL))
-//             })
-//     }
-// };
