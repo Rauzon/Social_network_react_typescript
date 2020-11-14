@@ -6,6 +6,7 @@ import {setUsers,
 } from "../../redux/TypesForRedux";
 import {stateType, UserType} from "../../redux/redux-store";
 import {getUsersThunk, followToUserThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
+import {getTotalUsersCountSelector, getUsersSelector, getPageSizeSelector, getCurrentPageSelector, getIsFetchingSelector, getIsFollowingInProgressTypeSelector} from '../../redux/selectors/UsersSelectors';
 
 type mapStateToPropsType = {
     users: Array<UserType>
@@ -18,12 +19,12 @@ type mapStateToPropsType = {
 
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isFollowingInProgress: state.usersPage.isFollowingInProgress
+        users: getUsersSelector(state),
+        totalUsersCount: getTotalUsersCountSelector(state),
+        pageSize: getPageSizeSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        isFollowingInProgress: getIsFollowingInProgressTypeSelector(state)
     }
 }
 

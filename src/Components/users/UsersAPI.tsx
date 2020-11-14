@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React from 'react';
 import s from './users.module.css'
 import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
@@ -54,20 +54,9 @@ export class UsersAPI extends React.Component<UsersPropsType> {
         }
         // ---- pagination ----
 
-        const circleProgressStyle: CSSProperties = {
-            display: 'block',
-            position: "absolute",
-            top: '0',
-            left: '0',
-            bottom: '0',
-            right: '0',
-            margin: 'auto',
-
-        }
-
         return (
             <div className={s.content__wrapper}>
-                {this.props.isFetching && <CircularProgress style={circleProgressStyle} />}
+                {this.props.isFetching && <CircularProgress className={s.circleProgress}/>}
                 {/*pagination*/}
                 {
                     arrPageCount.map(p => {
@@ -82,7 +71,7 @@ export class UsersAPI extends React.Component<UsersPropsType> {
 
                         const unfollow = (userId: number) => {
 
-                           this.props.unfollow(userId)
+                            this.props.unfollow(userId)
                         }
 
                         const follow = (userId: number) => {

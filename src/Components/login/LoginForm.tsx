@@ -1,9 +1,18 @@
 import React, {useCallback} from "react";
 import s from "./loginForm.module.css";
-import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField} from "@material-ui/core";
+import {
+    Button,
+    Checkbox,
+    FormControl,
+    FormControlLabel,
+    FormGroup,
+    Grid,
+    TextField,
+} from "@material-ui/core";
 import * as Yup from 'yup';
 import {useFormik} from "formik";
 import RefreshIcon from '@material-ui/icons/Refresh';
+import classes from "./loginForm.module.css";
 
 interface IFormData {
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
@@ -50,10 +59,6 @@ export const LoginForm: React.FC<IFormData> = (props) => {
         },
     });
 
-    const style = {
-        color: "red",
-    }
-
     const getCaptcha = useCallback(() => {
         props.getCaptcha()
     }, [])
@@ -67,21 +72,29 @@ export const LoginForm: React.FC<IFormData> = (props) => {
                             <div>
                                 <TextField name={'email'}
                                            label={'email'}
-                                           {...formik.getFieldProps('email')}/>
+                                           variant="outlined"
+                                           {...formik.getFieldProps('email')}
+                                           InputProps={{
+                                               classes: {
+                                                   root: classes.fieldErr,
+                                               }
+                                           }}
+                                />
                             </div>
                             {formik.errors.email && formik.touched.email ? (
-                                <div style={style}>{formik.errors.email}</div>) : null}
+                                <div className={s.styleError}>{formik.errors.email}</div>) : null}
                         </Grid>
                         <Grid item>
                             <div>
                                 <TextField name={'password'}
                                            label={'password'}
                                            type="password"
+                                           variant="outlined"
                                            {...formik.getFieldProps('password')}/>
                             </div>
-                            {!formik.errors.password && error ? <div style={style}>{error}</div> : null}
+                            {!formik.errors.password && error ? <div className={s.styleError}>{error}</div> : null}
                             {formik.errors.password && formik.touched.password ? (
-                                <div style={style}>{formik.errors.password}</div>) : null}
+                                <div className={s.styleError}>{formik.errors.password}</div>) : null}
                         </Grid>
                         <Grid item>
                             <div>

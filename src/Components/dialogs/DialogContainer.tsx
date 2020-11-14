@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {stateType, dialogsPageType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {compose} from "redux";
+import {getDialogPageSelector} from "../../redux/selectors/DialogSelectors";
 
 type MapStateToPropsType = {
     dialogPage: dialogsPageType
@@ -37,7 +38,7 @@ export const Dialog = (props: PropsType) => {
 
 
 const mapStateToProps = (state: stateType): MapStateToPropsType => ({
-    dialogPage: state.dialogsPage
+    dialogPage: getDialogPageSelector(state)
 })
 
 

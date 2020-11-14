@@ -3,6 +3,8 @@ import {Header} from "./Header";
 import {connect} from 'react-redux';
 import {stateType} from '../../redux/redux-store';
 import {logOutProfileThunk} from '../../thunks/authThunk';
+import {getIsAuthSelector} from "../../redux/selectors/LoginSelectors";
+import { getLoginSelector } from '../../redux/selectors/HeaderSelectors';
 
 type MstpType = {
     isAuth: boolean
@@ -27,8 +29,8 @@ class HeaderContainer extends React.Component<PropsType> {
 
 const mapStateToProps = (state: stateType): MstpType => {
     return {
-        isAuth: state.auth.isAuth,
-        login: state.auth.login,
+        isAuth: getIsAuthSelector(state),
+        login: getLoginSelector(state),
     }
 }
 

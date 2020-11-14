@@ -23,6 +23,7 @@ export const authProfileThunk: AuthProfileThunkType = () => {
     return (dispath: Dispatch) => {
         return authAPI.setAuth()
             .then(res => {
+                debugger
                 if (res.resultCode === 0) {
                     dispath(setAuthData(res.data))
                 }
@@ -58,7 +59,6 @@ export const logOutProfileThunk: AuthPostProfileDataThunkType = () => {
 
         authAPI.logout()
             .then(res => {
-                debugger
                 if (res.resultCode === 0) {
                     dispath(setAuthData({email: null, login: null, id: null}))
                 }

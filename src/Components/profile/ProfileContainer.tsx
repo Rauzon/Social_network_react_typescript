@@ -7,9 +7,11 @@ import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "..
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
 import {profilePageType} from '../../redux/reducers/profilePage-reducer';
+import { getProfilePageSelector, getUserIdSelector } from '../../redux/selectors/ProfileSelectors';
 
 type MstpType = {
     profilePage: profilePageType
+    authUserId: number | null
 }
 
 type MdtpType = {
@@ -32,7 +34,11 @@ export class ProfileContainer extends React.Component<PropsType> {
         let userId = this.props.match.params.userId;
 
         if (!userId) {
-            userId = '7788';
+            if(this.props.authUserId !== null){
+                userId = this.props.authUserId.toString();
+            } else {
+                this.props.history.push('/login')
+            }
         }
 
         this.props.setUserProfile(userId)
@@ -49,9 +55,10 @@ export class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-const mstp = (state: stateType): MstpType => {
+const mapStateToProps = (state: stateType): MstpType => {
     return {
-        profilePage: state.profilePage
+        profilePage: getProfilePageSelector(state),
+        authUserId: getUserIdSelector(state),
     }
 }
 
@@ -59,7 +66,7 @@ export const ProfileContainerWithURL = compose(
     authRedirectHOC,
     withRouter,
     //@ts-ignore
-    connect<any>(mstp, {
+    connect<any>(mapStateToProps, {
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,

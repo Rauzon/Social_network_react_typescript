@@ -33,12 +33,6 @@ export const profilePageReducer: profilePageReducerType = (state = initialState,
         case typeOfActionDispatch.SET_STATUS_PROFILE:
             return {...state, profileStatus: action.statusProfile}
 
-        // case typeOfActionDispatch.UPDATE_PHOTO_PROFILE:
-        //
-        //     let copyState = {...state, userProfile: {...state.userProfile, photos: {...state.userProfile.photos, large: action.photoURL}}}
-        //
-        //     return copyState
-
         default:
             return state
     }

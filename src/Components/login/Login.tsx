@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {getCaptchaThunk, logInProfileThunk} from "../../thunks/authThunk";
 import {stateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
+import { getIsAuthSelector, getServerErrorSelector, getCaptchaSelector } from "../../redux/selectors/LoginSelectors";
 
 //for Login
 type LoginPropsType = {
@@ -66,9 +67,9 @@ const LoginContainer: React.FC<CommonLoginContainerType> = (props) => {
 
 const mapStateToProps = (state: stateType): MapStateToPropsType => {
     return {
-        isAuth: state.auth.isAuth,
-        error: state.auth.error,
-        captcha: state.auth.captcha,
+        isAuth: getIsAuthSelector(state),
+        error: getServerErrorSelector(state),
+        captcha: getCaptchaSelector(state),
     }
 }
 

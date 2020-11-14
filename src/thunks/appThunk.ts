@@ -17,7 +17,6 @@ export const initializedAppThunk: GetCaptchaThunkType = () => {
                 return
             })
             .finally(() => {
-                debugger
             dispath(initializedApp())
         })
     }

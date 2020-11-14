@@ -29,19 +29,9 @@ const App:React.FC<propsType> = (props) => {
         dispatch(initializedAppThunk())
     }, [])
 
-    const circleProgressStyle: CSSProperties = {
-        display: 'block',
-        position: "absolute",
-        top: '0',
-        left: '0',
-        bottom: '0',
-        right: '0',
-        margin: 'auto',
-
-    }
 
     if(!isInitialized){
-        return <CircularProgress style={circleProgressStyle} />
+        return <CircularProgress className={s.circleProgress} />
     }
 
 
