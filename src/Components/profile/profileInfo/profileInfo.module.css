@@ -1,10 +1,25 @@
-.content{
-
+.content__profileInfo {
+    background-color: #fff;
+    border-radius: 10px;
+}
+@media (max-width: 860px) {
+    .content__profileInfo {
+        border-radius: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
 }
 
+.content__avatar{
+    display: block;
+    height: 200px;
+}
 .content__avatar img{
-    max-width: 250px;
-    max-height: 250px;
+    display: block;
+    width: 200px;
+    height: 100%;
+    border: 2px solid darkgrey;
+    border-radius: 50%;
 }
 
 .content__description{
@@ -17,4 +32,12 @@
 .content__description_searchJob,
 .content__description_desriptionOfJob{
     margin: 10px 0px;
+}
+.content__socialLinks {
+    display: block;
+    padding-left: 15px;
+}
+
+.content__profileInfo {
+
 }

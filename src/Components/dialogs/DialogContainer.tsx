@@ -1,10 +1,10 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import style from './dialogs.module.css'
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import {NewMessageInputContainer} from "./newMessageInput/NewMessageInputContainer";
 import {connect} from "react-redux";
-import {stateType, dialogsPageType} from "../../redux/redux-store";
+import {dialogsPageType, stateType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {compose} from "redux";
 import {getDialogPageSelector} from "../../redux/selectors/DialogSelectors";
@@ -42,7 +42,6 @@ const mapStateToProps = (state: stateType): MapStateToPropsType => ({
 })
 
 
-export const DialogContainer = compose(
+export const DialogContainer = compose<ComponentType<{}>>(
     authRedirectHOC,
-    // @ts-ignore
-    (connect<PropsType>(mapStateToProps, null)))(Dialog)
+    (connect<MapStateToPropsType, {}, {}, stateType>(mapStateToProps)))(Dialog)

@@ -11,15 +11,27 @@ body {
     display: grid;
     grid-template-areas: "header header" "nav content";
     height: 100vh;
-    grid-column-gap: 1vw;
+    grid-column-gap: 2vh;
     grid-row-gap: 2vh;
     grid-template-rows: 100px 1fr;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: minmax(150px,200px) minmax(350px, 1fr);
+    grid-auto-flow: dense;
 }
 
 .app__wrapper_content {
     /*for grid-area's elements*/
     background-color: #ffffff;
+    margin: 0px 15px 15px 0px;
+    border-radius: 10px;
+}
+
+@media (max-width: 860px) {
+    .app__wrapper_content {
+        /*for grid-area's elements*/
+        background-color: #ffffff;
+        margin: 0px;
+        border-radius: 0px;
+    }
 }
 
 .circleProgress {
@@ -30,4 +42,15 @@ body {
     bottom: 0;
     right: 0;
     margin: auto;
+}
+
+
+@media (max-width: 600px) {
+    .app__wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        grid-gap: 0px;
+    }
 }

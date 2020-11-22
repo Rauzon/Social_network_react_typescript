@@ -1,6 +1,6 @@
-import React, {CSSProperties, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Route} from 'react-router-dom';
-import s from  './app.module.css'
+import s from './app.module.css'
 import {Nav} from './Components/nav/Nav';
 import {DialogContainer} from "./Components/dialogs/DialogContainer";
 import {News} from "./Components/news/News";
@@ -10,7 +10,7 @@ import {UsersContainer} from './Components/users/UsersContainer';
 import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
 import LoginContainer from "./Components/login/Login";
-import { initializedAppThunk } from './thunks/appThunk';
+import {initializedAppThunk} from './thunks/appThunk';
 import {useDispatch, useSelector} from "react-redux";
 import {stateType} from "./redux/redux-store";
 import {CircularProgress} from "@material-ui/core";
@@ -33,7 +33,6 @@ const App:React.FC<propsType> = (props) => {
     if(!isInitialized){
         return <CircularProgress className={s.circleProgress} />
     }
-
 
     return (
         <div className={s.app__wrapper}>

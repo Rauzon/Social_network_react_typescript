@@ -4,27 +4,31 @@ import {stateType} from "../redux/redux-store";
 import {connect} from "react-redux";
 
 type MapStateForRedirectType = {
-    isAuth : boolean
+    isAuth: boolean
 }
+type MapDispatchForRedirectType = {}
 
-const mapStateForRedirect = (state: stateType):MapStateForRedirectType => {
+const mapStateForRedirect = (state: stateType): MapStateForRedirectType => {
     return {
-        isAuth:state.auth.isAuth
+        isAuth: state.auth.isAuth
     }
 }
 
-export const authRedirectHOC = (Component: ComponentType<any>) => {
+export function authRedirectHOC<HOCPropsType>(Component: ComponentType<HOCPropsType>) {
 
-    const authRedirectComponent:React.FC<MapStateForRedirectType> = (props) => {
+    function authRedirectComponent(props: MapDispatchForRedirectType & MapStateForRedirectType) {
 
-        if (!props.isAuth) {
-            return <Redirect to = {'/login'} />
+        let {isAuth, ...restProps} = props
+
+        if (!isAuth) {
+            return <Redirect to={'/login'}/>
         }
 
-        return <Component {...props} />
+        return <Component {...restProps as HOCPropsType} />
 
     }
-                    // @ts-ignore
-    return  connect<any>(mapStateForRedirect, null)(authRedirectComponent)
+
+    return connect<MapStateForRedirectType, MapDispatchForRedirectType, HOCPropsType, stateType>(mapStateForRedirect)
+    (authRedirectComponent)
 
 }

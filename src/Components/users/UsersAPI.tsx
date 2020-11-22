@@ -2,17 +2,17 @@ import React from 'react';
 import s from './users.module.css'
 import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
-import {userAPI} from "../../API/API";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
 
-type UsersPropsType = {
+export type UsersPropsType = {
     follow: (userId: number) => void,
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
     setIsFetching: (isFetching: boolean) => void
     getUsers: (currentPage: number, pageSize: number) => void
+    pagination: (page: number, pageSize: number) => void
     users: Array<UserType>
     totalUsersCount: number,
     pageSize: number,
@@ -32,15 +32,8 @@ export class UsersAPI extends React.Component<UsersPropsType> {
     }
 
     setCurrentPage = (p: number) => {
-        this.props.setCurrentPage(p)
-        this.props.setIsFetching(true)
-        userAPI.setUsers(p, this.props.pageSize).then(res => {
-            this.props.setIsFetching(false)
-            this.props.setUsers(res.items)
-            this.props.setIsFetching(false)
-        })
+        this.props.pagination(p, this.props.pageSize)
     }
-
 
     render(): React.ReactNode {
 

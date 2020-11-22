@@ -2,7 +2,6 @@
     /*for grid-area's elements*/
     grid-area: header;
     background-color: #524bb8;
-    height: 14vh;
 }
 
 .header__wrapper {

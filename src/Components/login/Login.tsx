@@ -74,7 +74,7 @@ const mapStateToProps = (state: stateType): MapStateToPropsType => {
 }
 
 
-export default connect(mapStateToProps, {
+export default connect<MapStateToPropsType, MapDispatchToPropsType, LoginContainerPropsType, stateType>(mapStateToProps, {
     postLoginData: logInProfileThunk,
     getCaptcha: getCaptchaThunk,
 })(LoginContainer)

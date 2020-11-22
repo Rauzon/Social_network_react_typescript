@@ -1,10 +1,8 @@
 import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
-import {dialogsPageType} from "../redux-store";
 
+export type DialogsPageType = typeof initialState
 
-export type dialogsPageReducerType = (state: dialogsPageType, action: ActionCreatorsType) => dialogsPageType
-
-const initialState:dialogsPageType = {
+const initialState = {
     names: [
         {id: 1, name: 'Marat', path: '/dialogs/1'},
         {id: 2, name: 'Anton', path: '/dialogs/2'},
@@ -19,7 +17,7 @@ const initialState:dialogsPageType = {
     ]
 }
 
-export const dialogsPageReducer: dialogsPageReducerType = (state = initialState, action) => {
+export const dialogsPageReducer = (state:DialogsPageType = initialState, action:ActionCreatorsType):DialogsPageType => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_MESSAGE:
             let newMessageValue = action.message

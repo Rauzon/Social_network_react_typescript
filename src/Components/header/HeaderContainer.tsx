@@ -34,5 +34,5 @@ const mapStateToProps = (state: stateType): MstpType => {
     }
 }
 
-//@ts-ignore
-export default connect<PropsType, any>(mapStateToProps, {logOutProfile: logOutProfileThunk})(HeaderContainer)
+// ???
+export default connect<MstpType, any , any, stateType>(mapStateToProps, {logOutProfile: logOutProfileThunk})(HeaderContainer)

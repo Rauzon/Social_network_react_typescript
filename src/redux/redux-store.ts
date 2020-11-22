@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {profilePageReducer, profilePageType} from "./reducers/profilePage-reducer";
-import {dialogsPageReducer} from "./reducers/dialogsPage-reducer";
+import {profilePageReducer, ProfilePageType} from "./reducers/profilePage-reducer";
+import {dialogsPageReducer, DialogsPageType} from "./reducers/dialogsPage-reducer";
 import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
 import {authReducer} from "./reducers/auth-reducer";
 import thunk from 'redux-thunk';
-import { appReducer, InitialAppStateType } from "./reducers/app-reducer";
+import {appReducer, AppStateType} from "./reducers/app-reducer";
 
 export type PhotosType = {
     small: string | null
@@ -25,8 +25,8 @@ export type profilePostsType = {
     message: string | number
 }
 export type navTitlesType = {
-    id: number,
-    title: string,
+    id: number
+    title: string
     path: string
 }
 export type FriendsNavType = {
@@ -97,16 +97,6 @@ export type CommonSibscribeDataType = {
     resultCode: number
 }
 
-
-//
-// export type profilePageType = {
-//     posts: Array<profilePostsType>
-//     newPost: string | number
-//     userProfile: CommonDataProfileType | null
-//     isFetching: boolean
-//     profileStatus: string
-// }
-
 export type dialogsPageType = {
     names: Array<dialogsNamesType>
     messages: Array<dialogsMessagesType>
@@ -137,12 +127,12 @@ export interface IAuthData extends AuthDataType{
 
 
 export type stateType = {
-    profilePage: profilePageType
-    dialogsPage: dialogsPageType
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
     navPage: navPageType
     usersPage: UsersStateType
     auth: IAuthData
-    app: InitialAppStateType
+    app: AppStateType
 }
 
 let reducers = combineReducers({

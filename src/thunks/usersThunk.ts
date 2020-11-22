@@ -5,13 +5,15 @@ import {
     setTotalUsersCount,
     setFollowingInProgress,
     unfollow,
-    follow
+    follow,
+    setCurrentPage
 } from "../redux/TypesForRedux";
 import {Dispatch} from "redux";
 
 type GetUsersThunkType = (currentPage: number, pageSize: number) => void
 type FollowToUserThunkType = (userId: number) => void
 type UnfollowToUserThunkType = (userId: number) => void
+type PaginationThunkType = (page: number, pageSize:number) => void
 
 
 export const getUsersThunk: GetUsersThunkType = (currentPage, pageSize) => {
@@ -53,5 +55,17 @@ export const unfollowToUserThunk: UnfollowToUserThunkType = (userId) => {
                     dispath(setFollowingInProgress(false, userId))
                 }
             })
+    }
+};
+
+export const paginationThunk: PaginationThunkType = (page, pageSize) => {
+
+    return (dispath: Dispatch) => {
+        dispath(setCurrentPage(page))
+        dispath(setIsFetching(true))
+        userAPI.setUsers(page, pageSize).then(res => {
+            dispath(setUsers(res.items))
+            dispath(setIsFetching(false))
+        })
     }
 };

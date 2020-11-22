@@ -3,7 +3,7 @@ import {Dispatch} from "redux";
 import {setAuthData, setAuthError, setCaptchaValue} from "../redux/TypesForRedux";
 
 type AuthProfileThunkType = () => any
-type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean, captcha?: string) => void
+export type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean, captcha?: string) => void
 type GetCaptchaThunkType = () => any
 
 export const getCaptchaThunk: GetCaptchaThunkType = () => {
@@ -23,7 +23,6 @@ export const authProfileThunk: AuthProfileThunkType = () => {
     return (dispath: Dispatch) => {
         return authAPI.setAuth()
             .then(res => {
-                debugger
                 if (res.resultCode === 0) {
                     dispath(setAuthData(res.data))
                 }

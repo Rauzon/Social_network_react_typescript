@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {stateType} from "../../redux/redux-store";
@@ -6,11 +6,11 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "../../thunks/profileThunk";
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
-import {profilePageType} from '../../redux/reducers/profilePage-reducer';
-import { getProfilePageSelector, getUserIdSelector } from '../../redux/selectors/ProfileSelectors';
+import {ProfilePageType} from '../../redux/reducers/profilePage-reducer';
+import {getProfilePageSelector, getUserIdSelector} from '../../redux/selectors/ProfileSelectors';
 
 type MstpType = {
-    profilePage: profilePageType
+    profilePage: ProfilePageType
     authUserId: number | null
 }
 
@@ -18,7 +18,6 @@ type MdtpType = {
     setUserProfile: (userId: string) => void
     setStatusProfile: (userId: string) => void
     updateStatus: (title: string) => void
-    updatePhoto: (photoURL: File) => void
 }
 
 type PathParamsType = {
@@ -62,11 +61,10 @@ const mapStateToProps = (state: stateType): MstpType => {
     }
 }
 
-export const ProfileContainerWithURL = compose(
+export const ProfileContainerWithURL = compose<ComponentType<{}>>(
     authRedirectHOC,
     withRouter,
-    //@ts-ignore
-    connect<any>(mapStateToProps, {
+    connect<MstpType, MdtpType, {}, stateType>(mapStateToProps, {
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,

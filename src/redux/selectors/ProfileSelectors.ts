@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
 import {stateType} from "../redux-store";
-import { profilePageType } from '../reducers/profilePage-reducer';
+import { ProfilePageType } from '../reducers/profilePage-reducer';
 
-type GetProfilePageType = (state: stateType) => profilePageType
+type GetProfilePageType = (state: stateType) => ProfilePageType
 type GetUserIdType = (state: stateType) => number | null
 
 

@@ -2,10 +2,7 @@ import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
 import {CommonDataProfileType, profilePostsType} from "../redux-store";
 
 
-export type profilePageType = typeof initialState
-
-export type profilePageReducerType = (state: profilePageType, action: ActionCreatorsType) => profilePageType
-
+export type ProfilePageType = typeof initialState
 const initialState = {
     posts: [
         {id: 1, message: "Hey girls"},
@@ -17,7 +14,7 @@ const initialState = {
 }
 
 
-export const profilePageReducer: profilePageReducerType = (state = initialState, action) => {
+export const profilePageReducer = (state:ProfilePageType = initialState, action:ActionCreatorsType):ProfilePageType => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_POST:
             let newPostValue = action.value

@@ -1,16 +1,13 @@
 import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux"
 
 
-//typization for reducer
-type AppReducerType = (state: InitialAppStateType, action: ActionCreatorsType) => InitialAppStateType
-
-export type InitialAppStateType = typeof initialAppState
+export type AppStateType = typeof initialAppState
 
 const initialAppState = {
     isInitialized: false
 }
 
-export const appReducer: AppReducerType = (state = initialAppState, action) => {
+export const appReducer = (state:AppStateType = initialAppState, action:ActionCreatorsType):AppStateType => {
     switch (action.type) {
         case typeOfActionDispatch.INITIALIZED_APP:
             return {...state, isInitialized: true}

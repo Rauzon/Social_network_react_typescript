@@ -1,18 +1,18 @@
 import React from "react";
-import style from './sideBar.module.css';
 import {NavLink} from "react-router-dom";
+import s from '../nav.module.css';
 
 type PropsType = {
-    path: string,
+    path: string
     title: string
+    key: number
 }
 
 export const SidebarTitle: React.FC<PropsType> = (props) => {
+
     return <>
-        <div className={style.nav__wrap_menu}>
-            <NavLink to={props.path}>
-                <li>{props.title}</li>
-            </NavLink>
-        </div>
+        <NavLink to={props.path}>
+            <li>{props.title}</li>
+        </NavLink>
     </>
 }
