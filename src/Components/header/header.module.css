@@ -47,3 +47,14 @@
     height: 50px;
     text-align: center;
 }
+.header__logOutBtn {
+    margin-top: 5px;
+}
+.header__logOutBtn button{
+    padding: 5px;
+}
+.header__logOutBtn button:hover{
+    background-color: #524bb8;
+    transition: background-color .5s;
+    box-shadow: 0px 0px 0px 0px;
+}

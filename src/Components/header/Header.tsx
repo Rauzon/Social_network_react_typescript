@@ -2,6 +2,9 @@ import React from 'react';
 import style from './header.module.css'
 import logo from '../../images/logo.png'
 import { NavLink } from 'react-router-dom';
+import { Button, createMuiTheme } from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {lightBlue} from "@material-ui/core/colors";
 
 type PropsType = {
     login: string | null
@@ -26,7 +29,12 @@ export const Header: React.FC<PropsType> = (props) => {
                     {props.isAuth ?
                         <div className={style.header__authBlock_login}>
                             <span>{props.login}</span>
-                            <button onClick={logOut}>LOG OUT</button>
+                            <div className={style.header__logOutBtn}>
+                                <Button variant="contained" onClick={logOut}>
+                                    <ExitToAppIcon />
+                                    LOG OUT
+                                </Button>
+                            </div>
                         </div> :
                         <NavLink to={'/login'}>Login</NavLink>}
                 </div>

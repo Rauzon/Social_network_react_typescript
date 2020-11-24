@@ -1,6 +1,6 @@
 .nav__friendsBlock_item {
     position: relative;
-
+    width: 100%;
     display: flex;
     align-items: center;
 
@@ -10,7 +10,9 @@
     border-right: none;
     border-left: none;
 }
-
+.MuiCollapse-wrapper{
+    width: 100%;
+}
 .nav__friendsBlock_item:not(:last-child) {
     border-bottom: none;
 }

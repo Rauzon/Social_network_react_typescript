@@ -9,6 +9,11 @@
         border-top-right-radius: 10px;
     }
 }
+@media (max-width: 600px) {
+    .content__profileInfo {
+        border-radius: 0px;
+    }
+}
 
 .content__avatar{
     display: block;
@@ -36,8 +41,4 @@
 .content__socialLinks {
     display: block;
     padding-left: 15px;
-}
-
-.content__profileInfo {
-
 }

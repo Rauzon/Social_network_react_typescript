@@ -7,8 +7,11 @@
 }
 
 @media (max-width: 860px) {
+}
+@media (max-width: 600px) {
     .nav {
         margin: 0px;
+        border-radius: 0;
     }
 }
 

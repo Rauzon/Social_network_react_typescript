@@ -27,7 +27,6 @@ interface IProfilePostForm {
 
 const validationSchema = Yup.object({
     textareaPost: Yup.string()
-        .required('post is required')
         .max(300,'post should consists 300 char or less')
 });
 

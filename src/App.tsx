@@ -34,6 +34,7 @@ const App:React.FC<propsType> = (props) => {
         return <CircularProgress className={s.circleProgress} />
     }
 
+
     return (
         <div className={s.app__wrapper}>
             <HeaderContainer />

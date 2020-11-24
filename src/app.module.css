@@ -17,6 +17,15 @@ body {
     grid-template-columns: minmax(150px,200px) minmax(350px, 1fr);
     grid-auto-flow: dense;
 }
+@media (max-width: 600px) {
+    .app__wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        grid-gap: 0px;
+    }
+}
 
 .app__wrapper_content {
     /*for grid-area's elements*/
@@ -26,6 +35,14 @@ body {
 }
 
 @media (max-width: 860px) {
+    .app__wrapper_content {
+        /*for grid-area's elements*/
+        background-color: #ffffff;
+        margin: 0px 15px 15px 0px;
+        border-radius: 0px;
+    }
+}
+@media (max-width: 600px) {
     .app__wrapper_content {
         /*for grid-area's elements*/
         background-color: #ffffff;
@@ -45,12 +62,3 @@ body {
 }
 
 
-@media (max-width: 600px) {
-    .app__wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        grid-gap: 0px;
-    }
-}

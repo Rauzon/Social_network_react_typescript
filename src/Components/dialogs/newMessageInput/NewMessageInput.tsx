@@ -23,7 +23,6 @@ type IDialogMessageForm = {
 
 const validationSchema = Yup.object({
     DialogMessageTextarea: Yup.string()
-        .required('message is required')
         .max(300, 'message should consists 300 char or less')
 });
 
