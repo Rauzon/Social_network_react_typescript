@@ -21,9 +21,6 @@ export const Nav: React.FC<propsType> = (props) => {
         </div>
         <div className={s.nav__friendsBlock}>
             {isAuth && <>
-                <div className={s.nav__friendsBlock_title}>
-                    <h4>Friends:</h4>
-                </div>
                 <FriendsBlock friends={props.navPage.friends}/>
             </>}
         </div>

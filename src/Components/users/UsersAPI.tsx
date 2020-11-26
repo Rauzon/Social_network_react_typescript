@@ -4,6 +4,8 @@ import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
+import {Pagination} from "@material-ui/lab";
+
 
 export type UsersPropsType = {
     follow: (userId: number) => void,
@@ -20,6 +22,8 @@ export type UsersPropsType = {
     isFetching: boolean,
     isFollowingInProgress: number[]
 }
+
+
 
 
 export class UsersAPI extends React.Component<UsersPropsType> {
@@ -52,11 +56,10 @@ export class UsersAPI extends React.Component<UsersPropsType> {
                 {this.props.isFetching && <CircularProgress className={s.circleProgress}/>}
                 {/*pagination*/}
                 {
-                    arrPageCount.map(p => {
-                        return <span key={p}
-                                     className={(this.props.currentPage === p) ? `${s.page} ${s.active_page}` : `${s.page}`}
-                                     onClick={() => this.setCurrentPage(p)}> {p} </span>
-                    })
+                    <div className={s.content__wrapper_pagination}>
+                        <Pagination count={pageCount} siblingCount={1} color="primary"
+                                   onChange={(_, page) => this.setCurrentPage(page)}/>
+                    </div>
                 }
                 {/*-----pagination-----*/}
                 {

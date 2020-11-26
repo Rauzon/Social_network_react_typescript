@@ -102,7 +102,6 @@ export const profileAPI: ProfileAPIProps = {
     updateStatusProfile(status) {
         return instance.put<any>(`profile/status`, {status})
             .then(res => {
-                debugger
                 return res.data
             })
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import UsersAPI, {UsersPropsType} from "./UsersAPI";
+import UsersAPI from "./UsersAPI";
 import {stateType, UserType} from "../../redux/redux-store";
 import {followToUserThunk, getUsersThunk, paginationThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
 import {

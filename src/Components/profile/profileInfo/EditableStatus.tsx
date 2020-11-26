@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
+import s from './profileInfo.module.css';
 
 type EditebleStatusPropsType = {
     status: string
@@ -34,9 +35,13 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
     }
 
     return <div>
+        <span><b>Status: </b></span>
         {(editeMode && userId == '7788') ?
-                <div><input type="text" value={localStatus} onChange={onChangeHandler} onBlur={onBlurHandler}
+                <div>
+                    <input type="text" value={localStatus} onChange={onChangeHandler} onBlur={onBlurHandler}
                             autoFocus={true}/></div> :
-                <div><span onDoubleClick={() => setEditeMode(true)}>{props.status}</span></div>}
+                <div className={s.content__mainInfo_contactStatus_spanContent}>
+                    <span onDoubleClick={() => setEditeMode(true)}>{props.status}</span>
+                </div>}
     </div>
 }

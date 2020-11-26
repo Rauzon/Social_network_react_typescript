@@ -10,15 +10,13 @@
 }
 @media (max-width: 600px) {
     .nav {
-        margin: 0px;
+        margin:0px;
         border-radius: 0;
     }
 }
-
-.nav__friendsBlock_title {
-    margin-left: 10px;
+.wrap__title{
+    margin-bottom: 15px;
 }
-
 .wrap__title a li {
     padding: 5px 5px 5px 35px;
     list-style: none;

@@ -36,7 +36,7 @@ export const Header: React.FC<PropsType> = (props) => {
                                 </Button>
                             </div>
                         </div> :
-                        <NavLink to={'/login'}>Login</NavLink>}
+                        <NavLink to={'/login'}>Sign In</NavLink>}
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ body {
         /*for grid-area's elements*/
         background-color: #ffffff;
         margin: 0px 15px 15px 0px;
-        border-radius: 0px;
+        border-radius: 10px;
     }
 }
 @media (max-width: 600px) {

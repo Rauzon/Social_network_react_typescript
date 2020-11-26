@@ -2,6 +2,11 @@ import React from "react";
 import s from './profileInfo.module.css';
 import {CommonDataProfileType, SocialContactsType} from "../../../redux/redux-store";
 import {EditableStatus} from "./EditableStatus";
+import style from "../../nav/friendsBlock/friendsBlock.module.css";
+import {AccordionDetails, AccordionSummary, createStyles, Typography} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
 
 type PropsType = {
     userProfile: CommonDataProfileType
@@ -19,7 +24,7 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
 
             return (
                 <div className={s.content__socialLinks}>
-                    <p>{key}:{props.userProfile.contacts[key as keyof SocialContactsType]}</p>
+                    <p>{key}: {props.userProfile.contacts[key as keyof SocialContactsType]}</p>
                 </div>
             )
         })
@@ -66,23 +71,58 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
     EvbyI1O+Xwt/xGkbs98vgr3gNI/b7ZSDHO5iGX98vzzDeBRRM2y/2LUXCz35jIdZ5GwUDTczzNgoGmnx+HKNg5IXFUoh3ME3bDiP/G
     ONgSsNAE+vZISoGmvxOjDNT+DFtO50Y99somNFgPsdoSEOSxjr3pmKgIW0X/wcBk0burq7h9AAAAABJRU5ErkJggg==`
 
+    const CssAccordion = withStyles({
+        root: {
+            '& .MuiAccordionDetails-root': {
+                padding: '0px',
+            },
+        },
+    })(Accordion);
+
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            root: {
+                width: '100%',
+                "& .MuiAccordionDetails": {
+                    padding: '0px',
+                },
+            },
+            heading: {
+                fontSize: theme.typography.pxToRem(15),
+                fontWeight: theme.typography.fontWeightRegular,
+            },
+            contentBlock: {
+                width: '100%',
+            },
+            contentBlockWrapper: {
+                width: '100%',
+            },
+            contentBlockWrapperRoot: {
+                width: '100%',
+            },
+        }),
+    );
+
+
+    const classes = useStyles();
+
     return <div className={s.content__profileInfo}>
-        <div className={s.content__avatar}>
-            <img src={(props.userProfile?.photos?.large) ? props.userProfile?.photos?.large :
-                defaultAvatarPhoto}
-                 alt=""/>
+        <div className={s.content__mainInfo}>
+            <div className={s.content__mainInfo_avatar}>
+                <img src={(props.userProfile?.photos?.large) ? props.userProfile?.photos?.large :
+                    defaultAvatarPhoto}
+                     alt=""/>
+            </div>
+            <div className={s.content__mainInfo_contactStatus}>
+                <div className={s.content__description_fullName}>
+                    <b>FullName</b>: {props.userProfile?.fullName}
+                </div>
+                <EditableStatus status={props.status} updateStatus={props.updateStatus} userId={props.userId}/>
+            </div>
         </div>
         <div className={s.content__description}>
-            <EditableStatus status={props.status} updateStatus={props.updateStatus} userId={props.userId}/>
-            <div className={s.content__description_fullName}>
-                <b>FullName</b>: {props.userProfile?.fullName}
-            </div>
             <div className={s.content__description_aboutMe}>
                 <b>AboutMe</b>: {props.userProfile?.aboutMe}
-            </div>
-            <div className={s.content__description_contacts}>
-                <b>Contacts</b>:
-                {contacts}
             </div>
             <div className={s.content__description_searchJob}>
                 <b>Search a job:</b> {(props.userProfile?.lookingForAJob) ? "Yes" : "No"}
@@ -91,6 +131,22 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
                 <b>Description of job:</b> {(props.userProfile?.lookingForAJobDescription) ?
                 props.userProfile.lookingForAJobDescription :
                 "No description"}
+            </div>
+            <div className={s.content__description_contacts}>
+                <CssAccordion className={`${style.MuiPaperRoot} ${style.contentBlockWrapperRoot}`}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography className={classes.heading}><b>Contacts:</b></Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className={classes.contentBlockWrapper}>
+                        <Typography className={classes.contentBlock}>
+                            {contacts}
+                        </Typography>
+                    </AccordionDetails>
+                </CssAccordion>
             </div>
         </div>
     </div>

@@ -1,12 +1,15 @@
 .content {
     margin-top: 15px;
     display: flex;
+    align-items: center;
     max-height: 100px;
 }
 
 .content__img img {
     width: 80px;
     height: 80px;
+    border: 2px solid #a9a9a9;
+    border-radius: 50%;
 }
 .content__text {
     margin-left: 15px;

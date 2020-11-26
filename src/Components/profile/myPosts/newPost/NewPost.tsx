@@ -69,7 +69,7 @@ const ProfilePostForm: React.FC<IProfilePostForm> = (props) => {
                         </Grid>
                         <Grid item>
                             <div className={style.content__button}>
-                                <Button type={'submit'} variant='contained'>Send</Button>
+                                <Button type={'submit'} variant='contained'>PUBLISH</Button>
                             </div>
                         </Grid>
                     </Grid>
