@@ -60,7 +60,7 @@ export const FriendsBlock: React.FC<PropsType> = (props) => {
                 <Typography className={classes.contentBlock}>
                     {props.friends.map(f => <div key={f.id} className={style.nav__friendsBlock_item}>
                             <div className={style.nav__friendsBlock_item_img}>
-                                <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt=""/>
+                                <img src="https://i.ibb.co/F8yML1z/image.png" alt=""/>
                             </div>
                             <div className={style.nav__friendsBlock_item_name}>
                                 <NavLink to={f.pathToDialog}>{f.name}</NavLink>

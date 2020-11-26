@@ -26,6 +26,8 @@ const validationSchema = Yup.object({
         .max(300, 'message should consists 300 char or less')
 });
 
+
+
 const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
 
     const formik = useFormik({
@@ -63,7 +65,7 @@ const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
                         </Grid>
                         <Grid item>
                             <div className={style.dialogs__messages_newMesssage_button}>
-                                <Button color={'default'} type={'submit'}>Send</Button>
+                                <Button color={'primary'} type={'submit'}>Send</Button>
                             </div>
                         </Grid>
                     </Grid>

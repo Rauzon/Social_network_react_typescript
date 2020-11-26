@@ -24,8 +24,6 @@ export type UsersPropsType = {
 }
 
 
-
-
 export class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {

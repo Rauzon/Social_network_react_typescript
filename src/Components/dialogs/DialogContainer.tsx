@@ -19,11 +19,6 @@ export const Dialog = (props: PropsType) => {
 
     return (
         <div className={style.dialogs}>
-            <div className={style.wrapper__header}>
-                <div className={style.wrapper__header_left}>Messages</div>
-                <div className={style.wrapper__header_right}>Some name</div>
-            </div>
-            <div className={style.wrapper}>
                 <div className={style.dialogs__people}>
                     {props.dialogPage.names.map((n) => <Names key={n.id} name={n.name} path={n.path}/>)}
                 </div>
@@ -31,7 +26,6 @@ export const Dialog = (props: PropsType) => {
                     {props.dialogPage.messages.map((m) => <Messages key={m.id} message={m.message}/>)}
                     <NewMessageInputContainer/>
                 </div>
-            </div>
         </div>
     )
 }

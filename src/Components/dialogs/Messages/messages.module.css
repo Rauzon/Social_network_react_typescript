@@ -6,21 +6,24 @@
 .newMessage__img img{
     width: 50px;
     height: 50px;
+    border: 1px solid #a9a9a9;
+    border-radius: 50%;
     transform: translateY(40%);
 }
 .newMessage__content {
     position: relative;
-    min-width: 12vw;
-    min-height: 12vh;
+    min-width: 30px;
+    min-height: 80px;
     max-width: 50%;
-    padding: 15px 10px;
+    padding: 15px;
     background-color: #524bb8;
-    margin: 2vh 2vw;
+    margin: 10px 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 255, .2);
     z-index: 100;
     color: white;
-    font-size: 2vh;
+    font-size: 16px;
+    word-break: break-word;
 }
 .newMessage__content:before{
     position: absolute;
