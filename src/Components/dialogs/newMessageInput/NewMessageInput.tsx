@@ -35,8 +35,9 @@ const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
                 DialogMessageTextarea: "",
             },
             validationSchema,
-            onSubmit: values => {
+            onSubmit: (values, {resetForm}) => {
                 props.addMessage(values.DialogMessageTextarea)
+                resetForm({values: '' || undefined})
             },
         })
     ;

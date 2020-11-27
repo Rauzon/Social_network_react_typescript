@@ -38,10 +38,11 @@ const ProfilePostForm: React.FC<IProfilePostForm> = (props) => {
             textareaPost: '',
         },
         validationSchema,
-        onSubmit: values => {
+        onSubmit: (values,{resetForm}) => {
             if (values.textareaPost) {
                 props.addPost(values.textareaPost)
             }
+            resetForm({values: '' || undefined})
         },
     });
 

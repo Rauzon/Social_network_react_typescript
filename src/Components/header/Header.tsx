@@ -1,10 +1,9 @@
 import React from 'react';
 import style from './header.module.css'
 import logo from '../../images/logo.png'
-import { NavLink } from 'react-router-dom';
-import { Button, createMuiTheme } from '@material-ui/core';
+import {NavLink} from 'react-router-dom';
+import {Button} from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {lightBlue} from "@material-ui/core/colors";
 
 type PropsType = {
     login: string | null

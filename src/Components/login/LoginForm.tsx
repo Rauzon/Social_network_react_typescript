@@ -54,8 +54,9 @@ export const LoginForm: React.FC<IFormData> = (props) => {
         },
 
         validationSchema,
-        onSubmit: (values: InitialValuesType) => {
+        onSubmit: (values: InitialValuesType, {resetForm}) => {
             login(values.email, values.password, values.rememberMe, values.captcha)
+            resetForm({values: '' || undefined})
         },
     });
 

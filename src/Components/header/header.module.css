@@ -32,6 +32,9 @@
 .header__authBlock a {
     text-decoration: none;
     color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .header__authBlock span {
