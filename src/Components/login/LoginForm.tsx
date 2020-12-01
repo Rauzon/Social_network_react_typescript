@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, MouseEvent} from "react";
 import s from "./loginForm.module.css";
 import {
     Button,
@@ -63,6 +63,7 @@ export const LoginForm: React.FC<IFormData> = (props) => {
     const getCaptcha = useCallback(() => {
         props.getCaptcha()
     }, [])
+
 
     return <>
         <FormControl>

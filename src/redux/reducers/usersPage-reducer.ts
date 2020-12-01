@@ -2,11 +2,7 @@ import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
 import {UsersStateType} from "../redux-store";
 
 
-//typization for reducer
-type usersReducerType = (state: UsersStateType, action: ActionCreatorsType) => UsersStateType
-
-
-const initialUsersState: UsersStateType = {
+const initialUsersState = {
     users: [],
     totalUsersCount: 0,
     pageSize: 100,
@@ -15,7 +11,7 @@ const initialUsersState: UsersStateType = {
     isFollowingInProgress: [],
 }
 
-export const usersReducer: usersReducerType = (state = initialUsersState, action): UsersStateType => {
+export const usersReducer = (state:UsersStateType = initialUsersState, action:ActionCreatorsType): UsersStateType => {
     switch (action.type) {
         case typeOfActionDispatch.FOLLOW_TO_USER:
             return {...state, users: state.users.map(u => (u.id === action.userId) ? {...u, followed: true} : u)}

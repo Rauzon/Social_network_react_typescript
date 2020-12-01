@@ -12,7 +12,7 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
 
     let userId = props.userId
 
-    if(!userId){
+    if (!userId) {
         userId = '7788'
     }
 
@@ -25,9 +25,7 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
     }
 
     useEffect(() => {
-        if (localStatus !== props.status) {
-            setLocalStatus(props.status)
-        }
+        setLocalStatus(props.status)
     }, [props.status])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +35,11 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
     return <div>
         <span><b>Status: </b></span>
         {(editeMode && userId == '7788') ?
-                <div>
-                    <input type="text" value={localStatus} onChange={onChangeHandler} onBlur={onBlurHandler}
-                            autoFocus={true}/></div> :
-                <div className={s.content__mainInfo_contactStatus_spanContent}>
-                    <span onDoubleClick={() => setEditeMode(true)}>{props.status}</span>
-                </div>}
+            <div>
+                <input type="text" value={localStatus} onChange={onChangeHandler} onBlur={onBlurHandler}
+                       autoFocus={true}/></div> :
+            <div className={s.content__mainInfo_contactStatus_spanContent}>
+                <span onDoubleClick={() => setEditeMode(true)}>{props.status}</span>
+            </div>}
     </div>
 }

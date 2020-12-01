@@ -1,6 +1,5 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import s from '../nav.module.css';
 
 type PropsType = {
     path: string

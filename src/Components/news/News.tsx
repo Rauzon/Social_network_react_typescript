@@ -4,7 +4,7 @@ import style from './news.module.css'
 export const News= () => {
     return (
         <div className={style.content}>
-           News
+           The page of news is being developed
         </div>
     )
 }

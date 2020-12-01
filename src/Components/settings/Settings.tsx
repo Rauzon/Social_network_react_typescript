@@ -4,7 +4,7 @@ import style from './settings.module.css'
 export const Settings= () => {
     return (
         <div className={style.content}>
-           Settings
+           The page of settings is being developed
         </div>
     )
 }

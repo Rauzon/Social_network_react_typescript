@@ -8,15 +8,18 @@
 
 @media (max-width: 860px) {
 }
+
 @media (max-width: 600px) {
     .nav {
-        margin:0px;
+        margin: 0px;
         border-radius: 0;
     }
 }
-.wrap__title{
+
+.wrap__title {
     margin-bottom: 15px;
 }
+
 .wrap__title a li {
     padding: 5px 5px 5px 35px;
     list-style: none;
@@ -27,6 +30,7 @@
 .wrap__title a {
     text-decoration: none;
     color: #000;
+    transition: all .3s;
 }
 
 .wrap__title a:first-child li {
@@ -34,36 +38,49 @@
     border-top-right-radius: 10px;
     position: relative;
 }
+@media (max-width: 600px) {
+    .wrap__title a:first-child li {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+}
 
 .wrap__title a:first-child li:before {
     content: url("https://img.icons8.com/material-rounded/24/000000/user.png");
     position: absolute;
     left: 5px;
 }
+
 .wrap__title a:nth-child(2) li {
     position: relative;
 }
+
 .wrap__title a:nth-child(2) li:before {
     content: url("https://img.icons8.com/fluent-systems-filled/24/000000/filled-speech-bubble-with-dots.png");
     position: absolute;
     left: 5px;
 }
+
 .wrap__title a:nth-child(3) li {
     position: relative;
 }
+
 .wrap__title a:nth-child(3) li:before {
     content: url("https://img.icons8.com/fluent-systems-filled/24/000000/add-user-group-man-man.png");
     position: absolute;
     left: 5px;
 }
-.wrap__title a:nth-child(4) li{
-  position: relative;
+
+.wrap__title a:nth-child(4) li {
+    position: relative;
 }
+
 .wrap__title a:nth-child(4) li:before {
     content: url("https://img.icons8.com/material-rounded/24/000000/news.png");
     position: absolute;
     left: 5px;
 }
+
 .wrap__title a:last-child li {
     position: relative;
 }
@@ -77,6 +94,7 @@
 .wrap__title a:focus {
     text-decoration: none;
     color: #9831e8;
+    transition: all .3s;
 }
 
 .wrap__title a li:hover {

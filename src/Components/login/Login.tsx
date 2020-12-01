@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {getCaptchaThunk, logInProfileThunk} from "../../thunks/authThunk";
 import {stateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
-import { getIsAuthSelector, getServerErrorSelector, getCaptchaSelector } from "../../redux/selectors/LoginSelectors";
+import {getIsAuthSelector, getServerErrorSelector, getCaptchaSelector} from "../../redux/selectors/LoginSelectors";
 
 //for Login
 type LoginPropsType = {
@@ -38,6 +38,11 @@ export const Login: React.FC<LoginPropsType> = (props) => {
 
     return (
         <div className={`${s.login__content}`}>
+            <div className={s.login__content_inner_textHelper}>
+                <h4>You can enter and test features using those data:</h4>
+                <span>login:</span><b>vladby86@gmail.com</b>
+                <span>password:</span><b>HireMePlease_2020</b>
+            </div>
             {(props.isAuth) ? <Redirect to={'/profile'}/> :
                 <div className={s.login__content_inner}>
                     <h1>Login</h1>
@@ -58,10 +63,10 @@ const LoginContainer: React.FC<CommonLoginContainerType> = (props) => {
         props.postLoginData(email, password, rememberMe, captcha)
     }
     return <Login login={postLogin}
-               isAuth={props.isAuth}
-               error={props.error}
-               captcha={props.captcha}
-               getCaptcha={props.getCaptcha}/>
+                  isAuth={props.isAuth}
+                  error={props.error}
+                  captcha={props.captcha}
+                  getCaptcha={props.getCaptcha}/>
 }
 
 
