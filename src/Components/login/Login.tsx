@@ -41,7 +41,7 @@ export const Login: React.FC<LoginPropsType> = (props) => {
             <div className={s.login__content_inner_textHelper}>
                 <h4>You can enter and test features using those data:</h4>
                 <span>login:</span><b> vladby86@gmail.com</b><br/>
-                <span>password:</span><b> HireMePlease_2020</b>
+                <span>password:</span><b> HardPassword_2020</b>
             </div>
             {(props.isAuth) ? <Redirect to={'/profile'}/> :
                 <div className={s.login__content_inner}>

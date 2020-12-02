@@ -1,18 +1,10 @@
-import React, {useCallback, MouseEvent} from "react";
+import React, {useCallback} from "react";
 import s from "./loginForm.module.css";
-import {
-    Button,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    Grid,
-    TextField,
-} from "@material-ui/core";
+import classes from "./loginForm.module.css";
+import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField,} from "@material-ui/core";
 import * as Yup from 'yup';
 import {useFormik} from "formik";
 import RefreshIcon from '@material-ui/icons/Refresh';
-import classes from "./loginForm.module.css";
 
 interface IFormData {
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => void

@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import UsersAPI from "./UsersAPI";
 import {stateType, UserType} from "../../redux/redux-store";

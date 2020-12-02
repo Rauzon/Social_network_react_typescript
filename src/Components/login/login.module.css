@@ -25,7 +25,6 @@
 
 .login__content_inner_textHelper {
     margin: 20px;
-    position: absolute;
     top: 10px;
 }
 @media (max-width: 600px) {

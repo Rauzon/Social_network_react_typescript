@@ -5,24 +5,24 @@ import {navPageReducer} from "./reducers/navPage-reducer";
 import {usersReducer} from "./reducers/usersPage-reducer";
 import {authReducer} from "./reducers/auth-reducer";
 import thunk from 'redux-thunk';
-import {appReducer, AppStateType} from "./reducers/app-reducer";
+import {appReducer, InitialAppStateType} from "./reducers/app-reducer";
 
 export type PhotosType = {
     small: string | null
     large: string | null
 }
 export type dialogsNamesType = {
-    id: number,
+    id: string,
     name: string,
     path: string
 }
 export type dialogsMessagesType = {
-    id: number,
-    message: string | number
+    id: string,
+    message: string
 }
 export type profilePostsType = {
     id: number,
-    message: string | number
+    message: string
 }
 export type navTitlesType = {
     id: number
@@ -132,7 +132,7 @@ export type stateType = {
     navPage: navPageType
     usersPage: UsersStateType
     auth: IAuthData
-    app: AppStateType
+    app: InitialAppStateType
 }
 
 let reducers = combineReducers({

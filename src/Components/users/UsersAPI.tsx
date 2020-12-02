@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from './users.module.css'
 import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
@@ -33,28 +33,30 @@ export type UsersPropsType = {
 
 export const UsersAPI: FC<UsersPropsType> = (props) => {
 
+    const [showScroll, setShowScroll] = useState<boolean>(false)
+
     useEffect(() => {
         if (props.users.length === 0) {
             props.getUsers(props.currentPage, props.pageSize)
         }
-    })
+    });
 
     useEffect(() => {
         if (props.isFetching) {
             window.addEventListener('scroll', checkScrollTop, true)
         }
-        return () => {
-            window.removeEventListener('scroll', checkScrollTop)
-        }
-    }, [window.pageYOffset])
+        return () => window.removeEventListener('scroll', checkScrollTop)
+
+    }, [window.pageYOffset, props.currentPage])
 
     // button up
 
-    const [showScroll, setShowScroll] = useState<boolean>(false)
-
     function checkScrollTop() {
-        (!showScroll && window.pageYOffset > 300) ? setShowScroll(true) :
+        if (!showScroll && window.pageYOffset > 300) {
+            setShowScroll(true)
+        } else {
             setShowScroll(false)
+        }
     };
 
 
@@ -81,9 +83,7 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
 
     return (
         <div className={s.content__wrapper}>
-
             {props.isFetching && <CircularProgress className={s.circleProgress}/>}
-
             {/*pagination*/}
             {
                 <div className={s.content__wrapper_pagination}>
@@ -92,9 +92,7 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
                 </div>
             }
             {/*-----pagination-----*/}
-
             {/*button up*/}
-
             <div className={s.scrollTop_wrapper}>
                 <FaArrowCircleUp
                     className={s.scrollTop}
@@ -102,9 +100,7 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
                     style={{height: 40, display: showScroll ? 'flex' : 'none'}}
                 />
             </div>
-
             {/*--- button up ---*/}
-
             {
                 props.users.map(u => {
 

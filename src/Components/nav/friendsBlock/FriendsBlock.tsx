@@ -50,14 +50,14 @@ export const FriendsBlock: React.FC<PropsType> = (props) => {
     return <>
         <CssAccordion className={`${style.MuiPaperRoot} ${style.contentBlockWrapperRoot}`}>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
                 <Typography className={classes.heading}>Friends</Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.contentBlockWrapper}>
-                <Typography className={classes.contentBlock}>
+                <Typography component={'span'} className={classes.contentBlock}>
                     {props.friends.map(f => <div key={f.id} className={style.nav__friendsBlock_item}>
                             <div className={style.nav__friendsBlock_item_img}>
                                 <img src="https://i.ibb.co/F8yML1z/image.png" alt=""/>
@@ -65,7 +65,8 @@ export const FriendsBlock: React.FC<PropsType> = (props) => {
                             <div className={style.nav__friendsBlock_item_name}>
                                 <NavLink to={f.pathToDialog}>{f.name}</NavLink>
                             </div>
-                            {f.isOnline && <div className={style.nav__friendsBlock_item_onlineStatus}></div>}
+                            {f.isOnline && <div className={style.nav__friendsBlock_item_onlineStatus}/>
+                            }
                         </div>
                     )}
                 </Typography>

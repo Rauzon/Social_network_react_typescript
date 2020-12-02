@@ -11,7 +11,7 @@ export const Messages: React.FC<propsType> = (props) => {
 
     return <div className={style.newMessage}>
         <div className={style.newMessage__img}>
-            <img src={defaultAvatarPhoto} />
+            <img src={defaultAvatarPhoto} alt={'avatarPhoto'}/>
         </div>
         <div className={style.newMessage__content}>
             <span>{props.message}</span>

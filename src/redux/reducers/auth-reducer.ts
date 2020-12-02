@@ -13,7 +13,7 @@ const initialAuthState: IAuthData = {
     captcha: '',
     isAuth: false,
     error: null,
-}
+};
 
 export const authReducer: usersReducerType = (state = initialAuthState, action) => {
     switch (action.type) {
@@ -33,6 +33,4 @@ export const authReducer: usersReducerType = (state = initialAuthState, action) 
         default:
             return state
     }
-}
-
-
+};
