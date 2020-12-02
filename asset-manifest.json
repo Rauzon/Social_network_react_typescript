@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Social_network_react_typescript/static/css/main.1abb2b1d.chunk.css",
-    "main.js": "/Social_network_react_typescript/static/js/main.1ba60cb6.chunk.js",
-    "main.js.map": "/Social_network_react_typescript/static/js/main.1ba60cb6.chunk.js.map",
+    "main.css": "/Social_network_react_typescript/static/css/main.6a6f2eb9.chunk.css",
+    "main.js": "/Social_network_react_typescript/static/js/main.7d7de930.chunk.js",
+    "main.js.map": "/Social_network_react_typescript/static/js/main.7d7de930.chunk.js.map",
     "runtime-main.js": "/Social_network_react_typescript/static/js/runtime-main.1c933c3f.js",
     "runtime-main.js.map": "/Social_network_react_typescript/static/js/runtime-main.1c933c3f.js.map",
-    "static/js/2.40ff15f5.chunk.js": "/Social_network_react_typescript/static/js/2.40ff15f5.chunk.js",
-    "static/js/2.40ff15f5.chunk.js.map": "/Social_network_react_typescript/static/js/2.40ff15f5.chunk.js.map",
+    "static/js/2.929d833c.chunk.js": "/Social_network_react_typescript/static/js/2.929d833c.chunk.js",
+    "static/js/2.929d833c.chunk.js.map": "/Social_network_react_typescript/static/js/2.929d833c.chunk.js.map",
     "index.html": "/Social_network_react_typescript/index.html",
-    "precache-manifest.c54670fb8417fa2a8e1bde25099bb86b.js": "/Social_network_react_typescript/precache-manifest.c54670fb8417fa2a8e1bde25099bb86b.js",
+    "precache-manifest.8434396cd893b09940e71945aead0c25.js": "/Social_network_react_typescript/precache-manifest.8434396cd893b09940e71945aead0c25.js",
     "service-worker.js": "/Social_network_react_typescript/service-worker.js",
-    "static/css/main.1abb2b1d.chunk.css.map": "/Social_network_react_typescript/static/css/main.1abb2b1d.chunk.css.map",
-    "static/js/2.40ff15f5.chunk.js.LICENSE.txt": "/Social_network_react_typescript/static/js/2.40ff15f5.chunk.js.LICENSE.txt",
+    "static/css/main.6a6f2eb9.chunk.css.map": "/Social_network_react_typescript/static/css/main.6a6f2eb9.chunk.css.map",
+    "static/js/2.929d833c.chunk.js.LICENSE.txt": "/Social_network_react_typescript/static/js/2.929d833c.chunk.js.LICENSE.txt",
     "static/media/logo.png": "/Social_network_react_typescript/static/media/logo.d243bdd9.png"
   },
   "entrypoints": [
     "static/js/runtime-main.1c933c3f.js",
-    "static/js/2.40ff15f5.chunk.js",
-    "static/css/main.1abb2b1d.chunk.css",
-    "static/js/main.1ba60cb6.chunk.js"
+    "static/js/2.929d833c.chunk.js",
+    "static/css/main.6a6f2eb9.chunk.css",
+    "static/js/main.7d7de930.chunk.js"
   ]
 }
