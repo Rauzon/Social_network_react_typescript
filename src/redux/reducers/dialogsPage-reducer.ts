@@ -24,9 +24,9 @@ export const dialogsPageReducer = (state: DialogsPageType = initialState, action
         case typeOfActionDispatch.ADD_MESSAGE:
             let message = action.message;
             let newMessage = {id: uuid(), message};
-
             state = {...state, messages: [...state.messages, newMessage]};
             return state;
+
         default:
             return state
     }

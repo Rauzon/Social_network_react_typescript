@@ -20,14 +20,15 @@ type propsType = {
     dispatch: (action:ActionCreatorsType) => void
 }
 
+
 const App:React.FC<propsType> = (props) => {
 
-    const isInitialized = useSelector<stateType, boolean>(state => state.app.isInitialized)
-    const dispatch = useDispatch()
+    const isInitialized = useSelector<stateType, boolean>(state => state.app.isInitialized);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(initializedAppThunk())
-    }, [])
+    }, []);
 
 
     if(!isInitialized){
@@ -49,7 +50,7 @@ const App:React.FC<propsType> = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default App;
 

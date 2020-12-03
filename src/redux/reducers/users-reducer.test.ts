@@ -297,7 +297,6 @@ describe('Tests  for app-reducer', () => {
         expect(resultState1).toEqual(expectedState1);
     });
 
-
 });
 
 

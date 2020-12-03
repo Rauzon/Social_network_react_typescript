@@ -1,11 +1,12 @@
 import {CommonDataProfileType, ProfilePostsType} from "../redux-store";
 import {profilePageReducer, ProfilePageType} from "./profilePage-reducer";
-import {setIsFetching, setStatusProfile, setUserProfile} from "../TypesForRedux";
+import {setIsFetching, setStatusProfile, setUserProfile, addPost} from "../TypesForRedux";
 
 
 describe('test for profile-reducer', () => {
 
     let initialState: ProfilePageType;
+
     beforeEach(() => {
         initialState = {
             posts: [
@@ -16,6 +17,30 @@ describe('test for profile-reducer', () => {
             isFetching: false,
             profileStatus: '',
         }
+    });
+
+    test('should be set new post to profilePage', () => {
+
+        let action = addPost('new post value');
+
+        let resultState = profilePageReducer(initialState, action);
+
+        let expectedResult = {
+            posts: [
+                {id: '1', message: 'Hey girls'},
+                {id: '2', message: "Hey guys"},
+                {id: '3', message: "new post value"},
+            ] as Array<ProfilePostsType>,
+            userProfile: {} as CommonDataProfileType,
+            isFetching: false,
+            profileStatus: '',
+        };
+
+        expect(resultState.posts[0].message).toBe('Hey girls');
+        expect(resultState.posts[2].message).toBe('new post value');
+        expect(resultState.isFetching).toEqual(expectedResult.isFetching);
+        expect(resultState.posts.length).toBe(3);
+        expect(!resultState.profileStatus).toEqual(!expectedResult.profileStatus)
     });
 
     test('should be set userProfile data', () => {

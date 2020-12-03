@@ -19,7 +19,7 @@ const initialState:NavPageType = {
         {id: id(), name: 'Arkasha', pathToDialog: '/dialogs/3', isOnline: true},
         {id: id(), name: 'Tolik', pathToDialog: '/dialogs/4', isOnline: false}
     ]
-}
+};
 
 export const navPageReducer: navPageReducerType = (state = initialState, action) => {
     return {...state}
