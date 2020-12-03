@@ -107,7 +107,7 @@ describe('Tests  for app-reducer', () => {
         expect(resultState).toEqual(expectedState);
     });
 
-    test('should be set new users\' array', () => {
+    test('should be set new users array', () => {
 
         let action = setUsers([{
             followed: false,

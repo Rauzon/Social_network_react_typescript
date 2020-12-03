@@ -31,7 +31,7 @@ const validationSchema = Yup.object({
 });
 
 
-const ProfilePostForm: React.FC<IProfilePostForm> = (props) => {
+export const ProfilePostForm: React.FC<IProfilePostForm> = (props) => {
 
     const formik = useFormik({
         initialValues: {

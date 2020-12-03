@@ -57,10 +57,6 @@ export type SocialContactsType = {
 
 }
 
-
-
-
-
 type PhotoUserType = {
     small: string | null
     large: string | null

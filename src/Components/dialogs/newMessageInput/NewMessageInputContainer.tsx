@@ -8,4 +8,4 @@ type MapDispatchToProps = {
 }
 
 export const NewMessageInputContainer = connect<{}, MapDispatchToProps, {}, stateType>(null, {addMessage})
-(NewMessageInput)
+(NewMessageInput);

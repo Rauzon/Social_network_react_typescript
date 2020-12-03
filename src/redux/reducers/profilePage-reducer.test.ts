@@ -148,9 +148,6 @@ describe('test for profile-reducer', () => {
         };
 
         expect(resultState).toEqual(expectedResult);
-        expect(resultState.posts.length === 2).toEqual(expectedResult.posts.length === 2);
-        expect(resultState.isFetching).toEqual(expectedResult.isFetching);
-        expect(resultState.userProfile).toEqual(expectedResult.userProfile);
     });
 
 })
