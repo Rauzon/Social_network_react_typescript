@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 type PropsType = {
     path: string
     title: string
-    key: number
+    key: string
 }
 
 export const SidebarTitle: React.FC<PropsType> = (props) => {

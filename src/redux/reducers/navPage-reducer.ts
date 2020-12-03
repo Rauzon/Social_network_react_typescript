@@ -1,22 +1,23 @@
 import {ActionCreatorsType} from "../TypesForRedux";
-import {navPageType} from "../redux-store";
+import {NavPageType} from "../redux-store";
+import {v4 as id} from 'uuid';
 
 
-export type navPageReducerType = (state: navPageType, action: ActionCreatorsType) => navPageType
+export type navPageReducerType = (state: NavPageType, action: ActionCreatorsType) => NavPageType
 
-const initialState:navPageType = {
+const initialState:NavPageType = {
     navTitles: [
-        {id: 1, title: 'Profile', path: '/profile'},
-        {id: 2, title: 'Dialogs', path: '/dialogs'},
-        {id: 3, title: 'Users', path: '/users'},
-        {id: 4, title: 'News', path: '/news'},
-        {id: 5, title: 'Settings', path: '/settings'}
+        {id: id(), title: 'Profile', path: '/profile'},
+        {id: id(), title: 'Dialogs', path: '/dialogs'},
+        {id: id(), title: 'Users', path: '/users'},
+        {id: id(), title: 'News', path: '/news'},
+        {id: id(), title: 'Settings', path: '/settings'}
     ],
     friends: [
-        {id: 1, name: 'Marat', pathToDialog: '/dialogs/1', isOnline: true},
-        {id: 2, name: 'Anton', pathToDialog: '/dialogs/2', isOnline: false},
-        {id: 3, name: 'Arkasha', pathToDialog: '/dialogs/3', isOnline: true},
-        {id: 4, name: 'Tolik', pathToDialog: '/dialogs/4', isOnline: false}
+        {id: id(), name: 'Marat', pathToDialog: '/dialogs/1', isOnline: true},
+        {id: id(), name: 'Anton', pathToDialog: '/dialogs/2', isOnline: false},
+        {id: id(), name: 'Arkasha', pathToDialog: '/dialogs/3', isOnline: true},
+        {id: id(), name: 'Tolik', pathToDialog: '/dialogs/4', isOnline: false}
     ]
 }
 

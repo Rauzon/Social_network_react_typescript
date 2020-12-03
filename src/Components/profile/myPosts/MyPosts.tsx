@@ -2,10 +2,10 @@ import React from "react";
 import s from './myPosts.module.css'
 import {MyPost} from "./myPost/MyPost";
 import {NewPostContainer} from "./newPost/NewPostContainer";
-import {profilePostsType} from "../../../redux/redux-store";
+import {ProfilePostsType} from "../../../redux/redux-store";
 
 type propsType = {
-    posts: Array<profilePostsType>
+    posts: Array<ProfilePostsType>
     photo: string | null | undefined
 }
 

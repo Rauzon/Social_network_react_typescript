@@ -3,10 +3,10 @@ import s from './nav.module.css';
 import {SidebarTitle} from "./sideBar/SidebarTitle";
 import {FriendsBlock} from "./friendsBlock/FriendsBlock";
 import {useSelector} from "react-redux";
-import {navPageType, stateType} from "../../redux/redux-store";
+import {NavPageType, stateType} from "../../redux/redux-store";
 
 type propsType = {
-    navPage: navPageType
+    navPage: NavPageType
 }
 
 export const Nav: React.FC<propsType> = (props) => {

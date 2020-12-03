@@ -20,17 +20,17 @@ export type dialogsMessagesType = {
     id: string,
     message: string
 }
-export type profilePostsType = {
-    id: number,
+export type ProfilePostsType = {
+    id: string,
     message: string
 }
-export type navTitlesType = {
-    id: number
+export type NavTitlesType = {
+    id: string
     title: string
     path: string
 }
 export type FriendsNavType = {
-    id: number
+    id: string
     name: string
     pathToDialog: string
     isOnline: boolean
@@ -101,8 +101,8 @@ export type dialogsPageType = {
     names: Array<dialogsNamesType>
     messages: Array<dialogsMessagesType>
 }
-export type navPageType = {
-    navTitles: Array<navTitlesType>
+export type NavPageType = {
+    navTitles: Array<NavTitlesType>
     friends: Array<FriendsNavType>
 }
 export type UsersStateType = {
@@ -129,7 +129,7 @@ export interface IAuthData extends AuthDataType{
 export type stateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    navPage: navPageType
+    navPage: NavPageType
     usersPage: UsersStateType
     auth: IAuthData
     app: InitialAppStateType

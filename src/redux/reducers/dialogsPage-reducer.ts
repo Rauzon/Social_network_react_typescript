@@ -1,5 +1,5 @@
 import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 
 export type DialogsPageType = typeof initialState
@@ -19,7 +19,7 @@ const initialState = {
     ]
 };
 
-export const dialogsPageReducer = (state:DialogsPageType = initialState, action:ActionCreatorsType):DialogsPageType => {
+export const dialogsPageReducer = (state: DialogsPageType = initialState, action: ActionCreatorsType): DialogsPageType => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_MESSAGE:
             let message = action.message;

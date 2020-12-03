@@ -36,12 +36,6 @@ export type ActionCreatorsType = ReturnType<typeof addPost> |
     ReturnType<typeof initializedApp>
 
 //actionCreators
-export const updatePost = (newPostValue: string) => {
-    return {
-        type: typeOfActionDispatch.UPDATE_POST,
-        newPostValue
-    } as const
-};
 export const addPost = (value: string) => {
     return {
         type: typeOfActionDispatch.ADD_POST,
