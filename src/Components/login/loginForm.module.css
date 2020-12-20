@@ -1,0 +1,11 @@
+.captcha__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.captcha__content_img {
+    cursor: pointer;
+}
+.styleError {
+    color: red;
+}

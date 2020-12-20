@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
 import s from './users.module.css'
-import {UserType} from "../../redux/redux-store";
 import {UserItem} from "./UserItem";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
 import {Pagination} from "@material-ui/lab";
 import {FaArrowCircleUp} from 'react-icons/fa';
+import {UserType} from "../../redux/reducers/usersPage-reducer";
 
 
 //type for button up

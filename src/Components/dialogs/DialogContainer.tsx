@@ -4,13 +4,14 @@ import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import {NewMessageInputContainer} from "./newMessageInput/NewMessageInputContainer";
 import {connect} from "react-redux";
-import {dialogsPageType, stateType} from "../../redux/redux-store";
+import {stateType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {compose} from "redux";
 import {getDialogPageSelector} from "../../redux/selectors/DialogSelectors";
+import {DialogsPageType} from "../../redux/reducers/dialogsPage-reducer";
 
 type MapStateToPropsType = {
-    dialogPage: dialogsPageType
+    dialogPage: DialogsPageType
 }
 
 type PropsType = MapStateToPropsType

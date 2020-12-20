@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from "@storybook/react";
 import StoryRouter from 'storybook-react-router';
 import {FriendsBlock} from './friendsBlock/FriendsBlock';
-import {FriendsNavType} from '../../redux/redux-store';
+import {FriendsNavType} from "../../redux/reducers/navPage-reducer";
 
 
 let friendsData: FriendsNavType[] = [{

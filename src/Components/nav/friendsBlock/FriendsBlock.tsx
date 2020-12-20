@@ -1,11 +1,11 @@
 import React from "react";
 import style from './friendsBlock.module.css';
 import {NavLink} from "react-router-dom";
-import {FriendsNavType} from "../../../redux/redux-store";
 import Accordion from "@material-ui/core/Accordion";
 import {AccordionDetails, AccordionSummary, createStyles, Typography} from "@material-ui/core";
 import {makeStyles, withStyles, Theme} from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {FriendsNavType} from "../../../redux/reducers/navPage-reducer";
 
 type PropsType = {
     friends: FriendsNavType[]

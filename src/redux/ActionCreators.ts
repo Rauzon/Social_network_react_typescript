@@ -1,4 +1,6 @@
-import {AuthDataType, CommonDataProfileType, UserType} from "./redux-store";
+import {AuthDataType} from "./reducers/auth-reducer";
+import {UserType} from "./reducers/usersPage-reducer";
+import {CommonDataProfileType} from "./reducers/profilePage-reducer";
 
 export enum typeOfActionDispatch {
     ADD_MESSAGE = "ADD_MESSAGE",

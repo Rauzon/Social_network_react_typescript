@@ -5,7 +5,7 @@ import {Nav} from './Components/nav/Nav';
 import {DialogContainer} from "./Components/dialogs/DialogContainer";
 import {News} from "./Components/news/News";
 import {Settings} from './Components/settings/Settings';
-import {ActionCreatorsType} from "./redux/TypesForRedux";
+import {ActionCreatorsType} from "./redux/ActionCreators";
 import {UsersContainer} from './Components/users/UsersContainer';
 import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";

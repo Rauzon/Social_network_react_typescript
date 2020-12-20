@@ -1,12 +1,20 @@
-import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux"
-import {IAuthData} from "../redux-store";
+import {ActionCreatorsType, typeOfActionDispatch} from "../ActionCreators"
 
 
 //typization for reducer
-type usersReducerType = (state: IAuthData, action: ActionCreatorsType) => IAuthData
+export type AuthDataType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    captcha?: string
+}
 
+export interface IAuthData extends AuthDataType{
+    isAuth: boolean
+    error: string | null
+}
 
-const initialAuthState: IAuthData = {
+const initialAuthState = {
     id: null,
     email: null,
     login: null,
@@ -15,7 +23,7 @@ const initialAuthState: IAuthData = {
     error: null,
 };
 
-export const authReducer: usersReducerType = (state = initialAuthState, action) => {
+export const authReducer = (state:IAuthData = initialAuthState, action: ActionCreatorsType):IAuthData => {
     switch (action.type) {
         case typeOfActionDispatch.SET_AUTH_DATA:
 

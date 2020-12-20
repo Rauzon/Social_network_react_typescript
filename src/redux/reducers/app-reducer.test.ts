@@ -1,5 +1,5 @@
 import {appReducer, InitialAppStateType} from "./app-reducer";
-import {initializedApp} from "../TypesForRedux";
+import {initializedApp} from "../ActionCreators";
 
 
 describe('Tests  for app-reducer', () => {

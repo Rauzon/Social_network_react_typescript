@@ -1,7 +1,8 @@
 import {createSelector} from 'reselect'
-import {dialogsPageType, stateType} from "../redux-store";
+import {stateType} from "../redux-store";
+import {DialogsPageType} from "../reducers/dialogsPage-reducer";
 
-type GetDialogPageType = (state: stateType) => dialogsPageType
+type GetDialogPageType = (state: stateType) => DialogsPageType
 
 
 

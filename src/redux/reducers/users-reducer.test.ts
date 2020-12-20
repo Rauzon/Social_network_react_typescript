@@ -6,9 +6,8 @@ import {
     setCurrentPage,
     setIsFetching,
     setFollowingInProgress
-} from "../TypesForRedux";
-import {UsersStateType} from "../redux-store";
-import {usersReducer} from "./usersPage-reducer";
+} from "../ActionCreators";
+import {usersReducer, UsersStateType} from "./usersPage-reducer";
 
 
 describe('Tests  for app-reducer', () => {

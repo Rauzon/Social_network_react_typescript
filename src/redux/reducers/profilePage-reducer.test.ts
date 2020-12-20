@@ -1,6 +1,5 @@
-import {CommonDataProfileType, ProfilePostsType} from "../redux-store";
-import {profilePageReducer, ProfilePageType} from "./profilePage-reducer";
-import {setIsFetching, setStatusProfile, setUserProfile, addPost} from "../TypesForRedux";
+import {CommonDataProfileType, profilePageReducer, ProfilePageType, ProfilePostsType} from "./profilePage-reducer";
+import {setIsFetching, setStatusProfile, setUserProfile, addPost} from "../ActionCreators";
 
 
 describe('test for profile-reducer', () => {

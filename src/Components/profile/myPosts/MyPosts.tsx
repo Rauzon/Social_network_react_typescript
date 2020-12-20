@@ -2,7 +2,8 @@ import React from "react";
 import s from './myPosts.module.css'
 import {MyPost} from "./myPost/MyPost";
 import {NewPostContainer} from "./newPost/NewPostContainer";
-import {ProfilePostsType} from "../../../redux/redux-store";
+import {ProfilePostsType} from "../../../redux/reducers/profilePage-reducer";
+
 
 type propsType = {
     posts: Array<ProfilePostsType>

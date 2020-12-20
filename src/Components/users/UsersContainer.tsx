@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import UsersAPI from "./UsersAPI";
-import {stateType, UserType} from "../../redux/redux-store";
+import {stateType} from "../../redux/redux-store";
 import {followToUserThunk, getUsersThunk, paginationThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
 import {
     getCurrentPageSelector,
@@ -10,6 +10,7 @@ import {
     getTotalUsersCountSelector,
     getUsersSelector
 } from '../../redux/selectors/UsersSelectors';
+import {UserType} from "../../redux/reducers/usersPage-reducer";
 
 type MapStateToPropsType = {
     users: Array<UserType>

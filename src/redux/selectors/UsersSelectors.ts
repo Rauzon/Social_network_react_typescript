@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect'
-import {stateType, UserType} from "../redux-store";
+import {stateType} from "../redux-store";
+import {UserType} from "../reducers/usersPage-reducer";
 
 type GetUsersType = (state: stateType) => UserType[]
 type GetTotalUsersCountType = (state: stateType) => number

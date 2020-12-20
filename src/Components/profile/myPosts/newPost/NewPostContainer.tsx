@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost} from "../../../../redux/TypesForRedux";
+import {addPost} from "../../../../redux/ActionCreators";
 import {connect} from "react-redux";
 import {NewPost} from "./NewPost";
 

@@ -1,6 +1,5 @@
-import {navPageReducer} from './navPage-reducer';
-import {NavPageType} from "../redux-store";
 import {v4 as id} from "uuid";
+import {NavPageType} from "./navPage-reducer";
 
 describe('test for nav-reducer', () => {
     let initialState: NavPageType;

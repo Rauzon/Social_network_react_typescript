@@ -7,7 +7,7 @@ import {
     unfollow,
     follow,
     setCurrentPage
-} from "../redux/TypesForRedux";
+} from "../redux/ActionCreators";
 import {Dispatch} from "redux";
 
 type GetUsersThunkType = (currentPage: number, pageSize: number) => void
@@ -22,8 +22,8 @@ export const getUsersThunk: GetUsersThunkType = (currentPage, pageSize) => {
         dispath(setIsFetching(true))
         userAPI.setUsers(currentPage, pageSize).then(res => {
             dispath(setIsFetching(false))
-            dispath(setUsers(res.items))
-            dispath(setTotalUsersCount(res.totalCount))
+            dispath(setUsers(res.data.items))
+            dispath(setTotalUsersCount(res.data.totalCount))
         })
     }
 };
@@ -34,7 +34,7 @@ export const followToUserThunk: FollowToUserThunkType = (userId) => {
         dispath(setFollowingInProgress(true, userId))
         userAPI.follow(userId)
             .then(res => {
-                if (res.resultCode === 0) {
+                if (res.data.resultCode === 0) {
                     dispath(follow(userId))
                     dispath(setFollowingInProgress(false, userId))
                 }
@@ -50,7 +50,7 @@ export const unfollowToUserThunk: UnfollowToUserThunkType = (userId) => {
         dispath(setFollowingInProgress(true, userId))
         userAPI.unfollow(userId)
             .then(res => {
-                if (res.resultCode === 0) {
+                if (res.data.resultCode === 0) {
                     dispath(unfollow(userId))
                     dispath(setFollowingInProgress(false, userId))
                 }
@@ -64,7 +64,7 @@ export const paginationThunk: PaginationThunkType = (page, pageSize) => {
         dispath(setCurrentPage(page))
         dispath(setIsFetching(true))
         userAPI.setUsers(page, pageSize).then(res => {
-            dispath(setUsers(res.items))
+            dispath(setUsers(res.data.items))
             dispath(setIsFetching(false))
         })
     }

@@ -1,14 +1,25 @@
-import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
-import {UsersStateType} from "../redux-store";
+import {ActionCreatorsType, typeOfActionDispatch} from "../ActionCreators";
+import {PhotoUserType} from "./profilePage-reducer";
 
+
+export type UserType = {
+    name: string
+    id: number
+    uniqueUrlName: string | null
+    photos: PhotoUserType
+    status: string | null
+    followed: boolean
+}
+
+export type UsersStateType = typeof initialUsersState
 
 const initialUsersState = {
-    users: [],
+    users: [] as UserType[],
     totalUsersCount: 0,
     pageSize: 100,
     currentPage: 1,
     isFetching: true,
-    isFollowingInProgress: [],
+    isFollowingInProgress: [] as number[],
 };
 
 export const usersReducer = (state:UsersStateType = initialUsersState, action:ActionCreatorsType): UsersStateType => {

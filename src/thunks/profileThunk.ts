@@ -1,5 +1,5 @@
 import {profileAPI} from "../API/API";
-import {setIsFetching, setStatusProfile, setUserProfile} from "../redux/TypesForRedux";
+import {setIsFetching, setStatusProfile, setUserProfile} from "../redux/ActionCreators";
 import {Dispatch} from "redux";
 
 type SetUserProfileThunkType = (userId: string) => void
@@ -14,8 +14,8 @@ export const setUserProfileThunk: SetUserProfileThunkType = (userId) => {
 
         dispatch(setIsFetching(true))
         profileAPI.setUserProfile(userId)
-            .then(data => {
-                dispatch(setUserProfile(data))
+            .then(res => {
+                dispatch(setUserProfile(res.data))
                 dispatch(setIsFetching(false))
             })
     }
@@ -26,8 +26,8 @@ export const setUserStatusThunk: SetUserStatusThunkType = (userId) => {
 
         dispatch(setIsFetching(true))
         profileAPI.setStatusProfile(userId)
-            .then(data => {
-                dispatch(setStatusProfile(data))
+            .then(res => {
+                dispatch(setStatusProfile(res.data))
             })
     }
 };
@@ -35,7 +35,7 @@ export const updateUserStatusThunk: UpdateUserStatusThunkType = (title) => {
 
     return (dispatch: Dispatch) => {
         profileAPI.updateStatusProfile(title)
-            .then(data => {
+            .then(() => {
                 dispatch(setStatusProfile(title))
             })
     }

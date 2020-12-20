@@ -1,4 +1,4 @@
-import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux"
+import {ActionCreatorsType, typeOfActionDispatch} from "../ActionCreators"
 
 
 export type InitialAppStateType = typeof initialAppState

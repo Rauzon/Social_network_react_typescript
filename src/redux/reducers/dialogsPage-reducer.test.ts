@@ -1,6 +1,6 @@
 import {dialogsPageReducer, DialogsPageType} from "./dialogsPage-reducer";
 import {v4 as uuid} from 'uuid';
-import { addMessage } from "../TypesForRedux";
+import { addMessage } from "../ActionCreators";
 
 describe('test for dialogs-reducer', () => {
 

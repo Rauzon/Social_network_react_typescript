@@ -1,6 +1,5 @@
-import {IAuthData} from "../redux-store";
-import {setAuthData, setAuthError, setCaptchaValue} from "../TypesForRedux";
-import {authReducer} from "./auth-reducer";
+import {setAuthData, setAuthError, setCaptchaValue} from "../ActionCreators";
+import {authReducer, IAuthData} from "./auth-reducer";
 
 
 describe('Tests  for auth-reducer', () => {

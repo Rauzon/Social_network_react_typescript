@@ -1,8 +1,40 @@
-import {ActionCreatorsType, typeOfActionDispatch} from "../TypesForRedux";
-import {CommonDataProfileType, ProfilePostsType} from "../redux-store";
+import {ActionCreatorsType, typeOfActionDispatch} from "../ActionCreators";
 import {v4 as uuid} from 'uuid';
 
+export type ProfilePostsType = {
+    id: string,
+    message: string
+}
+
+export type SocialContactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    github: string
+    youtube: string
+    mainLink: string
+
+}
+
+export type PhotoUserType = {
+    small: string | null
+    large: string | null
+}
+
+export type CommonDataProfileType = {
+    aboutMe: string | null
+    contacts: SocialContactsType
+    fullName: string | null
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    photos: PhotoUserType | null
+    userId: number
+}
+
 export type ProfilePageType = typeof initialState
+
 const initialState = {
     posts: [
         {id: uuid(), message: "Hey girls"},

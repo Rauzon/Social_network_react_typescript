@@ -1,19 +1,17 @@
 import {Dispatch} from "redux";
 import {authProfileThunk} from "./authThunk";
-import {initializedApp} from "../redux/TypesForRedux";
+import {initializedApp} from "../redux/ActionCreators";
 
-type AuthProfileThunkType = () => any
-type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean, captcha?: string) => void
-type GetCaptchaThunkType = () => any
 
-export const initializedAppThunk: GetCaptchaThunkType = () => {
 
-    return (dispath: Dispatch) => {
+
+export const initializedAppThunk: any = () => {
+
+    return (dispath: any) => {
 
         const promise = dispath(authProfileThunk())
 
-        promise
-            .then(() => {
+        promise.then(() => {
                 return
             })
             .finally(() => {

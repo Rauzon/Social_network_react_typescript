@@ -1,4 +1,4 @@
-import {addMessage} from "../../../redux/TypesForRedux";
+import {addMessage} from "../../../redux/ActionCreators";
 import {NewMessageInput} from "./NewMessageInput";
 import {connect} from "react-redux";
 import {stateType} from "../../../redux/redux-store";

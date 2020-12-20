@@ -1,49 +1,46 @@
-import {authAPI} from "../API/API";
 import {Dispatch} from "redux";
-import {setAuthData, setAuthError, setCaptchaValue} from "../redux/TypesForRedux";
+import {authAPI} from "../API/API";
+import {setAuthData, setAuthError, setCaptchaValue} from "../redux/ActionCreators";
 
-type AuthProfileThunkType = () => any
-export type AuthPostProfileDataThunkType = (email: string, password: string, rememberMe: boolean, captcha?: string) => void
-type GetCaptchaThunkType = () => any
 
-export const getCaptchaThunk: GetCaptchaThunkType = () => {
+export const getCaptchaThunk = () => {
 
     return (dispath: Dispatch) => {
         authAPI.getCaptcha()
             .then(res => {
-                    dispath(setCaptchaValue(res.url))
+                    dispath(setCaptchaValue(res.data.url))
                 }
             )
 
     }
 };
 
-export const authProfileThunk: AuthProfileThunkType = () => {
+export const authProfileThunk = () => {
 
     return (dispath: Dispatch) => {
         return authAPI.setAuth()
             .then(res => {
-                if (res.resultCode === 0) {
-                    dispath(setAuthData(res.data))
+                if (res.data.resultCode === 0) {
+                    dispath(setAuthData(res.data.data))
                 }
             })
 
     }
 };
 
-export const logInProfileThunk: AuthPostProfileDataThunkType = (email, password, rememberMe, captcha) => {
+export const logInProfileThunk = (email: string, password: string, rememberMe: boolean, captcha?: string) => {
 
-    return (dispath: Dispatch) => {
+    return (dispath: Dispatch<any>) => {
         dispath(setAuthError(null))
         authAPI.logIn(email, password, rememberMe, captcha)
             .then(res => {
-                    if (res.resultCode === 0) {
+                    if (res.data.resultCode === 0) {
                         dispath(authProfileThunk())
-                    } else if (res.resultCode === 10) {
+                    } else if (res.data.resultCode === 10) {
                         dispath(getCaptchaThunk())
                     } else {
-                        if (res.messages.length) {
-                            dispath(setAuthError(res.messages[0]))
+                        if (res.data.messages.length) {
+                            dispath(setAuthError(res.data.messages[0]))
                         }
                     }
                 }
@@ -52,16 +49,16 @@ export const logInProfileThunk: AuthPostProfileDataThunkType = (email, password,
     }
 };
 
-export const logOutProfileThunk: AuthPostProfileDataThunkType = () => {
+export const logOutProfileThunk = () => {
 
     return (dispath: Dispatch) => {
 
         authAPI.logout()
             .then(res => {
-                if (res.resultCode === 0) {
+                if (res.data.resultCode === 0) {
                     dispath(setAuthData({email: null, login: null, id: null}))
                 }
             })
 
     }
-};
+}

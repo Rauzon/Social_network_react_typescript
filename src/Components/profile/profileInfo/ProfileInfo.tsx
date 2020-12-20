@@ -1,12 +1,12 @@
 import React from "react";
 import s from './profileInfo.module.css';
-import {CommonDataProfileType, SocialContactsType} from "../../../redux/redux-store";
 import {EditableStatus} from "./EditableStatus";
 import style from "../../nav/friendsBlock/friendsBlock.module.css";
 import {AccordionDetails, AccordionSummary, createStyles, Typography} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
+import {CommonDataProfileType, SocialContactsType} from "../../../redux/reducers/profilePage-reducer";
 
 type PropsType = {
     userProfile: CommonDataProfileType
@@ -21,16 +21,15 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
     if (props.userProfile && props.userProfile.contacts) {
         let keys = Object.keys(props.userProfile.contacts)
         contacts = keys.map((key) => {
-
             return (
-                <div className={s.content__socialLinks}>
-                    <p>{key}: {props.userProfile.contacts[key as keyof SocialContactsType]}</p>
+                <div className={s.content__socialLinks} key={key}>
+                    <span>{key}: {props.userProfile.contacts[key as keyof SocialContactsType]}</span>
                 </div>
             )
         })
     }
 
-  let defaultAvatarPhoto = `https://i.ibb.co/F8yML1z/image.png`
+    let defaultAvatarPhoto = `https://i.imgur.com/d8HZHxF.jpg`
 
     const CssAccordion = withStyles({
         root: {
@@ -96,14 +95,14 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
             <div className={s.content__description_contacts}>
                 <CssAccordion className={`${style.MuiPaperRoot} ${style.contentBlockWrapperRoot}`}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<ExpandMoreIcon/>}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
                         <Typography className={classes.heading}><b>Contacts:</b></Typography>
                     </AccordionSummary>
                     <AccordionDetails className={classes.contentBlockWrapper}>
-                        <Typography className={classes.contentBlock}>
+                        <Typography className={classes.contentBlock} component={'span'}>
                             {contacts}
                         </Typography>
                     </AccordionDetails>

@@ -3,7 +3,8 @@ import s from './nav.module.css';
 import {SidebarTitle} from "./sideBar/SidebarTitle";
 import {FriendsBlock} from "./friendsBlock/FriendsBlock";
 import {useSelector} from "react-redux";
-import {NavPageType, stateType} from "../../redux/redux-store";
+import {stateType} from "../../redux/redux-store";
+import {NavPageType} from "../../redux/reducers/navPage-reducer";
 
 type propsType = {
     navPage: NavPageType
