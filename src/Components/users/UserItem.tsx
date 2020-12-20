@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import s from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import {PhotoUserType} from "../../redux/reducers/profilePage-reducer";
@@ -16,16 +16,16 @@ type UserItemType = {
 }
 
 
-export const UserItem: React.FC<UserItemType> = (props) => {
+export const UserItem: React.FC<UserItemType> = React.memo((props) => {
 
 
-    const follow = () => {
+    const follow = useCallback(() => {
         props.follow(props.id)
-    }
+    }, [props.id])
 
-    const unfollow = () => {
+    const unfollow = useCallback(() => {
         props.unfollow(props.id)
-    }
+    }, [props.id])
 
     let defaultAvatarPhoto = `https://i.ibb.co/F8yML1z/image.png`;
 
@@ -52,5 +52,5 @@ export const UserItem: React.FC<UserItemType> = (props) => {
                         disabled={props.isFollowingInProgress.some(id => id == props.id)}><img src="https://img.icons8.com/fluent-systems-filled/24/000000/subscription.png" alt=""/></button>}
         </div>
     </div>
-}
+})
 

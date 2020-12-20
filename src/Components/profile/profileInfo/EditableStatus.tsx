@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 import s from './profileInfo.module.css';
 
 type EditebleStatusPropsType = {
@@ -8,7 +8,7 @@ type EditebleStatusPropsType = {
 }
 
 
-export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
+export const EditableStatus: React.FC<EditebleStatusPropsType> = React.memo((props) => {
 
     let userId = props.userId
 
@@ -19,10 +19,10 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
     const [editeMode, setEditeMode] = useState<boolean>(false)
     const [localStatus, setLocalStatus] = useState<string>(props.status)
 
-    const onBlurHandler = () => {
+    const onBlurHandler = useCallback(() => {
         props.updateStatus(localStatus)
         setEditeMode(false)
-    }
+    }, [localStatus])
 
     useEffect(() => {
         setLocalStatus(props.status)
@@ -42,4 +42,4 @@ export const EditableStatus: React.FC<EditebleStatusPropsType> = (props) => {
                 <span onDoubleClick={() => setEditeMode(true)}>{props.status}</span>
             </div>}
     </div>
-}
+})

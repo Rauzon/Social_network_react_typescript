@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {Header} from "./Header";
 import {connect} from 'react-redux';
 import {stateType} from '../../redux/redux-store';
@@ -17,7 +17,7 @@ type MdtpType = {
 
 type PropsType = MstpType & MdtpType
 
-class HeaderContainer extends React.Component<PropsType> {
+class HeaderContainer extends PureComponent<PropsType> {
 
     render(): React.ReactNode {
         return <Header isAuth={this.props.isAuth}

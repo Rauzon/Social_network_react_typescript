@@ -9,26 +9,25 @@ type NewMessageInputType = {
     addMessage: (newMessage: string) => void
 }
 
-export const NewMessageInput: React.FC<NewMessageInputType> = (props) => {
+type IDialogMessageForm = {
+    addMessage: (newMessage: string) => void
+}
+
+export const NewMessageInput: React.FC<NewMessageInputType> = React.memo((props) => {
 
     return <div className={style.dialogs__messages_newMesssage}>
         <DialogMessageForm addMessage={props.addMessage}/>
     </div>
 }
+)
 
-
-type IDialogMessageForm = {
-    addMessage: (newMessage: string) => void
-}
 
 const validationSchema = Yup.object({
     DialogMessageTextarea: Yup.string()
         .max(300, 'message should consists 300 char or less')
 });
 
-
-
-const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
+const DialogMessageForm: React.FC<IDialogMessageForm> = React.memo((props) => {
 
     const formik = useFormik({
             initialValues: {
@@ -75,4 +74,4 @@ const DialogMessageForm: React.FC<IDialogMessageForm> = (props) => {
         </FormControl>
     </>
 
-}
+})

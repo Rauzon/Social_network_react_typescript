@@ -7,7 +7,7 @@ type propsType = {
 }
 
 
-export const MyPost: React.FC<propsType> = (props) => {
+export const MyPost: React.FC<propsType> = React.memo((props) => {
 
     let defaultAvatarPhoto = `https://i.ibb.co/F8yML1z/image.png`
 
@@ -21,4 +21,4 @@ export const MyPost: React.FC<propsType> = (props) => {
             </div>
         </div>
     )
-}
+})

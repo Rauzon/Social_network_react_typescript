@@ -15,7 +15,7 @@ type PropsType = {
     userId: string
 }
 
-export const ProfileInfo: React.FC<PropsType> = (props) => {
+export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
 
     let contacts: any
     if (props.userProfile && props.userProfile.contacts) {
@@ -111,4 +111,4 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
         </div>
     </div>
 
-}
+})

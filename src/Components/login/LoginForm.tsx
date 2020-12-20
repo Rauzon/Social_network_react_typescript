@@ -33,7 +33,7 @@ const validationSchema = Yup.object({
 });
 
 
-export const LoginForm: React.FC<IFormData> = (props) => {
+export const LoginForm: React.FC<IFormData> = React.memo((props) => {
 
     const {error, login, captcha} = props
 
@@ -54,7 +54,7 @@ export const LoginForm: React.FC<IFormData> = (props) => {
 
     const getCaptcha = useCallback(() => {
         props.getCaptcha()
-    }, [])
+    }, [props])
 
 
     return <>
@@ -124,4 +124,4 @@ export const LoginForm: React.FC<IFormData> = (props) => {
             </FormGroup>
         </FormControl>
     </>
-}
+})

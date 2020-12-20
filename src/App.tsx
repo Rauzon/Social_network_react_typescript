@@ -6,7 +6,7 @@ import {DialogContainer} from "./Components/dialogs/DialogContainer";
 import {News} from "./Components/news/News";
 import {Settings} from './Components/settings/Settings';
 import {ActionCreatorsType} from "./redux/ActionCreators";
-import {UsersContainer} from './Components/users/UsersContainer';
+import UsersContainer from './Components/users/UsersContainer';
 import {ProfileContainerWithURL} from "./Components/profile/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
 import LoginContainer from "./Components/login/Login";
@@ -21,7 +21,7 @@ type propsType = {
 }
 
 
-const App:React.FC<propsType> = (props) => {
+const App:React.FC<propsType> = React.memo((props) => {
 
     const isInitialized = useSelector<stateType, boolean>(state => state.app.isInitialized);
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const App:React.FC<propsType> = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default App;
 

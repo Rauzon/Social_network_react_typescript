@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import s from './users.module.css'
 import {UserItem} from "./UserItem";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
@@ -31,7 +31,7 @@ export type UsersPropsType = {
     isFollowingInProgress: number[]
 }
 
-export const UsersAPI: FC<UsersPropsType> = (props) => {
+const UsersContainer: React.FC<UsersPropsType> = React.memo((props) => {
 
     const [showScroll, setShowScroll] = useState<boolean>(false)
 
@@ -66,9 +66,9 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
 
     // --- button up ---
 
-    let setCurrentPage = (p: number) => {
+    let setCurrentPage = useCallback((p: number) => {
         props.pagination(p, props.pageSize)
-    }
+    },[props.pageSize])
 
 
     //pagination
@@ -104,9 +104,9 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
             {
                 props.users.map(u => {
 
-                    const unfollow = (userId: number) => {
+                    const unfollow = ((userId: number) => {
                         props.unfollow(userId)
-                    }
+                    })
 
                     const follow = (userId: number) => {
                         props.follow(userId)
@@ -126,6 +126,6 @@ export const UsersAPI: FC<UsersPropsType> = (props) => {
             }
         </div>
     )
-}
+})
 
-export default authRedirectHOC(UsersAPI)
+export const UsersContainerWithRedirect =  authRedirectHOC(UsersContainer)

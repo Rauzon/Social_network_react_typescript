@@ -26,7 +26,7 @@ type PathParamsType = {
 
 type PropsType = RouteComponentProps<PathParamsType> & MdtpType & MstpType
 
-export class ProfileContainer extends React.Component<PropsType> {
+export class ProfileContainer extends React.PureComponent<PropsType> {
 
     componentDidMount(): void {
 

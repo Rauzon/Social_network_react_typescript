@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {LoginForm} from "./LoginForm";
 import s from './login.module.css';
 import {connect} from "react-redux";
@@ -30,11 +30,11 @@ type LoginContainerPropsType = {}
 type CommonLoginContainerType = MapStateToPropsType & MapDispatchToPropsType & LoginContainerPropsType
 
 
-export const Login: React.FC<LoginPropsType> = (props) => {
+export const Login: React.FC<LoginPropsType> = React.memo((props) => {
 
-    const getCaptcha = () => {
+    const getCaptcha = useCallback(() => {
         props.getCaptcha()
-    }
+    }, [props.getCaptcha])
 
     return (
         <div className={s.login__content}>
@@ -54,20 +54,21 @@ export const Login: React.FC<LoginPropsType> = (props) => {
             }
         </div>
     )
-}
+})
 
 
-const LoginContainer: React.FC<CommonLoginContainerType> = (props) => {
+const LoginContainer: React.FC<CommonLoginContainerType> = React.memo((props) => {
 
-    const postLogin = (email: string, password: string, rememberMe: boolean, captcha: string) => {
+    const postLogin = useCallback((email: string, password: string, rememberMe: boolean, captcha: string) => {
         props.postLoginData(email, password, rememberMe, captcha)
-    }
+    }, [props])
+
     return <Login login={postLogin}
                   isAuth={props.isAuth}
                   error={props.error}
                   captcha={props.captcha}
                   getCaptcha={props.getCaptcha}/>
-}
+})
 
 
 const mapStateToProps = (state: stateType): MapStateToPropsType => {

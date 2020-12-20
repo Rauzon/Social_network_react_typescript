@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const FriendsBlock: React.FC<PropsType> = (props) => {
+export const FriendsBlock: React.FC<PropsType> = React.memo((props) => {
 
     const classes = useStyles();
 
@@ -73,4 +73,4 @@ export const FriendsBlock: React.FC<PropsType> = (props) => {
             </AccordionDetails>
         </CssAccordion>
     </>
-}
+})

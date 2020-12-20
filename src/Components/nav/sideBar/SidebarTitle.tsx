@@ -7,11 +7,11 @@ type PropsType = {
     key: string
 }
 
-export const SidebarTitle: React.FC<PropsType> = (props) => {
+export const SidebarTitle: React.FC<PropsType> = React.memo((props) => {
 
     return <>
         <NavLink to={props.path}>
             <li>{props.title}</li>
         </NavLink>
     </>
-}
+})

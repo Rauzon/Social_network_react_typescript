@@ -10,7 +10,7 @@ type propsType = {
     navPage: NavPageType
 }
 
-export const Nav: React.FC<propsType> = (props) => {
+export const Nav: React.FC<propsType> = React.memo((props) => {
 
     const isAuth = useSelector<stateType, boolean>(state => state.auth.isAuth)
 
@@ -26,4 +26,4 @@ export const Nav: React.FC<propsType> = (props) => {
             </>}
         </div>
     </div>
-}
+})

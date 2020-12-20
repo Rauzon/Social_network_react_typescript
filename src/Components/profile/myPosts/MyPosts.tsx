@@ -10,7 +10,7 @@ type propsType = {
     photo: string | null | undefined
 }
 
-export const MyPosts: React.FC<propsType> = (props) => {
+export const MyPosts: React.FC<propsType> = React.memo((props) => {
 
     return (
         <div className={s.content__posts}>
@@ -21,4 +21,4 @@ export const MyPosts: React.FC<propsType> = (props) => {
                                             photo={props.photo}/>)}
         </div>
     )
-}
+})

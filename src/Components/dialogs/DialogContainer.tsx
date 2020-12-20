@@ -16,7 +16,7 @@ type MapStateToPropsType = {
 
 type PropsType = MapStateToPropsType
 
-export const Dialog = (props: PropsType) => {
+export const Dialog = React.memo((props: PropsType) => {
 
     return (
         <div className={style.dialogs}>
@@ -29,7 +29,7 @@ export const Dialog = (props: PropsType) => {
                 </div>
         </div>
     )
-}
+})
 
 
 const mapStateToProps = (state: stateType): MapStateToPropsType => ({

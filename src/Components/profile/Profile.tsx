@@ -5,13 +5,13 @@ import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {ProfilePageType} from "../../redux/reducers/profilePage-reducer";
 import {CircularProgress} from "@material-ui/core";
 
-type propsType = {
+type PropsType = {
     profilePage: ProfilePageType
     updateStatus: (title: string) => void
     userId: string
 }
 
-export const Profile: React.FC<propsType> = (props) => {
+export const Profile: React.FC<PropsType> = React.memo((props) => {
 
     const circleProgressStyle: CSSProperties = {
         display: 'block',
@@ -40,4 +40,4 @@ export const Profile: React.FC<propsType> = (props) => {
         </div>
     )
 
-}
+})

@@ -1,11 +1,11 @@
 import React from "react";
 import style from './messages.module.css'
 
-type propsType = {
+type PropsType = {
     message: string | number
 }
 
-export const Messages: React.FC<propsType> = (props) => {
+export const Messages: React.FC<PropsType> = React.memo((props) => {
 
     let defaultAvatarPhoto = `https://i.ibb.co/F8yML1z/image.png`
 
@@ -17,4 +17,4 @@ export const Messages: React.FC<propsType> = (props) => {
             <span>{props.message}</span>
         </div>
     </div>
-}
+})

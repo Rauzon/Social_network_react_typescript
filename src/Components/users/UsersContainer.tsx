@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import UsersAPI from "./UsersAPI";
+import {UsersContainerWithRedirect} from "./UsersComponent";
 import {stateType} from "../../redux/redux-store";
 import {followToUserThunk, getUsersThunk, paginationThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
 import {
@@ -38,9 +38,9 @@ const mapStateToProps = (state: stateType): MapStateToPropsType => ({
 })
 
 
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType,any, stateType>(mapStateToProps, {
+export default connect<MapStateToPropsType, MapDispatchToPropsType,any, stateType>(mapStateToProps, {
     follow: followToUserThunk,
     unfollow: unfollowToUserThunk,
     getUsers: getUsersThunk,
     pagination: paginationThunk,
-})(UsersAPI)
+})(UsersContainerWithRedirect)
