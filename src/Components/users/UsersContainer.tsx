@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {UsersContainerWithRedirect} from "./UsersComponent";
-import {stateType} from "../../redux/redux-store";
+import {StateType} from "../../redux/redux-store";
 import {followToUserThunk, getUsersThunk, paginationThunk, unfollowToUserThunk} from '../../thunks/usersThunk';
 import {
     getCurrentPageSelector,
@@ -28,7 +28,7 @@ type MapDispatchToPropsType = {
 }
 
 
-const mapStateToProps = (state: stateType): MapStateToPropsType => ({
+const mapStateToProps = (state: StateType): MapStateToPropsType => ({
     users: getUsersSelector(state),
     totalUsersCount: getTotalUsersCountSelector(state),
     pageSize: getPageSizeSelector(state),
@@ -38,7 +38,7 @@ const mapStateToProps = (state: stateType): MapStateToPropsType => ({
 })
 
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType,any, stateType>(mapStateToProps, {
+export default connect<MapStateToPropsType, MapDispatchToPropsType,any, StateType>(mapStateToProps, {
     follow: followToUserThunk,
     unfollow: unfollowToUserThunk,
     getUsers: getUsersThunk,

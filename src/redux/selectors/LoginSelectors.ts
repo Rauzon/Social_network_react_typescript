@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import {stateType} from "../redux-store";
+import {StateType} from "../redux-store";
 
-type GetIsAuthType = (state: stateType) => boolean
-type GetServerErrorType = (state: stateType) => string | null
-type GetCaptchaType = (state: stateType) => any
+type GetIsAuthType = (state: StateType) => boolean
+type GetServerErrorType = (state: StateType) => string | null
+type GetCaptchaType = (state: StateType) => any
 
 
 

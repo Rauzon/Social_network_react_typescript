@@ -4,7 +4,7 @@ import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
 import {NewMessageInputContainer} from "./newMessageInput/NewMessageInputContainer";
 import {connect} from "react-redux";
-import {stateType} from "../../redux/redux-store";
+import {StateType} from "../../redux/redux-store";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {compose} from "redux";
 import {getDialogPageSelector} from "../../redux/selectors/DialogSelectors";
@@ -32,11 +32,11 @@ export const Dialog = React.memo((props: PropsType) => {
 })
 
 
-const mapStateToProps = (state: stateType): MapStateToPropsType => ({
+const mapStateToProps = (state: StateType): MapStateToPropsType => ({
     dialogPage: getDialogPageSelector(state)
 })
 
 
 export const DialogContainer = compose<ComponentType<{}>>(
     authRedirectHOC,
-    (connect<MapStateToPropsType, {}, {}, stateType>(mapStateToProps)))(Dialog)
+    (connect<MapStateToPropsType, {}, {}, StateType>(mapStateToProps)))(Dialog)

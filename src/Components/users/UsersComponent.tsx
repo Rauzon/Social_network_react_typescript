@@ -39,7 +39,7 @@ const UsersContainer: React.FC<UsersPropsType> = React.memo((props) => {
         if (props.users.length === 0) {
             props.getUsers(props.currentPage, props.pageSize)
         }
-    });
+    }, [props.currentPage, props.pageSize]);
 
     useEffect(() => {
         if (props.isFetching) {

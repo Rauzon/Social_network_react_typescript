@@ -1,14 +1,16 @@
 import React, {ComponentType} from "react";
 import {Redirect} from "react-router-dom";
-import {stateType} from "../redux/redux-store";
+import {StateType} from "../redux/redux-store";
 import {connect} from "react-redux";
 
 type MapStateForRedirectType = {
     isAuth: boolean
 }
-type MapDispatchForRedirectType = {}
+type MapDispatchForRedirectType = {
+    isAuth: boolean
+}
 
-const mapStateForRedirect = (state: stateType): MapStateForRedirectType => {
+const mapStateForRedirect = (state: StateType): MapStateForRedirectType => {
     return {
         isAuth: state.auth.isAuth
     }
@@ -28,7 +30,7 @@ export function authRedirectHOC<HOCPropsType>(Component: ComponentType<HOCPropsT
 
     }
 
-    return connect<MapStateForRedirectType, MapDispatchForRedirectType, HOCPropsType, stateType>(mapStateForRedirect)
+    return connect<MapStateForRedirectType, MapDispatchForRedirectType, HOCPropsType, StateType>(mapStateForRedirect)
     (authRedirectComponent)
 
 }

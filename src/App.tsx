@@ -12,18 +12,19 @@ import HeaderContainer from "./Components/header/HeaderContainer";
 import LoginContainer from "./Components/login/Login";
 import {initializedAppThunk} from './thunks/appThunk';
 import {useDispatch, useSelector} from "react-redux";
-import {stateType} from "./redux/redux-store";
+import {StateType} from "./redux/redux-store";
 import {CircularProgress} from "@material-ui/core";
+import {SnackBar} from "./Components/common/SnackBar";
 
 type propsType = {
-    state: stateType
+    state: StateType
     dispatch: (action:ActionCreatorsType) => void
 }
 
 
 const App:React.FC<propsType> = React.memo((props) => {
 
-    const isInitialized = useSelector<stateType, boolean>(state => state.app.isInitialized);
+    const isInitialized = useSelector<StateType, boolean>(state => state.app.isInitialized);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -47,6 +48,7 @@ const App:React.FC<propsType> = React.memo((props) => {
                 <Route path={'/news'}  render={() => <News />}/>
                 <Route path={'/settings'} render={() => <Settings />}/>
                 <Route path={'/login'} render={() => <LoginContainer />}/>
+                <SnackBar  />
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import {LoginForm} from "./LoginForm";
 import s from './login.module.css';
 import {connect} from "react-redux";
 import {getCaptchaThunk, logInProfileThunk} from "../../thunks/authThunk";
-import {stateType} from "../../redux/redux-store";
+import {StateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import {getIsAuthSelector, getServerErrorSelector, getCaptchaSelector} from "../../redux/selectors/LoginSelectors";
 
@@ -71,7 +71,7 @@ const LoginContainer: React.FC<CommonLoginContainerType> = React.memo((props) =>
 })
 
 
-const mapStateToProps = (state: stateType): MapStateToPropsType => {
+const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
         isAuth: getIsAuthSelector(state),
         error: getServerErrorSelector(state),
@@ -80,7 +80,7 @@ const mapStateToProps = (state: stateType): MapStateToPropsType => {
 }
 
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, LoginContainerPropsType, stateType>(mapStateToProps, {
+export default connect<MapStateToPropsType, MapDispatchToPropsType, LoginContainerPropsType, StateType>(mapStateToProps, {
     postLoginData: logInProfileThunk,
     getCaptcha: getCaptchaThunk,
 })(LoginContainer)

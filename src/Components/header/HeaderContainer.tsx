@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {Header} from "./Header";
 import {connect} from 'react-redux';
-import {stateType} from '../../redux/redux-store';
+import {StateType} from '../../redux/redux-store';
 import {logOutProfileThunk} from '../../thunks/authThunk';
 import {getIsAuthSelector} from "../../redux/selectors/LoginSelectors";
 import { getLoginSelector } from '../../redux/selectors/HeaderSelectors';
@@ -27,7 +27,7 @@ class HeaderContainer extends PureComponent<PropsType> {
 }
 
 
-const mapStateToProps = (state: stateType): MstpType => {
+const mapStateToProps = (state: StateType): MstpType => {
     return {
         isAuth: getIsAuthSelector(state),
         login: getLoginSelector(state),
@@ -35,4 +35,4 @@ const mapStateToProps = (state: stateType): MstpType => {
 }
 
 // ???
-export default connect<MstpType, any , any, stateType>(mapStateToProps, {logOutProfile: logOutProfileThunk})(HeaderContainer)
+export default connect<MstpType, any , any, StateType>(mapStateToProps, {logOutProfile: logOutProfileThunk})(HeaderContainer)

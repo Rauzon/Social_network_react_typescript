@@ -1,7 +1,7 @@
 import React, {ComponentType} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {stateType} from "../../redux/redux-store";
+import {StateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "../../thunks/profileThunk";
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
@@ -54,7 +54,7 @@ export class ProfileContainer extends React.PureComponent<PropsType> {
     }
 }
 
-const mapStateToProps = (state: stateType): MstpType => {
+const mapStateToProps = (state: StateType): MstpType => {
     return {
         profilePage: getProfilePageSelector(state),
         authUserId: getUserIdSelector(state),
@@ -64,7 +64,7 @@ const mapStateToProps = (state: stateType): MstpType => {
 export const ProfileContainerWithURL = compose<ComponentType<{}>>(
     authRedirectHOC,
     withRouter,
-    connect<MstpType, MdtpType, {}, stateType>(mapStateToProps, {
+    connect<MstpType, MdtpType, {}, StateType>(mapStateToProps, {
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import {stateType} from "../redux-store";
+import {StateType} from "../redux-store";
 
-type GetLoginType = (state: stateType) => string | null
+type GetLoginType = (state: StateType) => string | null
 
 
 

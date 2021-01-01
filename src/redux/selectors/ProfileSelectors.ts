@@ -1,24 +1,22 @@
-import { createSelector } from 'reselect'
-import {stateType} from "../redux-store";
-import { ProfilePageType } from '../reducers/profilePage-reducer';
+import {createSelector} from 'reselect'
+import {StateType} from "../redux-store";
+import {ProfilePageType} from '../reducers/profilePage-reducer';
 
-type GetProfilePageType = (state: stateType) => ProfilePageType
-type GetUserIdType = (state: stateType) => number | null
-
-
+type GetProfilePageType = (state: StateType) => ProfilePageType
+type GetUserIdType = (state: StateType) => number | null
 
 
 //profilePage
-const getProfilePage:GetProfilePageType = (state) => state.profilePage
+const getProfilePage: GetProfilePageType = (state) => state.profilePage
 
-export const getProfilePageSelector = createSelector(getProfilePage,(profile) => {
-        return profile
+export const getProfilePageSelector = createSelector(getProfilePage, (profile) => {
+    return profile
 })
 
 
 //profilePage
-const getUserId:GetUserIdType = (state) => state.auth.id
+const getUserId: GetUserIdType = (state) => state.auth.id
 
-export const getUserIdSelector = createSelector(getUserId,(userId) => {
-        return userId
+export const getUserIdSelector = createSelector(getUserId, (userId) => {
+    return userId
 })

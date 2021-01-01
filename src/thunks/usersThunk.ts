@@ -1,34 +1,34 @@
 import {userAPI} from "../API/API";
 import {
-    setIsFetching,
-    setUsers,
-    setTotalUsersCount,
-    setFollowingInProgress,
-    unfollow,
     follow,
-    setCurrentPage
+    setCurrentPage,
+    setFollowingInProgress,
+    setIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    unfollow
 } from "../redux/ActionCreators";
 import {Dispatch} from "redux";
-
-type GetUsersThunkType = (currentPage: number, pageSize: number) => void
-type FollowToUserThunkType = (userId: number) => void
-type UnfollowToUserThunkType = (userId: number) => void
-type PaginationThunkType = (page: number, pageSize:number) => void
+import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
 
 
-export const getUsersThunk: GetUsersThunkType = (currentPage, pageSize) => {
+export const getUsersThunk = (currentPage: number, pageSize: number) => {
 
     return (dispath: Dispatch) => {
         dispath(setIsFetching(true))
-        userAPI.setUsers(currentPage, pageSize).then(res => {
-            dispath(setIsFetching(false))
-            dispath(setUsers(res.data.items))
-            dispath(setTotalUsersCount(res.data.totalCount))
-        })
+        userAPI.setUsers(currentPage, pageSize)
+            .then(res => {
+                dispath(setIsFetching(false))
+                dispath(setUsers(res.data.items))
+                dispath(setTotalUsersCount(res.data.totalCount))
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispath)
+            })
     }
 };
 
-export const followToUserThunk: FollowToUserThunkType = (userId) => {
+export const followToUserThunk = (userId: number) => {
 
     return (dispath: Dispatch) => {
         dispath(setFollowingInProgress(true, userId))
@@ -37,13 +37,18 @@ export const followToUserThunk: FollowToUserThunkType = (userId) => {
                 if (res.data.resultCode === 0) {
                     dispath(follow(userId))
                     dispath(setFollowingInProgress(false, userId))
+                } else {
+                    errorHandler(res, dispath)
                 }
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispath)
             })
     }
 }
 
 
-export const unfollowToUserThunk: UnfollowToUserThunkType = (userId) => {
+export const unfollowToUserThunk = (userId: number) => {
 
     return (dispath: Dispatch) => {
 
@@ -53,19 +58,28 @@ export const unfollowToUserThunk: UnfollowToUserThunkType = (userId) => {
                 if (res.data.resultCode === 0) {
                     dispath(unfollow(userId))
                     dispath(setFollowingInProgress(false, userId))
+                } else {
+                    errorHandler(res, dispath)
                 }
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispath)
             })
     }
 };
 
-export const paginationThunk: PaginationThunkType = (page, pageSize) => {
+export const paginationThunk = (page: number, pageSize: number) => {
 
     return (dispath: Dispatch) => {
         dispath(setCurrentPage(page))
         dispath(setIsFetching(true))
-        userAPI.setUsers(page, pageSize).then(res => {
-            dispath(setUsers(res.data.items))
-            dispath(setIsFetching(false))
-        })
+        userAPI.setUsers(page, pageSize)
+            .then(res => {
+                dispath(setUsers(res.data.items))
+                dispath(setIsFetching(false))
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispath)
+            })
     }
 };

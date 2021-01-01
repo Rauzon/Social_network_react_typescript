@@ -4,14 +4,14 @@ import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import {HashRouter} from "react-router-dom";
 import App from "./App";
-import {store, stateType} from "./redux/redux-store";
+import {store, StateType} from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 
-export type renderAppTreeType = (state: stateType) => void
+export type renderAppTreeType = (state: StateType) => void
 
 
-export const renderAppTree: renderAppTreeType = (state: stateType) => {
+export const renderAppTree: renderAppTreeType = (state: StateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <HashRouter>
@@ -23,11 +23,11 @@ export const renderAppTree: renderAppTreeType = (state: stateType) => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
+};
 
 renderAppTree(store.getState());
 
-store.subscribe(() => renderAppTree(store.getState()))
+store.subscribe(() => renderAppTree(store.getState()));
 
 
 // If you want your app to work offline and load faster, you can change

@@ -1,5 +1,5 @@
 import {appReducer, InitialAppStateType} from "./app-reducer";
-import {initializedApp} from "../ActionCreators";
+import {initializedApp, setError} from "../ActionCreators";
 
 
 describe('Tests  for app-reducer', () => {
@@ -8,7 +8,8 @@ describe('Tests  for app-reducer', () => {
 
     beforeEach(() => {
        initialState =  {
-           isInitialized: false
+           isInitialized: false,
+           error: null
        }
     });
 
@@ -24,11 +25,29 @@ describe('Tests  for app-reducer', () => {
 
         expect(resultReducerState).toEqual(expectedState)
     })
+    it('error should be set in correct value', () => {
+
+        let action = setError(null);
+        let action2 = setError('some error');
+
+        let resultReducerState = appReducer(initialState, action)
+        let resultReducerState2 = appReducer(initialState, action2)
+
+        let expectedState = {
+            isInitialized: false,
+            error: null
+        }
+        let expectedState2 = {
+            isInitialized: false,
+            error: 'some error'
+        }
+
+        expect(resultReducerState).toEqual(expectedState)
+        expect(resultReducerState2).toEqual(expectedState2)
+    })
 
 
 })
 
-
-export default 1
 
 

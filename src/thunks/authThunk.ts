@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../API/API";
-import {setAuthData, setAuthError, setCaptchaValue} from "../redux/ActionCreators";
+import {setAuthData, setAuthError, setCaptchaValue, setError} from "../redux/ActionCreators";
+import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
 
 
 export const getCaptchaThunk = () => {
@@ -11,7 +12,6 @@ export const getCaptchaThunk = () => {
                     dispath(setCaptchaValue(res.data.url))
                 }
             )
-
     }
 };
 
@@ -22,9 +22,13 @@ export const authProfileThunk = () => {
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispath(setAuthData(res.data.data))
+                } else {
+                    errorHandler(res, dispath)
                 }
             })
-
+            .catch((err) => {
+                serverErrorHandler(err, dispath)
+            })
     }
 };
 
@@ -39,12 +43,14 @@ export const logInProfileThunk = (email: string, password: string, rememberMe: b
                     } else if (res.data.resultCode === 10) {
                         dispath(getCaptchaThunk())
                     } else {
-                        if (res.data.messages.length) {
-                            dispath(setAuthError(res.data.messages[0]))
-                        }
+                        errorHandler(res, dispath)
                     }
                 }
             )
+            .catch(err => {
+                debugger
+                serverErrorHandler(err, dispath)
+            })
 
     }
 };
@@ -52,12 +58,16 @@ export const logInProfileThunk = (email: string, password: string, rememberMe: b
 export const logOutProfileThunk = () => {
 
     return (dispath: Dispatch) => {
-
         authAPI.logout()
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispath(setAuthData({email: null, login: null, id: null}))
+                } else {
+                    errorHandler(res, dispath)
                 }
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispath)
             })
 
     }

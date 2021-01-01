@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import {appReducer, InitialAppStateType} from "./reducers/app-reducer";
 
 
-export type stateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     navPage: NavPageType
