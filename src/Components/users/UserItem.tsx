@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import s from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import {PhotoUserType} from "../../redux/reducers/profilePage-reducer";
@@ -19,13 +19,13 @@ type UserItemType = {
 export const UserItem: React.FC<UserItemType> = React.memo((props) => {
 
 
-    const follow = useCallback(() => {
+    const follow = () => {
         props.follow(props.id)
-    }, [props.id])
+    }
 
-    const unfollow = useCallback(() => {
+    const unfollow = () => {
         props.unfollow(props.id)
-    }, [props.id])
+    }
 
     let defaultAvatarPhoto = `https://i.ibb.co/F8yML1z/image.png`;
 
@@ -47,9 +47,11 @@ export const UserItem: React.FC<UserItemType> = React.memo((props) => {
         </div>
         <div className={s.content__item_button}>
             {(props.followed) ? <button onClick={unfollow} className={s.content__item_button_unfollow}
-                                        disabled={props.isFollowingInProgress.some(id => id == props.id)}><img src="https://img.icons8.com/material-sharp/24/000000/unsubscribe.png" alt=""/></button> :
+                                        disabled={props.isFollowingInProgress.some(id => id == props.id)}><img
+                    src="https://img.icons8.com/material-sharp/24/000000/unsubscribe.png" alt=""/></button> :
                 <button onClick={follow} className={s.content__item_button_follow}
-                        disabled={props.isFollowingInProgress.some(id => id == props.id)}><img src="https://img.icons8.com/fluent-systems-filled/24/000000/subscription.png" alt=""/></button>}
+                        disabled={props.isFollowingInProgress.some(id => id == props.id)}><img
+                    src="https://img.icons8.com/fluent-systems-filled/24/000000/subscription.png" alt=""/></button>}
         </div>
     </div>
 })

@@ -1,19 +1,11 @@
-import React, {FC, useCallback, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './users.module.css'
 import {UserItem} from "./UserItem";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
-import {Pagination} from "@material-ui/lab";
-import {FaArrowCircleUp} from 'react-icons/fa';
 import {UserType} from "../../redux/reducers/usersPage-reducer";
-
-
-//type for button up
-type StyleButtonUpType = {
-    transition: string
-    strokeDasharray?: string
-    strokeDashoffset?: number
-}
+import {PaginationComponent} from "./PaginationComponent";
+import {ButtonUpComponent} from "./ButtonUpComponent";
 
 export type UsersPropsType = {
     follow: (userId: number) => void,
@@ -33,74 +25,23 @@ export type UsersPropsType = {
 
 const UsersContainer: React.FC<UsersPropsType> = React.memo((props) => {
 
-    const [showScroll, setShowScroll] = useState<boolean>(false)
-
     useEffect(() => {
         if (props.users.length === 0) {
             props.getUsers(props.currentPage, props.pageSize)
         }
     }, [props.currentPage, props.pageSize]);
 
-    useEffect(() => {
-        if (props.isFetching) {
-            window.addEventListener('scroll', checkScrollTop, true)
-        }
-        return () => window.removeEventListener('scroll', checkScrollTop)
-
-    }, [window.pageYOffset, props.currentPage])
-
-    // button up
-
-    function checkScrollTop() {
-        if (!showScroll && window.pageYOffset > 300) {
-            setShowScroll(true)
-        } else {
-            setShowScroll(false)
-        }
-    };
-
-
-    const scrollTop = () => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    };
-
-    // --- button up ---
-
-    let setCurrentPage = useCallback((p: number) => {
-        props.pagination(p, props.pageSize)
-    },[props.pageSize])
-
-
-    //pagination
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let arrPageCount = [];
-
-
-    for (let i = 1; pageCount >= i; i++) {
-        arrPageCount.push(i)
-    }
-    // ---- pagination ----
 
     return (
         <div className={s.content__wrapper}>
             {props.isFetching && <CircularProgress className={s.circleProgress}/>}
-            {/*pagination*/}
-            {
-                <div className={s.content__wrapper_pagination}>
-                    <Pagination count={pageCount} siblingCount={1} color="primary"
-                                onChange={(_, page) => setCurrentPage(page)}/>
-                </div>
-            }
-            {/*-----pagination-----*/}
-            {/*button up*/}
-            <div className={s.scrollTop_wrapper}>
-                <FaArrowCircleUp
-                    className={s.scrollTop}
-                    onClick={scrollTop}
-                    style={{height: 40, display: showScroll ? 'flex' : 'none'}}
-                />
-            </div>
-            {/*--- button up ---*/}
+            <PaginationComponent pageSize={props.pageSize}
+                                 currentPage={props.currentPage}
+                                 pagination={props.pagination}
+                                 setCurrentPage={props.setCurrentPage}
+                                 totalUsersCount={props.totalUsersCount}/>
+            <ButtonUpComponent currentPage={props.currentPage}
+                               isFetching={props.isFetching}/>
             {
                 props.users.map(u => {
 
@@ -128,4 +69,4 @@ const UsersContainer: React.FC<UsersPropsType> = React.memo((props) => {
     )
 })
 
-export const UsersContainerWithRedirect =  authRedirectHOC(UsersContainer)
+export const UsersContainerWithRedirect = authRedirectHOC(UsersContainer)

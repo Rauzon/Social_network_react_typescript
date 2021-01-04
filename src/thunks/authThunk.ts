@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../API/API";
-import {setAuthData, setAuthError, setCaptchaValue, setError} from "../redux/ActionCreators";
+import {setAuthData, setAuthError, setCaptchaValue} from "../redux/ActionCreators";
 import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
 
 
@@ -48,7 +48,6 @@ export const logInProfileThunk = (email: string, password: string, rememberMe: b
                 }
             )
             .catch(err => {
-                debugger
                 serverErrorHandler(err, dispath)
             })
 
