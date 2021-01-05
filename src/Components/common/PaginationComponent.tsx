@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import s from "./users.module.css";
+import s from "../users/users.module.css";
 import {Pagination} from "@material-ui/lab";
 
 type PaginationComponentType = {

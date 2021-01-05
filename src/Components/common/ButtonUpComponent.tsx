@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import s from "./users.module.css";
+import s from "../users/users.module.css";
 import {FaArrowCircleUp} from "react-icons/fa";
 
 type ButtonUpComponentType = {

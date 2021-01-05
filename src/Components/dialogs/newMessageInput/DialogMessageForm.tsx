@@ -5,29 +5,18 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 
 
-type NewMessageInputType = {
-    addMessage: (newMessage: string) => void
-}
-
 type IDialogMessageForm = {
     addMessage: (newMessage: string) => void
 }
-
-export const NewMessageInput: React.FC<NewMessageInputType> = React.memo((props) => {
-
-    return <div className={style.dialogs__messages_newMesssage}>
-        <DialogMessageForm addMessage={props.addMessage}/>
-    </div>
-}
-)
 
 
 const validationSchema = Yup.object({
     DialogMessageTextarea: Yup.string()
         .max(300, 'message should consists 300 char or less')
+        .required('you cannot create post without text')
 });
 
-const DialogMessageForm: React.FC<IDialogMessageForm> = React.memo((props) => {
+export const DialogMessageForm: React.FC<IDialogMessageForm> = React.memo((props) => {
 
     const formik = useFormik({
             initialValues: {
@@ -44,7 +33,7 @@ const DialogMessageForm: React.FC<IDialogMessageForm> = React.memo((props) => {
     const errorStyle = {
         color: "red",
     }
-
+    
     return <>
         <FormControl>
             <FormGroup>
@@ -58,7 +47,9 @@ const DialogMessageForm: React.FC<IDialogMessageForm> = React.memo((props) => {
                                            multiline
                                            rows={2}
                                            rowsMax={4}
-                                           {...formik.getFieldProps('DialogMessageTextarea')}/>
+                                           {...formik.getFieldProps('DialogMessageTextarea')}
+                                           onBlur={() => !formik.touched.DialogMessageTextarea}
+                                />
                             </div>
                             {formik.errors.DialogMessageTextarea && formik.touched.DialogMessageTextarea ?
                                 <div style={errorStyle}>{formik.errors.DialogMessageTextarea}</div> : null}

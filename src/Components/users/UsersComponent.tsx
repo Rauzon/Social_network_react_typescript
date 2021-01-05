@@ -4,8 +4,8 @@ import {UserItem} from "./UserItem";
 import {authRedirectHOC} from "../../hoc/authRedirectHOC";
 import {CircularProgress} from "@material-ui/core";
 import {UserType} from "../../redux/reducers/usersPage-reducer";
-import {PaginationComponent} from "./PaginationComponent";
-import {ButtonUpComponent} from "./ButtonUpComponent";
+import {PaginationComponent} from "../common/PaginationComponent";
+import { ButtonUpComponent } from '../common/ButtonUpComponent';
 
 export type UsersPropsType = {
     follow: (userId: number) => void,

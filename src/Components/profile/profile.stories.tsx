@@ -5,7 +5,7 @@ import {MyPost} from './myPosts/myPost/MyPost';
 import {MyPosts} from './myPosts/MyPosts';
 import {Provider} from "react-redux";
 import {store} from "../../redux/redux-store";
-import { ProfilePostForm } from './myPosts/newPost/NewPost';
+import { ProfilePostForm } from './myPosts/newPost/ProfilePostForm';
 import {EditableStatus} from "./profileInfo/EditableStatus";
 
 let postsData = [{

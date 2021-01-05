@@ -110,5 +110,4 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
             </div>
         </div>
     </div>
-
 })

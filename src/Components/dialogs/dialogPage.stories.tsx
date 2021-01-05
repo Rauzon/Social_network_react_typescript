@@ -1,9 +1,9 @@
 import React from 'react';
 import {storiesOf} from "@storybook/react";
 import StoryRouter from 'storybook-react-router';
-import {NewMessageInput} from './newMessageInput/NewMessageInput';
 import {Messages} from "./Messages/Messages";
 import {Names} from "./Names/Names";
+import {NewMessageInput} from "./newMessageInput/NewMessageInputContainer";
 
 storiesOf('dialogPage', module)
     .addDecorator(StoryRouter())

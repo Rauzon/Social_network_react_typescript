@@ -4,14 +4,6 @@ import {useFormik} from "formik";
 import {FormControl, FormGroup, Grid, TextField, Button} from "@material-ui/core";
 import * as Yup from "yup";
 
-type FormDataType = {
-    textareaPost: string
-}
-
-type PropsType = {
-    addPost: (newPostValue: string) => void
-}
-
 interface IProfilePostForm {
     addPost: (newPostValue: string) => void
 }
@@ -21,14 +13,6 @@ const validationSchema = Yup.object({
         .max(300,'post should consists 300 char or less')
 });
 
-export const NewPost: React.FC<PropsType> = React.memo((props) => {
-
-    return (
-        <div className={style.content}>
-            <ProfilePostForm addPost={props.addPost}/>
-        </div>
-    )
-})
 
 export const ProfilePostForm: React.FC<IProfilePostForm> = React.memo((props) => {
 
