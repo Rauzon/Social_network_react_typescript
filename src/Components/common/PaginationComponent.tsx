@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import s from "../users/users.module.css";
 import {Pagination} from "@material-ui/lab";
 
@@ -12,9 +12,9 @@ type PaginationComponentType = {
 
 export const PaginationComponent: React.FC<PaginationComponentType> = (props) => {
 
-    let setCurrentPage = useCallback((p: number) => {
+    let setCurrentPage = (p: number) => {
         props.pagination(p, props.pageSize)
-    }, [props.pageSize])
+    }
 
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let arrPageCount = [];
