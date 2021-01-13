@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from './profileInfo.module.css';
 import {EditableStatus} from "./EditableStatus";
 import style from "../../nav/friendsBlock/friendsBlock.module.css";
@@ -13,6 +13,8 @@ type PropsType = {
     status: string
     updateStatus: (title: string) => void
     userId: string
+    paramsUserId: boolean
+    updatePhoto: (photo: any) => void
 }
 
 export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
@@ -63,8 +65,14 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
         }),
     );
 
-
     const classes = useStyles();
+
+    //change photo of avatar
+    const onChangePhotoProfile = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            props.updatePhoto(event.target.files[0])
+        }
+    }
 
     return <div className={s.content__profileInfo}>
         <div className={s.content__mainInfo}>
@@ -72,6 +80,7 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
                 <img src={(props.userProfile?.photos?.large) ? props.userProfile?.photos?.large :
                     defaultAvatarPhoto}
                      alt=""/>
+                {!props.paramsUserId && <input type="file" onChange={(e) => onChangePhotoProfile(e)}/>}
             </div>
             <div className={s.content__mainInfo_contactStatus}>
                 <div className={s.content__description_fullName}>

@@ -1,7 +1,7 @@
 import {profileAPI} from "../API/API";
-import {setIsFetching, setStatusProfile, setUserProfile} from "../redux/ActionCreators";
+import {setIsFetching, setStatusProfile, setUserProfile, updatePhoto} from "../redux/ActionCreators";
 import {Dispatch} from "redux";
-import {serverErrorHandler} from "../utils/errorHandlers";
+import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
 
 
 export const setUserProfileThunk = (userId: string) => {
@@ -39,6 +39,20 @@ export const updateUserStatusThunk = (title: string) => {
                 dispatch(setStatusProfile(title))
             })
             .catch(err => {
+                serverErrorHandler(err, dispatch)
+            })
+    }
+};
+export const updateProfilePhotoThunk = (photo: any) => {
+
+    return (dispatch: Dispatch) => {
+        profileAPI.updateProfilePhoto(photo)
+            .then((res) => {
+                debugger
+                dispatch(updatePhoto(res.data.data.photos))
+            })
+            .catch(err => {
+                debugger
                 serverErrorHandler(err, dispatch)
             })
     }

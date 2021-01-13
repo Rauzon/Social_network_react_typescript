@@ -3,7 +3,12 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {StateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {setUserProfileThunk, setUserStatusThunk, updateUserStatusThunk} from "../../thunks/profileThunk";
+import {
+    setUserProfileThunk,
+    setUserStatusThunk,
+    updateProfilePhotoThunk,
+    updateUserStatusThunk
+} from "../../thunks/profileThunk";
 import {authRedirectHOC} from '../../hoc/authRedirectHOC';
 import {compose} from 'redux';
 import {ProfilePageType} from '../../redux/reducers/profilePage-reducer';
@@ -18,6 +23,7 @@ type MdtpType = {
     setUserProfile: (userId: string) => void
     setStatusProfile: (userId: string) => void
     updateStatus: (title: string) => void
+    updatePhoto: (photo: any) => void
 }
 
 type PathParamsType = {
@@ -28,12 +34,11 @@ type PropsType = RouteComponentProps<PathParamsType> & MdtpType & MstpType
 
 export class ProfileContainer extends React.PureComponent<PropsType> {
 
-    componentDidMount(): void {
-
+    rerenderProfile() {
         let userId = this.props.match.params.userId;
 
         if (!userId) {
-            if(this.props.authUserId !== null){
+            if (this.props.authUserId !== null) {
                 userId = this.props.authUserId.toString();
             } else {
                 this.props.history.push('/login')
@@ -41,15 +46,26 @@ export class ProfileContainer extends React.PureComponent<PropsType> {
         }
 
         this.props.setUserProfile(userId)
-         this.props.setStatusProfile(userId)
+        this.props.setStatusProfile(userId)
     }
 
+    componentDidMount(): void {
+        this.rerenderProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<PropsType>): void {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.rerenderProfile()
+        }
+    }
 
     render(): React.ReactNode {
         return (
-            <Profile profilePage={this.props.profilePage}
+            <Profile paramsUserId={!!this.props.match.params.userId}
+                     profilePage={this.props.profilePage}
                      updateStatus={this.props.updateStatus}
-                     userId={this.props.match.params.userId}/>
+                     userId={this.props.match.params.userId}
+                    updatePhoto = {this.props.updatePhoto}/>
         )
     }
 }
@@ -68,5 +84,6 @@ export const ProfileContainerWithURL = compose<ComponentType<{}>>(
         setUserProfile: setUserProfileThunk,
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,
+        updatePhoto: updateProfilePhotoThunk,
     }))(ProfileContainer)
 

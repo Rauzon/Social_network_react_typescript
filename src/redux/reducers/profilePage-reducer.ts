@@ -46,7 +46,7 @@ const initialState = {
 };
 
 
-export const profilePageReducer = (state:ProfilePageType = initialState, action:ActionCreatorsType):ProfilePageType => {
+export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionCreatorsType): ProfilePageType => {
     switch (action.type) {
         case typeOfActionDispatch.ADD_POST:
             let newPostValue = action.value
@@ -61,6 +61,9 @@ export const profilePageReducer = (state:ProfilePageType = initialState, action:
 
         case typeOfActionDispatch.SET_STATUS_PROFILE:
             return {...state, profileStatus: action.statusProfile};
+
+        case typeOfActionDispatch.UPDATE_PHOTO:
+            return {...state, userProfile: {...state.userProfile, photos: action.photo}};
 
         default:
             return state

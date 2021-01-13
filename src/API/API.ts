@@ -4,7 +4,6 @@ import {CommonDataProfileType} from "../redux/reducers/profilePage-reducer";
 import {AuthDataType} from "../redux/reducers/auth-reducer";
 
 
-
 //for getting users for UsersPage
 export type CommonDataUsersType<D = {}> = {
     error: string | null
@@ -20,6 +19,13 @@ export type CommonResponseType<D = {}> = {
     data: D
 }
 
+export type UpdatePhotoType = {
+        photos: {
+            small: string
+            large: string
+    }
+}
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -33,10 +39,10 @@ export const userAPI = {
     setUsers(currentPage: number, pageSize: number) {
         return instance.get<CommonDataUsersType<UserType[]>>(`users?page=${currentPage}&count=${pageSize}`)
     },
-    unfollow(userId:number) {
+    unfollow(userId: number) {
         return instance.delete<CommonResponseType<{}>>(`follow/${userId}`)
     },
-    follow(userId:number) {
+    follow(userId: number) {
         return instance.post<CommonResponseType<{}>>(`follow/${userId}`)
     }
 }
@@ -45,27 +51,42 @@ export const authAPI = {
     setAuth() {
         return instance.get<CommonResponseType<AuthDataType>>('auth/me')
     },
-    logIn(email:string, password: string, rememberMe:boolean, captcha?: string) {
-        return instance.post<CommonResponseType<{userId: number}>>('auth/login', {email, password, rememberMe, captcha})
+    logIn(email: string, password: string, rememberMe: boolean, captcha?: string) {
+        return instance.post<CommonResponseType<{ userId: number }>>('auth/login', {
+            email,
+            password,
+            rememberMe,
+            captcha
+        })
     },
     logout() {
         return instance.delete<CommonResponseType<{}>>('auth/login')
     },
-    getCaptcha(){
-        return instance.get<{url: string}>(`/security/get-captcha-url`)
+    getCaptcha() {
+        return instance.get<{ url: string }>(`/security/get-captcha-url`)
     },
 
 }
 
 export const profileAPI = {
 
-    setUserProfile(userId:string) {
+    setUserProfile(userId: string) {
         return instance.get<CommonDataProfileType>(`profile/${userId}`)
     },
-    setStatusProfile(userId:string) {
+    setStatusProfile(userId: string) {
         return instance.get<string>(`profile/status/${userId}`)
     },
-    updateStatusProfile(status:string) {
+    updateStatusProfile(status: string) {
         return instance.put<string>(`profile/status`, {status})
+    },
+    updateProfilePhoto(photo: File) {
+        let data = new FormData()
+        data.append("image", photo)
+        debugger
+        return instance.put<CommonResponseType<UpdatePhotoType>>(`profile/photo`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     },
 }

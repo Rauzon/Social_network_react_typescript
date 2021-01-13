@@ -20,6 +20,7 @@ export enum typeOfActionDispatch {
     SET_CAPTCHA_VALUE = "SET_CAPTCHA_VALUE",
     INITIALIZED_APP = "INITIALIZED_APP",
     SET_ERROR = "SET_ERROR",
+    UPDATE_PHOTO = "UPDATE_PHOTO",
 }
 
 export type ActionCreatorsType = ReturnType<typeof addPost> |
@@ -37,7 +38,8 @@ export type ActionCreatorsType = ReturnType<typeof addPost> |
     ReturnType<typeof setAuthError> |
     ReturnType<typeof setCaptchaValue> |
     ReturnType<typeof initializedApp> |
-    ReturnType<typeof setError>
+    ReturnType<typeof setError> |
+    ReturnType<typeof updatePhoto>
 
 //actionCreators
 export const addPost = (value: string) => {
@@ -119,5 +121,10 @@ export const initializedApp = () => {
 export const setError = (error: string | null) => {
     return (
         {type: typeOfActionDispatch.SET_ERROR, error}
+    ) as const
+};
+export const updatePhoto = (photo: any) => {
+    return (
+        {type: typeOfActionDispatch.UPDATE_PHOTO, photo}
     ) as const
 };
