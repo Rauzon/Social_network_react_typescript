@@ -65,7 +65,7 @@ export class ProfileContainer extends React.PureComponent<PropsType> {
                      profilePage={this.props.profilePage}
                      updateStatus={this.props.updateStatus}
                      userId={this.props.match.params.userId}
-                    updatePhoto = {this.props.updatePhoto}/>
+                     updatePhoto={this.props.updatePhoto}/>
         )
     }
 }

@@ -82,7 +82,6 @@ export const profileAPI = {
     updateProfilePhoto(photo: File) {
         let data = new FormData()
         data.append("image", photo)
-        debugger
         return instance.put<CommonResponseType<UpdatePhotoType>>(`profile/photo`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data'

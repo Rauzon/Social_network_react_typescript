@@ -1,12 +1,11 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './profileInfo.module.css';
+import {CommonDataProfileType} from "../../../redux/reducers/profilePage-reducer";
+import BorderColorIcon from '@material-ui/icons/BorderColor';
+import {IconButton} from "@material-ui/core";
+import {ProfileInfoData} from "./ProfileInfoData";
 import {EditableStatus} from "./EditableStatus";
-import style from "../../nav/friendsBlock/friendsBlock.module.css";
-import {AccordionDetails, AccordionSummary, createStyles, Typography} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
-import Accordion from "@material-ui/core/Accordion";
-import {CommonDataProfileType, SocialContactsType} from "../../../redux/reducers/profilePage-reducer";
+import {ProfileInfoDataForm} from "./ProfileInfoDataForm";
 
 type PropsType = {
     userProfile: CommonDataProfileType
@@ -19,55 +18,10 @@ type PropsType = {
 
 export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
 
-    let contacts: any
-    if (props.userProfile && props.userProfile.contacts) {
-        let keys = Object.keys(props.userProfile.contacts)
-        contacts = keys.map((key) => {
-            return (
-                <div className={s.content__socialLinks} key={key}>
-                    <span>{key}: {props.userProfile.contacts[key as keyof SocialContactsType]}</span>
-                </div>
-            )
-        })
-    }
+    const [editeMode, setEditeMode] = useState<boolean>(false)
 
     let defaultAvatarPhoto = `https://i.imgur.com/d8HZHxF.jpg`
 
-    const CssAccordion = withStyles({
-        root: {
-            '& .MuiAccordionDetails-root': {
-                padding: '0px',
-            },
-        },
-    })(Accordion);
-
-    const useStyles = makeStyles((theme: Theme) =>
-        createStyles({
-            root: {
-                width: '100%',
-                "& .MuiAccordionDetails": {
-                    padding: '0px',
-                },
-            },
-            heading: {
-                fontSize: theme.typography.pxToRem(15),
-                fontWeight: theme.typography.fontWeightRegular,
-            },
-            contentBlock: {
-                width: '100%',
-            },
-            contentBlockWrapper: {
-                width: '100%',
-            },
-            contentBlockWrapperRoot: {
-                width: '100%',
-            },
-        }),
-    );
-
-    const classes = useStyles();
-
-    //change photo of avatar
     const onChangePhotoProfile = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             props.updatePhoto(event.target.files[0])
@@ -80,7 +34,10 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
                 <img src={(props.userProfile?.photos?.large) ? props.userProfile?.photos?.large :
                     defaultAvatarPhoto}
                      alt=""/>
-                {!props.paramsUserId && <input type="file" onChange={(e) => onChangePhotoProfile(e)}/>}
+                {!props.paramsUserId && <div>
+                    <input type="file" onChange={(e) => onChangePhotoProfile(e)}/>
+                </div>
+                }
             </div>
             <div className={s.content__mainInfo_contactStatus}>
                 <div className={s.content__description_fullName}>
@@ -90,33 +47,24 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
             </div>
         </div>
         <div className={s.content__description}>
-            <div className={s.content__description_aboutMe}>
-                <b>AboutMe</b>: {props.userProfile?.aboutMe}
-            </div>
-            <div className={s.content__description_searchJob}>
-                <b>Search a job:</b> {(props.userProfile?.lookingForAJob) ? "Yes" : "No"}
-            </div>
-            <div className={s.content__description_desriptionOfJob}>
-                <b>Description of job:</b> {(props.userProfile?.lookingForAJobDescription) ?
-                props.userProfile.lookingForAJobDescription :
-                "No description"}
-            </div>
-            <div className={s.content__description_contacts}>
-                <CssAccordion className={`${style.MuiPaperRoot} ${style.contentBlockWrapperRoot}`}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon/>}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                    >
-                        <Typography className={classes.heading}><b>Contacts:</b></Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.contentBlockWrapper}>
-                        <Typography className={classes.contentBlock} component={'span'}>
-                            {contacts}
-                        </Typography>
-                    </AccordionDetails>
-                </CssAccordion>
-            </div>
+            {editeMode ? <ProfileInfoData updatePhoto={props.updatePhoto}
+                                          paramsUserId={props.paramsUserId}
+                                          updateStatus={props.updateStatus}
+                                          userId={props.userId}
+                                          status={props.status}
+                                          userProfile={props.userProfile}/>
+                : <ProfileInfoDataForm updatePhoto={props.updatePhoto}
+                                       paramsUserId={props.paramsUserId}
+                                       updateStatus={props.updateStatus}
+                                       userId={props.userId}
+                                       status={props.status}
+                                       userProfile={props.userProfile}/>
+            }
+            {!props.paramsUserId && <div className={s.content__description_editBtn}>
+                <IconButton>
+                    <BorderColorIcon onClick={() => setEditeMode(true)} fontSize="small"/>
+                </IconButton>
+            </div>}
         </div>
     </div>
 })

@@ -48,11 +48,13 @@ export const updateProfilePhotoThunk = (photo: any) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateProfilePhoto(photo)
             .then((res) => {
-                debugger
-                dispatch(updatePhoto(res.data.data.photos))
+                if (res.data.resultCode === 0) {
+                    dispatch(updatePhoto(res.data.data.photos))
+                } else {
+                    errorHandler(res, dispatch)
+                }
             })
             .catch(err => {
-                debugger
                 serverErrorHandler(err, dispatch)
             })
     }
