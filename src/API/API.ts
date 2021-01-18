@@ -20,9 +20,9 @@ export type CommonResponseType<D = {}> = {
 }
 
 export type UpdatePhotoType = {
-        photos: {
-            small: string
-            large: string
+    photos: {
+        small: string
+        large: string
     }
 }
 
@@ -87,5 +87,8 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    updateProfileData(profileData: any) {
+        return instance.put<CommonResponseType<any>>(`profile`, profileData)
     },
 }

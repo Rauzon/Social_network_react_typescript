@@ -6,6 +6,7 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {
     setUserProfileThunk,
     setUserStatusThunk,
+    updateProfileDataThunk,
     updateProfilePhotoThunk,
     updateUserStatusThunk
 } from "../../thunks/profileThunk";
@@ -24,6 +25,7 @@ type MdtpType = {
     setStatusProfile: (userId: string) => void
     updateStatus: (title: string) => void
     updatePhoto: (photo: any) => void
+    updateProfileData: (data: any) => void
 }
 
 type PathParamsType = {
@@ -65,7 +67,8 @@ export class ProfileContainer extends React.PureComponent<PropsType> {
                      profilePage={this.props.profilePage}
                      updateStatus={this.props.updateStatus}
                      userId={this.props.match.params.userId}
-                     updatePhoto={this.props.updatePhoto}/>
+                     updatePhoto={this.props.updatePhoto}
+                     updateProfileData={this.props.updateProfileData}/>
         )
     }
 }
@@ -85,5 +88,6 @@ export const ProfileContainerWithURL = compose<ComponentType<{}>>(
         setStatusProfile: setUserStatusThunk,
         updateStatus: updateUserStatusThunk,
         updatePhoto: updateProfilePhotoThunk,
+        updateProfileData: updateProfileDataThunk,
     }))(ProfileContainer)
 

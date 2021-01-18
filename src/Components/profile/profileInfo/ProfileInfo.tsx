@@ -14,6 +14,7 @@ type PropsType = {
     userId: string
     paramsUserId: boolean
     updatePhoto: (photo: any) => void
+    updateProfileData: (data: any) => void
 }
 
 export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
@@ -26,6 +27,11 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
         if (event.target.files) {
             props.updatePhoto(event.target.files[0])
         }
+    }
+
+    //change editeMode to false pressing button save
+    const setEditeModeHandler = () => {
+        setEditeMode(false)
     }
 
     return <div className={s.content__profileInfo}>
@@ -47,20 +53,24 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
             </div>
         </div>
         <div className={s.content__description}>
-            {editeMode ? <ProfileInfoData updatePhoto={props.updatePhoto}
-                                          paramsUserId={props.paramsUserId}
-                                          updateStatus={props.updateStatus}
-                                          userId={props.userId}
-                                          status={props.status}
-                                          userProfile={props.userProfile}/>
+            {!editeMode ? <ProfileInfoData updatePhoto={props.updatePhoto}
+                                           paramsUserId={props.paramsUserId}
+                                           updateStatus={props.updateStatus}
+                                           userId={props.userId}
+                                           status={props.status}
+                                           userProfile={props.userProfile}/>
                 : <ProfileInfoDataForm updatePhoto={props.updatePhoto}
                                        paramsUserId={props.paramsUserId}
                                        updateStatus={props.updateStatus}
                                        userId={props.userId}
                                        status={props.status}
-                                       userProfile={props.userProfile}/>
+                                       userProfile={props.userProfile}
+                                       setEditeModeHandler={setEditeModeHandler}
+                                       fullName={props.userProfile?.fullName}
+                                       updateProfileData={props.updateProfileData}
+                />
             }
-            {!props.paramsUserId && <div className={s.content__description_editBtn}>
+            {(!props.paramsUserId && !editeMode) && <div className={s.content__description_editBtn}>
                 <IconButton>
                     <BorderColorIcon onClick={() => setEditeMode(true)} fontSize="small"/>
                 </IconButton>

@@ -11,6 +11,7 @@ type PropsType = {
     userId: string
     paramsUserId: boolean
     updatePhoto: (photo: any) => void
+    updateProfileData: (data: any) => void
 }
 
 export const Profile: React.FC<PropsType> = React.memo((props) => {
@@ -37,6 +38,7 @@ export const Profile: React.FC<PropsType> = React.memo((props) => {
                                  userId={props.userId}
                                  paramsUserId={props.paramsUserId}
                                  updatePhoto={props.updatePhoto}
+                                 updateProfileData={props.updateProfileData}
                     />
                     <MyPosts posts={props.profilePage.posts}
                              photo={props.profilePage.userProfile.photos?.large}/>

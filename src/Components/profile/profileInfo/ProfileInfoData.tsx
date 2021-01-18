@@ -20,7 +20,7 @@ export const ProfileInfoData: React.FC<ProfileInfoDataPropsType> = (props) => {
 
     return <>
             <div className={s.content__description_aboutMe}>
-                <b>AboutMe</b>: {props.userProfile?.aboutMe}
+                <b>About me</b>: {props.userProfile?.aboutMe}
             </div>
             <div className={s.content__description_searchJob}>
                 <b>Search a job:</b> {(props.userProfile?.lookingForAJob) ? "Yes" : "No"}

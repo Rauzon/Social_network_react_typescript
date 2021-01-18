@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
 
 
-export const setUserProfileThunk = (userId: string) => {
+export const setUserProfileThunk = (userId : string) => {
 
     return (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
@@ -50,6 +50,25 @@ export const updateProfilePhotoThunk = (photo: any) => {
             .then((res) => {
                 if (res.data.resultCode === 0) {
                     dispatch(updatePhoto(res.data.data.photos))
+                } else {
+                    errorHandler(res, dispatch)
+                }
+            })
+            .catch(err => {
+                serverErrorHandler(err, dispatch)
+            })
+    }
+};
+
+export const updateProfileDataThunk = (profileData: any) => {
+    debugger
+    return (dispatch: Dispatch) => {
+        profileAPI.updateProfileData(profileData)
+            .then((res) => {
+                debugger
+                if (res.data.resultCode === 0) {
+                    //@ts-ignore
+                    dispatch(setUserProfileThunk('7788'))
                 } else {
                     errorHandler(res, dispatch)
                 }
