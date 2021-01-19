@@ -2,9 +2,10 @@ import {profileAPI} from "../API/API";
 import {setIsFetching, setStatusProfile, setUserProfile, updatePhoto} from "../redux/ActionCreators";
 import {Dispatch} from "redux";
 import {errorHandler, serverErrorHandler} from "../utils/errorHandlers";
+import {StateType, store} from "../redux/redux-store";
 
 
-export const setUserProfileThunk = (userId : string) => {
+export const setUserProfileThunk = (userId: string) => {
 
     return (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
@@ -62,13 +63,14 @@ export const updateProfilePhotoThunk = (photo: any) => {
 
 export const updateProfileDataThunk = (profileData: any) => {
     debugger
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<any>, getState: any) => {
+
+        let userId = getState().auth.id.toString()
+
         profileAPI.updateProfileData(profileData)
             .then((res) => {
-                debugger
                 if (res.data.resultCode === 0) {
-                    //@ts-ignore
-                    dispatch(setUserProfileThunk('7788'))
+                    dispatch(setUserProfileThunk(userId))
                 } else {
                     errorHandler(res, dispatch)
                 }

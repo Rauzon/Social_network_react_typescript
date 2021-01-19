@@ -84,11 +84,12 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
             }
         },
         onSubmit: values => {
-            debugger
             props.updateProfileData({
-                fullName: (props.fullName) ? props.fullName : '',
+                userId: props.userId,
+                fullName: props.fullName,
                 ...values
             })
+            debugger
             props.setEditeModeHandler()
         },
     });
@@ -101,7 +102,6 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
                 <div className={s.content__socialLinks} key={key}>
                     <span><b>{key}</b>:<TextField
                         id={`${key}`}
-                        label={`${key}`}
                         name={`contacts.${key}`}
                         type="text"
                         onChange={formik.handleChange}
@@ -125,7 +125,6 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
                 <b>About me:</b>
                 <TextField
                     id="AboutMe"
-                    label="Describe yourself"
                     name="AboutMe"
                     type="text"
                     onChange={formik.handleChange}
@@ -148,7 +147,6 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
                 <b>Description of job:</b>
                 <TextField
                     id="lookingForAJobDescription"
-                    label="what you want"
                     name="lookingForAJobDescription"
                     type="text"
                     onChange={formik.handleChange}
