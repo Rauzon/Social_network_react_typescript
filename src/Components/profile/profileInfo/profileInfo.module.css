@@ -32,10 +32,6 @@
     }
 }
 
-.content__mainInfo_avatar {
-
-}
-
 .content__mainInfo_contactStatus {
     display: flex;
     flex-direction: column;
@@ -64,6 +60,28 @@
 .content__mainInfo_avatar {
     display: block;
     height: 200px;
+    position: relative;
+}
+
+.content__mainInfo_avatar img:hover {
+    background-color: #000;
+    transition: all .3s;
+    opacity: .8;
+}
+
+.content__mainInfo_photoBtn {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+    display: none;
+    transition: display .3s;
+}
+
+.content__mainInfo_avatar:hover > div.content__mainInfo_photoBtn {
+    display: block;
+    transition: all .3s;
+    z-index: 999;
 }
 
 .content__mainInfo_avatar img {
@@ -72,6 +90,7 @@
     height: 100%;
     border: 2px solid darkgrey;
     border-radius: 50%;
+    transition: all .3s;
 }
 
 @media (max-width: 1250px) {

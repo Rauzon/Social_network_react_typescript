@@ -15,6 +15,7 @@ import style from "../../nav/friendsBlock/friendsBlock.module.css";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
+import * as yup from 'yup';
 
 type ProfileInfoDataPropsType = {
     userProfile: CommonDataProfileType
@@ -28,6 +29,25 @@ type ProfileInfoDataPropsType = {
     updateProfileData: (data: any) => void
 }
 
+//error validation
+let validationSchema = yup.object().shape({
+    aboutMe: yup.string()
+        .required()
+        .max(300, '300 or less chars'),
+    lookingForAJobDescription: yup.string()
+        .required()
+        .max(300, '300 or less chars'),
+    contacts: yup.object({
+        facebook: yup.string().length(30, '30 or less chars'),
+        website: yup.string().length(30, '30 or less chars'),
+        vk: yup.string().length(30, '30 or less chars'),
+        twitter: yup.string().length(30, '30 or less chars'),
+        instagram: yup.string().length(30, '30 or less chars'),
+        github: yup.string().length(30, '30 or less chars'),
+        youtube: yup.string().length(30, '30 or less chars'),
+        mainLink: yup.string().length(30, '30 or less chars'),
+    })
+});
 
 const CssAccordion = withStyles({
     root: {
@@ -63,11 +83,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) => {
 
-    const [isChecked, setIsChecked] = useState<boolean>(props.userProfile.lookingForAJob)
+    const [isChecked, setIsChecked] = useState<boolean>(props.userProfile.lookingForAJob);
 
     const classes = useStyles();
 
     const formik = useFormik({
+        validationSchema,
         initialValues: {
             aboutMe: props.userProfile.aboutMe,
             lookingForAJob: props.userProfile.lookingForAJob,
@@ -89,7 +110,6 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
                 fullName: props.fullName,
                 ...values
             })
-            debugger
             props.setEditeModeHandler()
         },
     });
@@ -119,19 +139,23 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
         formik.handleChange(e)
     }
 
+    const errorStyle = {color: 'red'}
+
     return <>
         <form onSubmit={formik.handleSubmit}>
             <div className={s.content__description_aboutMe}>
-                <b>About me:</b>
-                <TextField
-                    id="AboutMe"
-                    name="AboutMe"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.aboutMe}
-                    rows={3}
-                    variant="outlined"
-                />
+                <b>About me:</b><TextField
+                id="AboutMe"
+                name="aboutMe"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.aboutMe}
+                rows={3}
+                variant="outlined"
+            />
+                {formik.errors.aboutMe && formik.touched.aboutMe ? (
+                    <div style={errorStyle}>{formik.errors.aboutMe}</div>
+                ) : null}
             </div>
             <div className={s.content__description_searchJob}>
                 <b>Search a job:</b>
@@ -154,6 +178,9 @@ export const ProfileInfoDataForm: React.FC<ProfileInfoDataPropsType> = (props) =
                     rows={3}
                     variant="outlined"
                 />
+                {formik.errors.lookingForAJobDescription && formik.touched.lookingForAJobDescription ? (
+                    <div style={errorStyle}>{formik.errors.lookingForAJobDescription}</div>
+                ) : null}
             </div>
             }
             <div className={s.content__description_contacts}>

@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import s from "./loginForm.module.css";
 import classes from "./loginForm.module.css";
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField,} from "@material-ui/core";
@@ -33,7 +33,7 @@ const validationSchema = Yup.object({
 });
 
 
-export const LoginForm: React.FC<IFormData> = React.memo((props) => {
+export const  LoginForm: React.FC<IFormData> = React.memo((props) => {
 
     const {error, login, captcha} = props
 
@@ -52,9 +52,9 @@ export const LoginForm: React.FC<IFormData> = React.memo((props) => {
         },
     });
 
-    const getCaptcha = useCallback(() => {
+    const getCaptcha = () => {
         props.getCaptcha()
-    }, [props])
+    }
 
 
     return <>

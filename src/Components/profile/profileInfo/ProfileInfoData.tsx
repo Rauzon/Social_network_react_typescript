@@ -16,8 +16,6 @@ type ProfileInfoDataPropsType = {
 
 export const ProfileInfoData: React.FC<ProfileInfoDataPropsType> = (props) => {
 
-
-
     return <>
             <div className={s.content__description_aboutMe}>
                 <b>About me</b>: {props.userProfile?.aboutMe}

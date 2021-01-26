@@ -1,11 +1,13 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {useState} from "react";
 import s from './profileInfo.module.css';
 import {CommonDataProfileType} from "../../../redux/reducers/profilePage-reducer";
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-import {IconButton} from "@material-ui/core";
+import {createStyles, IconButton, Theme} from "@material-ui/core";
 import {ProfileInfoData} from "./ProfileInfoData";
 import {EditableStatus} from "./EditableStatus";
 import {ProfileInfoDataForm} from "./ProfileInfoDataForm";
+import {makeStyles} from "@material-ui/core/styles";
+import {PhotoCamera} from "@material-ui/icons";
 
 type PropsType = {
     userProfile: CommonDataProfileType
@@ -23,10 +25,13 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
 
     let defaultAvatarPhoto = `https://i.imgur.com/d8HZHxF.jpg`
 
-    const onChangePhotoProfile = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            props.updatePhoto(event.target.files[0])
+    const onChangePhotoProfile = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        let target = event.target as HTMLInputElement;
+        let file = target.files;
+        if (file) {
+            props.updatePhoto(file[0])
         }
+
     }
 
     //change editeMode to false pressing button save
@@ -34,18 +39,40 @@ export const ProfileInfo: React.FC<PropsType> = React.memo((props) => {
         setEditeMode(false)
     }
 
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            root: {
+                '& > *': {
+                    margin: theme.spacing(1),
+                },
+            },
+            input: {
+                display: 'none',
+            },
+        }),
+    );
+
+    const classes = useStyles();
+
     return <div className={s.content__profileInfo}>
         <div className={s.content__mainInfo}>
             <div className={s.content__mainInfo_avatar}>
                 <img src={(props.userProfile?.photos?.large) ? props.userProfile?.photos?.large :
                     defaultAvatarPhoto}
                      alt=""/>
-                {!props.paramsUserId && <div>
-                    <input type="file" onChange={(e) => onChangePhotoProfile(e)}/>
+                {!props.paramsUserId &&
+                <div className={s.content__mainInfo_photoBtn}>
+                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file"
+                           onChange={onChangePhotoProfile}/>
+                    <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture" component="span">
+                            <PhotoCamera fontSize={"large"}/>
+                        </IconButton>
+                    </label>
                 </div>
                 }
             </div>
-            <div className={s.content__mainInfo_contactStatus}>
+            < div className={s.content__mainInfo_contactStatus}>
                 <div className={s.content__description_fullName}>
                     <b>FullName</b>: {props.userProfile?.fullName}
                 </div>
