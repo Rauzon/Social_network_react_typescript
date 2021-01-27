@@ -72,7 +72,7 @@
 .content__mainInfo_photoBtn {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 35%;
     transform: translateY(-50%);
     display: none;
     transition: display .3s;
@@ -99,6 +99,15 @@
         height: 150px;
     }
 
+    .content__mainInfo_photoBtn {
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        transform: translateY(-50%);
+        display: none;
+        transition: display .3s;
+    }
+
     .content__mainInfo_avatar img {
         display: block;
         width: 150px;
@@ -112,6 +121,15 @@
     .content__mainInfo_avatar {
         display: block;
         height: 120px;
+    }
+
+    .content__mainInfo_photoBtn {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translateY(-50%);
+        display: none;
+        transition: display .3s;
     }
 
     .content__mainInfo_avatar img {
@@ -139,11 +157,15 @@
 .content__description_fullName,
 .content__description_searchJob,
 .content__description_desriptionOfJob {
-    margin: 10px 0px;
+    margin: 10px;
+}
+
+.content__socialLinks input{
+    margin: -0.3em 0 0 0.3em;
 }
 
 .content__description_aboutMe input {
-    margin-top: -0.275em;
+    margin: -0.1em 0 0 0.3em;
 }
 
 .content__socialLinks {

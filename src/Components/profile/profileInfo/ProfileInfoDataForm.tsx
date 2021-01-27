@@ -29,7 +29,7 @@ type ProfileInfoDataPropsType = {
     updateProfileData: (data: any) => void
 }
 
-//error validation
+// error validation
 let validationSchema = yup.object().shape({
     aboutMe: yup.string()
         .required()
@@ -38,14 +38,14 @@ let validationSchema = yup.object().shape({
         .required()
         .max(300, '300 or less chars'),
     contacts: yup.object({
-        facebook: yup.string().length(30, '30 or less chars'),
-        website: yup.string().length(30, '30 or less chars'),
-        vk: yup.string().length(30, '30 or less chars'),
-        twitter: yup.string().length(30, '30 or less chars'),
-        instagram: yup.string().length(30, '30 or less chars'),
-        github: yup.string().length(30, '30 or less chars'),
-        youtube: yup.string().length(30, '30 or less chars'),
-        mainLink: yup.string().length(30, '30 or less chars'),
+        facebook: yup.string().max(50, '50 or less chars'),
+        website: yup.string().max(50, '50 or less chars'),
+        vk: yup.string().max(50, '50 or less chars'),
+        twitter: yup.string().max(50, '50 or less chars'),
+        instagram: yup.string().max(50, '50 or less chars'),
+        github: yup.string().max(50, '50 or less chars'),
+        youtube: yup.string().max(50, '50 or less chars'),
+        mainLink: yup.string().max(50, '50 or less chars'),
     })
 });
 

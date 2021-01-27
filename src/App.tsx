@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import s from './app.module.css'
 import {Nav} from './Components/nav/Nav';
 import {News} from "./Components/news/News";
@@ -43,12 +43,16 @@ const App: React.FC<propsType> = React.memo((props) => {
             <HeaderContainer/>
             <Nav navPage={props.state.navPage}/>
             <div className={s.app__wrapper_content}>
-                <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithURL/>}/>
-                <Route path={'/dialogs'} render={() => withSuspenseHOC(DialogContainer)}/>
-                <Route path={'/users'} render={() => withSuspenseHOC(UsersContainer)}/>
-                <Route path={'/news'} render={() => <News/>}/>
-                <Route path={'/settings'} render={() => <Settings/>}/>
-                <Route path={'/login'} render={() => <LoginContainer/>}/>
+                <Switch>
+                    <Route exact path={'/'} render={() => <ProfileContainerWithURL/>}/>
+                    <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithURL/>}/>
+                    <Route path={'/dialogs'} render={() => withSuspenseHOC(DialogContainer)}/>
+                    <Route path={'/users'} render={() => withSuspenseHOC(UsersContainer)}/>
+                    <Route path={'/news'} render={() => <News/>}/>
+                    <Route path={'/settings'} render={() => <Settings/>}/>
+                    <Route path={'/login'} render={() => <LoginContainer/>}/>
+                    <Route path={'*'} render={() => <div>404 NOT FOUND</div>}/>
+                </Switch>
                 <SnackBar/>
             </div>
         </div>
